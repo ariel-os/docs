@@ -1,0 +1,1 @@
+window.SIDEBAR_ITEMS = {"enum":["Frequency"],"fn":["highest_freq_in"],"type":["Kilohertz","SpiDevice"]};

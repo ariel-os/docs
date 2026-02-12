@@ -1,0 +1,1 @@
+window.SIDEBAR_ITEMS = {"constant":["DNS_MAX_SERVER_COUNT"],"enum":["ConfigV4","ConfigV6","HardwareAddress","IpAddress","IpCidr"],"fn":["new"],"mod":["dns","driver","tcp","udp"],"struct":["Config","DhcpConfig","EthernetAddress","IpEndpoint","IpListenEndpoint","Ipv4Address","Ipv4Cidr","Ipv6Address","Ipv6Cidr","Runner","Stack","StackResources","StaticConfigV4","StaticConfigV6"]};

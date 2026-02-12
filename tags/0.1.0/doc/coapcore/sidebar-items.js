@@ -1,0 +1,1 @@
+window.SIDEBAR_ITEMS = {"enum":["OwnRequestData"],"mod":["scope","seccfg","time"],"struct":["CredentialError","OscoreEdhocHandler"],"trait":["GeneralClaims"]};
