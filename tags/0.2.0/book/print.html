@@ -1,0 +1,1742 @@
+<!DOCTYPE HTML>
+<html lang="en" class="light sidebar-visible" dir="ltr">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>Ariel OS manual</title>
+        <meta name="robots" content="noindex">
+
+
+        <!-- Custom HTML head -->
+
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff">
+
+        <link rel="icon" href="favicon.svg">
+        <link rel="shortcut icon" href="favicon.png">
+        <link rel="stylesheet" href="css/variables.css">
+        <link rel="stylesheet" href="css/general.css">
+        <link rel="stylesheet" href="css/chrome.css">
+        <link rel="stylesheet" href="css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="fonts/fonts.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" id="highlight-css" href="highlight.css">
+        <link rel="stylesheet" id="tomorrow-night-css" href="tomorrow-night.css">
+        <link rel="stylesheet" id="ayu-highlight-css" href="ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+
+
+        <!-- Provide site root and default themes to javascript -->
+        <script>
+            const path_to_root = "";
+            const default_light_theme = "light";
+            const default_dark_theme = "navy";
+        </script>
+        <!-- Start loading toc.js asap -->
+        <script src="toc.js"></script>
+    </head>
+    <body>
+    <div id="body-container">
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script>
+            try {
+                let theme = localStorage.getItem('mdbook-theme');
+                let sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script>
+            const default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? default_dark_theme : default_light_theme;
+            let theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            const html = document.documentElement;
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add("js");
+        </script>
+
+        <input type="checkbox" id="sidebar-toggle-anchor" class="hidden">
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script>
+            let sidebar = null;
+            const sidebar_toggle = document.getElementById("sidebar-toggle-anchor");
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            } else {
+                sidebar = 'hidden';
+            }
+            sidebar_toggle.checked = sidebar === 'visible';
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <!-- populated by js -->
+            <mdbook-sidebar-scrollbox class="sidebar-scrollbox"></mdbook-sidebar-scrollbox>
+            <noscript>
+                <iframe class="sidebar-iframe-outer" src="toc.html"></iframe>
+            </noscript>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle">
+                <div class="sidebar-resize-indicator"></div>
+            </div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky">
+                    <div class="left-buttons">
+                        <label id="sidebar-toggle" class="icon-button" for="sidebar-toggle-anchor" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </label>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="default_theme">Auto</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">Ariel OS manual</h1>
+
+                    <div class="right-buttons">
+                        <a href="print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+                        <a href="https://github.com/ariel-os/ariel-os" title="Git repository" aria-label="Git repository">
+                            <i id="git-repository-button" class="fa fa-github"></i>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script>
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h1 id="introduction"><a class="header" href="#introduction">Introduction</a></h1>
+<p>Ariel OS is an operating system for secure, memory-safe, networked applications
+running on low-power microcontrollers.
+It is based on Rust from the ground up
+and <a href="https://ariel-os.github.io/ariel-os/dev/docs/book/hardware-functionality-support.html">supports hardware</a>
+based on 32-bit microcontroller architectures (Cortex-M, RISC-V, and Xtensa).
+Many features provided by Ariel OS can individually be enabled or disabled at build time
+in order to minimize resource consumption.</p>
+<h2 id="goals-and-design"><a class="header" href="#goals-and-design">Goals and Design</a></h2>
+<p>Ariel OS builds on top of existing projects from the Embedded Rust ecosystem, including
+<a href="https://github.com/embassy-rs/embassy">Embassy</a>, <a href="https://github.com/esp-rs/esp-hal">esp-hal</a>,
+<a href="https://github.com/knurling-rs/defmt">defmt</a>, <a href="https://github.com/probe-rs/probe-rs">probe-rs</a>,
+<a href="https://github.com/tweedegolf/sequential-storage">sequential-storage</a>, and
+<a href="https://github.com/probe-rs/embedded-test">embedded-test</a>.</p>
+<p>Ariel OS follows an approach whereby it simultaneously integrates a curated ecosystem of libraries (available via crates.io),
+and adds missing operating system functionalities as depicted below.
+Such functionalities include a preemptive multicore scheduler, portable peripheral APIs,
+additional network security facilities, as well as a meta-build system to bind it all together.</p>
+<p>As a result, a low-power IoT developer can focus on business logic
+sitting on top of APIs which remain close to the hardware but
+nevertheless stay the same across all supported hardware,
+inspired by what <a href="https://github.com/RIOT-OS/RIOT/">RIOT</a> tends to in that regard.
+The intent is three-fold: reduce application development time,
+increase code portability, and minimize core system vulnerabilities.</p>
+<p>In a nutshell: Ariel OS contributes to the global effort aiming to (re)write IoT system software
+foundations on more solid ground than what traditional building blocks written in C can provide.
+And this is a joyful and welcoming open-source community, so: <a href="https://github.com/ariel-os/ariel-os">join us</a>!</p>
+<figure style="text-align: center; margin: 4em">
+  <img src="figures/ariel-os-arch-diagram2.svg" alt="Architecture diagram">
+  <figcaption>Architecture diagram of Ariel OS</figcaption>
+</figure>
+<h2 id="further-reading"><a class="header" href="#further-reading">Further Reading</a></h2>
+<p>Even though not necessary for using Ariel OS, readers of this book might also want
+to have a look at the following resources:</p>
+<ul>
+<li><a href="https://docs.rust-embedded.org/book/">The Embedded Rust Book</a>: General information about how to use Rust for embedded and the structure of the Rust embedded ecosystem, which Ariel OS abstracts over.</li>
+<li><a href="https://embassy.dev/book/">Embassy Book</a>: Hardware abstractions and async executors that Ariel OS builds on.</li>
+</ul>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="hardware--functionality-support"><a class="header" href="#hardware--functionality-support">Hardware &amp; Functionality Support</a></h1>
+<blockquote>
+<p>The table below indicates whether we support using the piece of functionality in a portable manner, trough an abstraction layer and platform-aware configuration.</p>
+</blockquote>
+<!-- This table is auto-generated. Do not edit manually. -->
+<table class="support-matrix">
+  <thead>
+    <tr>
+      <th colspan="2">Chip</th>
+      <th colspan="2">Testing Board</th>
+      <th colspan="10">Functionality</th>
+    </tr>
+    <tr>
+      <th>Manufacturer Name</th>
+      <th>Ariel OS Name</th>
+      <th>Manufacturer Name</th>
+      <th>Ariel OS Name</th>
+      <th>GPIO</th>
+      <th>Debug Output</th>
+      <th>I2C Controller Mode</th>
+      <th>SPI Main Mode</th>
+      <th>Logging</th>
+      <th>User USB</th>
+      <th>Wi-Fi</th>
+      <th>Ethernet over USB</th>
+      <th>Hardware Random Number Generator</th>
+      <th>Persistent Storage</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>nRF52833</td>
+      <td><code>nrf52833</code></td>
+      <td><a href="https://web.archive.org/web/20250109121140/https://microbit.org/new-microbit/">BBC micro:bit V2</a></td>
+      <td><code>bbc-microbit-v2</code></td>
+      <td class="support-cell" title="supported">✅</td>
+      <td class="support-cell" title="supported">✅</td>
+      <td class="support-cell" title="supported">✅</td>
+      <td class="support-cell" title="supported">✅</td>
+      <td class="support-cell" title="supported">✅</td>
+      <td class="support-cell" title="not available on this piece of hardware">–</td>
+      <td class="support-cell" title="not available on this piece of hardware">–</td>
+      <td class="support-cell" title="not available on this piece of hardware">–</td>
+      <td class="support-cell" title="supported">✅</td>
+      <td class="support-cell" title="supported">✅</td>
+    </tr>
+    <tr>
+      <td>ESP32-C3</td>
+      <td><code>esp32c3</code></td>
+      <td><a href="https://web.archive.org/web/20250408100740/https://www.espressif.com/en/dev-board/esp32-c3-lcdkit-en">Espressif ESP32-C3-LCDkit</a></td>
+      <td><code>espressif-esp32-c3-lcdkit</code></td>
+      <td class="support-cell" title="supported">✅</td>
+      <td class="support-cell" title="supported">✅</td>
+      <td class="support-cell" title="supported">✅</td>
+      <td class="support-cell" title="supported">✅</td>
+      <td class="support-cell" title="supported">✅</td>
+      <td class="support-cell" title="available in hardware, but not currently supported by Ariel OS">❌</td>
+      <td class="support-cell" title="supported with some caveats">☑️</td>
+      <td class="support-cell" title="available in hardware, but not currently supported by Ariel OS">❌</td>
+      <td class="support-cell" title="supported">✅</td>
+      <td class="support-cell" title="available in hardware, but not currently supported by Ariel OS">❌</td>
+    </tr>
+    <tr>
+      <td>ESP32-C6</td>
+      <td><code>esp32c6</code></td>
+      <td><a href="https://web.archive.org/web/20250122153727/https://www.espressif.com/en/dev-board/esp32-c6-devkitc-1-en">Espressif ESP32-C6-DevKitC-1</a></td>
+      <td><code>espressif-esp32-c6-devkitc-1</code></td>
+      <td class="support-cell" title="supported">✅</td>
+      <td class="support-cell" title="supported">✅</td>
+      <td class="support-cell" title="supported">✅</td>
+      <td class="support-cell" title="supported">✅</td>
+      <td class="support-cell" title="supported">✅</td>
+      <td class="support-cell" title="available in hardware, but not currently supported by Ariel OS">❌</td>
+      <td class="support-cell" title="supported with some caveats">☑️</td>
+      <td class="support-cell" title="available in hardware, but not currently supported by Ariel OS">❌</td>
+      <td class="support-cell" title="supported">✅</td>
+      <td class="support-cell" title="available in hardware, but not currently supported by Ariel OS">❌</td>
+    </tr>
+    <tr>
+      <td>ESP32-S3</td>
+      <td><code>esp32s3</code></td>
+      <td><a href="https://web.archive.org/web/20250122153707/https://www.espressif.com/en/dev-board/esp32-s3-devkitc-1-en">Espressif ESP32-S3-DevKitC-1</a></td>
+      <td><code>espressif-esp32-s3-devkitc-1</code></td>
+      <td class="support-cell" title="supported">✅</td>
+      <td class="support-cell" title="supported">✅</td>
+      <td class="support-cell" title="needs testing">🚦</td>
+      <td class="support-cell" title="needs testing">🚦</td>
+      <td class="support-cell" title="supported">✅</td>
+      <td class="support-cell" title="available in hardware, but not currently supported by Ariel OS">❌</td>
+      <td class="support-cell" title="supported">✅</td>
+      <td class="support-cell" title="available in hardware, but not currently supported by Ariel OS">❌</td>
+      <td class="support-cell" title="supported">✅</td>
+      <td class="support-cell" title="available in hardware, but not currently supported by Ariel OS">❌</td>
+    </tr>
+    <tr>
+      <td>nRF9151</td>
+      <td><code>nrf9151</code></td>
+      <td><a href="https://web.archive.org/web/20250329185651/https://www.nordicsemi.com/Products/Development-hardware/Nordic-Thingy-91-X">Nordic Thingy:91 X</a></td>
+      <td><code>nordic-thingy-91-x-nrf9151</code></td>
+      <td class="support-cell" title="supported">✅</td>
+      <td class="support-cell" title="supported">✅</td>
+      <td class="support-cell" title="supported">✅</td>
+      <td class="support-cell" title="supported">✅</td>
+      <td class="support-cell" title="supported">✅</td>
+      <td class="support-cell" title="not available on this piece of hardware">–</td>
+      <td class="support-cell" title="available in hardware, but not currently supported by Ariel OS">❌</td>
+      <td class="support-cell" title="not available on this piece of hardware">–</td>
+      <td class="support-cell" title="available in hardware, but not currently supported by Ariel OS">❌</td>
+      <td class="support-cell" title="supported">✅</td>
+    </tr>
+    <tr>
+      <td>nRF52840</td>
+      <td><code>nrf52840</code></td>
+      <td><a href="https://web.archive.org/web/20250112154748/https://www.nordicsemi.com/Products/Development-hardware/nrf52840-dk">nRF52840-DK</a></td>
+      <td><code>nrf52840dk</code></td>
+      <td class="support-cell" title="supported">✅</td>
+      <td class="support-cell" title="supported">✅</td>
+      <td class="support-cell" title="supported">✅</td>
+      <td class="support-cell" title="supported">✅</td>
+      <td class="support-cell" title="supported">✅</td>
+      <td class="support-cell" title="supported">✅</td>
+      <td class="support-cell" title="not available on this piece of hardware">–</td>
+      <td class="support-cell" title="supported">✅</td>
+      <td class="support-cell" title="supported">✅</td>
+      <td class="support-cell" title="supported">✅</td>
+    </tr>
+    <tr>
+      <td>nRF5340</td>
+      <td><code>nrf5340</code></td>
+      <td><a href="https://web.archive.org/web/20250115224621/https://www.nordicsemi.com/Products/Development-hardware/nrf5340-dk">nRF5340-DK</a></td>
+      <td><code>nrf5340dk</code></td>
+      <td class="support-cell" title="supported">✅</td>
+      <td class="support-cell" title="supported">✅</td>
+      <td class="support-cell" title="supported">✅</td>
+      <td class="support-cell" title="supported">✅</td>
+      <td class="support-cell" title="supported">✅</td>
+      <td class="support-cell" title="supported">✅</td>
+      <td class="support-cell" title="not available on this piece of hardware">–</td>
+      <td class="support-cell" title="supported">✅</td>
+      <td class="support-cell" title="available in hardware, but not currently supported by Ariel OS">❌</td>
+      <td class="support-cell" title="supported">✅</td>
+    </tr>
+    <tr>
+      <td>nRF9160</td>
+      <td><code>nrf9160</code></td>
+      <td><a href="https://web.archive.org/web/20250311221943/https://www.nordicsemi.com/Products/Development-hardware/nrf9160-dk">nRF9160-DK</a></td>
+      <td><code>nrf9160dk-nrf9160</code></td>
+      <td class="support-cell" title="supported">✅</td>
+      <td class="support-cell" title="supported">✅</td>
+      <td class="support-cell" title="supported">✅</td>
+      <td class="support-cell" title="supported">✅</td>
+      <td class="support-cell" title="supported">✅</td>
+      <td class="support-cell" title="not available on this piece of hardware">–</td>
+      <td class="support-cell" title="not available on this piece of hardware">–</td>
+      <td class="support-cell" title="not available on this piece of hardware">–</td>
+      <td class="support-cell" title="available in hardware, but not currently supported by Ariel OS">❌</td>
+      <td class="support-cell" title="supported">✅</td>
+    </tr>
+    <tr>
+      <td>RP2040</td>
+      <td><code>rp2040</code></td>
+      <td><a href="https://web.archive.org/web/20250101022830/https://www.raspberrypi.com/products/raspberry-pi-pico/">Raspberry Pi Pico</a></td>
+      <td><code>rpi-pico</code></td>
+      <td class="support-cell" title="supported">✅</td>
+      <td class="support-cell" title="supported">✅</td>
+      <td class="support-cell" title="supported">✅</td>
+      <td class="support-cell" title="supported">✅</td>
+      <td class="support-cell" title="supported">✅</td>
+      <td class="support-cell" title="supported">✅</td>
+      <td class="support-cell" title="not available on this piece of hardware">–</td>
+      <td class="support-cell" title="supported">✅</td>
+      <td class="support-cell" title="supported">✅</td>
+      <td class="support-cell" title="supported">✅</td>
+    </tr>
+    <tr>
+      <td>RP235xa</td>
+      <td><code>rp235xa</code></td>
+      <td><a href="https://web.archive.org/web/20250130144056/https://www.raspberrypi.com/products/raspberry-pi-pico-2/">Raspberry Pi Pico 2</a></td>
+      <td><code>rpi-pico2</code></td>
+      <td class="support-cell" title="supported">✅</td>
+      <td class="support-cell" title="supported">✅</td>
+      <td class="support-cell" title="supported">✅</td>
+      <td class="support-cell" title="supported">✅</td>
+      <td class="support-cell" title="supported">✅</td>
+      <td class="support-cell" title="supported">✅</td>
+      <td class="support-cell" title="not available on this piece of hardware">–</td>
+      <td class="support-cell" title="supported">✅</td>
+      <td class="support-cell" title="supported">✅</td>
+      <td class="support-cell" title="supported">✅</td>
+    </tr>
+    <tr>
+      <td>RP235xa</td>
+      <td><code>rp235xa</code></td>
+      <td><a href="https://web.archive.org/web/20250130144056/https://www.raspberrypi.com/products/raspberry-pi-pico-2/">Raspberry Pi Pico 2 W</a></td>
+      <td><code>rpi-pico2-w</code></td>
+      <td class="support-cell" title="supported">✅</td>
+      <td class="support-cell" title="supported">✅</td>
+      <td class="support-cell" title="supported">✅</td>
+      <td class="support-cell" title="supported">✅</td>
+      <td class="support-cell" title="supported">✅</td>
+      <td class="support-cell" title="supported">✅</td>
+      <td class="support-cell" title="supported">✅</td>
+      <td class="support-cell" title="supported">✅</td>
+      <td class="support-cell" title="supported">✅</td>
+      <td class="support-cell" title="supported">✅</td>
+    </tr>
+    <tr>
+      <td>RP2040</td>
+      <td><code>rp2040</code></td>
+      <td><a href="https://web.archive.org/web/20250101022830/https://www.raspberrypi.com/products/raspberry-pi-pico/">Raspberry Pi Pico W</a></td>
+      <td><code>rpi-pico-w</code></td>
+      <td class="support-cell" title="supported">✅</td>
+      <td class="support-cell" title="supported">✅</td>
+      <td class="support-cell" title="supported">✅</td>
+      <td class="support-cell" title="supported">✅</td>
+      <td class="support-cell" title="supported">✅</td>
+      <td class="support-cell" title="supported">✅</td>
+      <td class="support-cell" title="supported">✅</td>
+      <td class="support-cell" title="supported">✅</td>
+      <td class="support-cell" title="supported">✅</td>
+      <td class="support-cell" title="supported">✅</td>
+    </tr>
+    <tr>
+      <td>STM32C031C6</td>
+      <td><code>stm32c031c6</code></td>
+      <td><a href="https://web.archive.org/web/20241114214921/https://www.st.com/en/evaluation-tools/nucleo-c031c6.html">ST NUCLEO-C031C6</a></td>
+      <td><code>st-nucleo-c031c6</code></td>
+      <td class="support-cell" title="supported">✅</td>
+      <td class="support-cell" title="supported">✅</td>
+      <td class="support-cell" title="supported">✅</td>
+      <td class="support-cell" title="supported">✅</td>
+      <td class="support-cell" title="supported">✅</td>
+      <td class="support-cell" title="not available on this piece of hardware">–</td>
+      <td class="support-cell" title="not available on this piece of hardware">–</td>
+      <td class="support-cell" title="not available on this piece of hardware">–</td>
+      <td class="support-cell" title="not available on this piece of hardware">–</td>
+      <td class="support-cell" title="available in hardware, but not currently supported by Ariel OS">❌</td>
+    </tr>
+    <tr>
+      <td>STM32F401RE</td>
+      <td><code>stm32f401re</code></td>
+      <td><a href="https://web.archive.org/web/20250115005425/https://www.st.com/en/evaluation-tools/nucleo-f401re.html">ST NUCLEO-F401RE</a></td>
+      <td><code>st-nucleo-f401re</code></td>
+      <td class="support-cell" title="supported">✅</td>
+      <td class="support-cell" title="supported">✅</td>
+      <td class="support-cell" title="needs testing">🚦</td>
+      <td class="support-cell" title="needs testing">🚦</td>
+      <td class="support-cell" title="supported">✅</td>
+      <td class="support-cell" title="not available on this piece of hardware">–</td>
+      <td class="support-cell" title="not available on this piece of hardware">–</td>
+      <td class="support-cell" title="not available on this piece of hardware">–</td>
+      <td class="support-cell" title="not available on this piece of hardware">–</td>
+      <td class="support-cell" title="available in hardware, but not currently supported by Ariel OS">❌</td>
+    </tr>
+    <tr>
+      <td>STM32F411RE</td>
+      <td><code>stm32f411re</code></td>
+      <td><a href="https://web.archive.org/web/20250311221905/https://www.st.com/en/evaluation-tools/nucleo-f411re.html">ST NUCLEO-F411RE</a></td>
+      <td><code>st-nucleo-f411re</code></td>
+      <td class="support-cell" title="supported">✅</td>
+      <td class="support-cell" title="supported">✅</td>
+      <td class="support-cell" title="supported">✅</td>
+      <td class="support-cell" title="supported">✅</td>
+      <td class="support-cell" title="supported">✅</td>
+      <td class="support-cell" title="not available on this piece of hardware">–</td>
+      <td class="support-cell" title="not available on this piece of hardware">–</td>
+      <td class="support-cell" title="not available on this piece of hardware">–</td>
+      <td class="support-cell" title="not available on this piece of hardware">–</td>
+      <td class="support-cell" title="available in hardware, but not currently supported by Ariel OS">❌</td>
+    </tr>
+    <tr>
+      <td>STM32H755ZI</td>
+      <td><code>stm32h755zi</code></td>
+      <td><a href="https://web.archive.org/web/20240524105149/https://www.st.com/en/evaluation-tools/nucleo-h755zi-q.html">ST NUCLEO-H755ZI-Q</a></td>
+      <td><code>st-nucleo-h755zi-q</code></td>
+      <td class="support-cell" title="supported">✅</td>
+      <td class="support-cell" title="supported">✅</td>
+      <td class="support-cell" title="supported">✅</td>
+      <td class="support-cell" title="supported">✅</td>
+      <td class="support-cell" title="supported">✅</td>
+      <td class="support-cell" title="supported">✅</td>
+      <td class="support-cell" title="not available on this piece of hardware">–</td>
+      <td class="support-cell" title="available in hardware, but not currently supported by Ariel OS">❌</td>
+      <td class="support-cell" title="supported">✅</td>
+      <td class="support-cell" title="supported with some caveats">☑️</td>
+    </tr>
+    <tr>
+      <td>STM32WB55RG</td>
+      <td><code>stm32wb55rg</code></td>
+      <td><a href="https://web.archive.org/web/20240803070523/https://www.st.com/en/evaluation-tools/nucleo-wb55rg.html">ST NUCLEO-WB55RG</a></td>
+      <td><code>st-nucleo-wb55</code></td>
+      <td class="support-cell" title="supported">✅</td>
+      <td class="support-cell" title="supported">✅</td>
+      <td class="support-cell" title="supported">✅</td>
+      <td class="support-cell" title="supported">✅</td>
+      <td class="support-cell" title="supported">✅</td>
+      <td class="support-cell" title="supported">✅</td>
+      <td class="support-cell" title="not available on this piece of hardware">–</td>
+      <td class="support-cell" title="supported">✅</td>
+      <td class="support-cell" title="supported">✅</td>
+      <td class="support-cell" title="supported with some caveats">☑️</td>
+    </tr>
+    <tr>
+      <td>STM32U083MC</td>
+      <td><code>stm32u083mc</code></td>
+      <td><a href="https://web.archive.org/web/20250119131656/https://www.st.com/en/evaluation-tools/stm32u083c-dk.html">STM32U083C-DK</a></td>
+      <td><code>stm32u083c-dk</code></td>
+      <td class="support-cell" title="supported">✅</td>
+      <td class="support-cell" title="supported">✅</td>
+      <td class="support-cell" title="supported">✅</td>
+      <td class="support-cell" title="supported">✅</td>
+      <td class="support-cell" title="supported">✅</td>
+      <td class="support-cell" title="supported">✅</td>
+      <td class="support-cell" title="not available on this piece of hardware">–</td>
+      <td class="support-cell" title="available in hardware, but not currently supported by Ariel OS">❌</td>
+      <td class="support-cell" title="supported">✅</td>
+      <td class="support-cell" title="supported with some caveats">☑️</td>
+    </tr>
+  </tbody>
+</table>
+<style>
+@media (min-width: 1920px) {
+  .support-matrix {
+    position: relative;
+    left: 50%;
+    transform: translate(-50%, 0);
+  }
+}
+.support-cell {
+  text-align: center;
+}
+</style><p>Key:</p>
+<dl>
+  <div>
+    <dt>✅</dt><dd>supported</dd>
+  </div>
+  <div>
+    <dt>☑️</dt><dd>supported with some caveats</dd>
+  </div>
+  <div>
+    <dt>🚦</dt><dd>needs testing</dd>
+  </div>
+  <div>
+    <dt>❌</dt><dd>available in hardware, but not currently supported by Ariel OS</dd>
+  </div>
+  <div>
+    <dt>–</dt><dd>not available on this piece of hardware</dd>
+  </div>
+</dl>
+<style>
+dt, dd {
+  display: inline;
+}
+</style>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="getting-started-with-ariel-os"><a class="header" href="#getting-started-with-ariel-os">Getting started with Ariel OS</a></h1>
+<p>This guide is intended to get you started in about 5 minutes.
+It explains how to compile and run the <code>hello-word</code> example to verify your setup, and how to bootstrap a new application.</p>
+<h2 id="installing-the-build-prerequisites"><a class="header" href="#installing-the-build-prerequisites">Installing the build prerequisites</a></h2>
+<ol>
+<li>
+<p>Install the needed build dependencies.</p>
+<p><strong>Ubuntu (GNU/Linux)</strong></p>
+<!-- gcc and curl are only required for espup, but it doesn't hurt to install those here. -->
+<pre><code class="language-sh">apt install git ninja-build pkg-config libudev-dev clang gcc-arm-none-eabi gcc-riscv64-unknown-elf gcc curl
+</code></pre>
+<p><strong>macOS (Apple Silicon)</strong></p>
+<pre><code class="language-sh">brew install git ninja pkg-config llvm gcc curl
+</code></pre>
+</li>
+<li>
+<p>Install the Rust installer <a href="https://rustup.rs/">rustup</a> using the website's instructions.</p>
+</li>
+<li>
+<p>Only for using ESP devices, install <a href="https://github.com/esp-rs/espup">espup</a> and related tools:</p>
+<pre><code class="language-sh">cargo install espup
+espup install
+cargo install espflash
+</code></pre>
+<p>There is no need to actively source the <code>~/export-esp.sh</code> file which <code>espup</code> produces:
+Ariel OS's build system will consult that file when building for ESP.</p>
+</li>
+<li>
+<p>Install the build system <a href="https://github.com/kaspar030/laze">laze</a>:</p>
+<pre><code class="language-sh">cargo install laze
+</code></pre>
+</li>
+<li>
+<p>Install the debugging and flashing utility <a href="https://github.com/probe-rs/probe-rs">probe-rs</a>:</p>
+<pre><code class="language-sh">cargo install --locked probe-rs-tools
+</code></pre>
+<p>You might need to tweak permissions for non-admin access to connected
+devices. Please consult the <a href="https://probe.rs/docs/getting-started/probe-setup/#platform-specifics">probe-rs documentation</a> for specifics.</p>
+</li>
+<li>
+<p>Clone the <a href="https://github.com/ariel-os/ariel-os">Ariel OS repository</a> and <code>cd</code> into it.</p>
+</li>
+<li>
+<p>Install the Rust targets:</p>
+<pre><code class="language-sh">laze build install-toolchain
+</code></pre>
+<p>This invokes rustup to add all easy-to-install targets and components,
+and invokes espup if it is installed.</p>
+</li>
+</ol>
+<h2 id="running-the-hello-world-example"><a class="header" href="#running-the-hello-world-example">Running the <code>hello-world</code> example</a></h2>
+<p>To check that everything is installed correctly, the <code>hello-word</code> example can be compiled and run from the <code>ariel-os</code> directory.
+The following assumes you have your target board connected to your host computer.</p>
+<p>Find the Ariel OS name of your supported board in the <a href="./hardware-functionality-support.html">support matrix</a>.</p>
+<blockquote>
+<p>The following assumes the Nordic nRF52840-DK, whose Ariel OS name is <code>nrf52840dk</code>.
+Replace that name with your board's.</p>
+</blockquote>
+<p>Then, <strong>from the <code>ariel-os</code> directory</strong>, compile and run the example, as follows:</p>
+<pre><code class="language-sh">laze -C examples/hello-world build -b nrf52840dk run
+</code></pre>
+<details>
+    <summary>(This might fail if the flash is locked, click here for unlocking instructions.)</summary>
+This might fail due to a locked chip, e.g., on most nRF52840-DK boards that are fresh from the factory.
+In that case, the above command throws an error that ends with something like this:
+<pre><code class="language-sh">An operation could not be performed because it lacked the permission to do so: erase_all
+</code></pre>
+<p>The chip can be unlocked using this command:</p>
+<pre><code class="language-sh">laze -C examples/hello-world build -b nrf52840dk flash-erase-all
+</code></pre>
+</details>
+<p><img src="./hello-world_render.svg" alt="Terminal screencast of compiling and flashing the hello-world example" /></p>
+<blockquote>
+<p>If you do not plan on working on Ariel OS <em>itself</em>, this repository is not needed anymore and can be deleted.</p>
+</blockquote>
+<h2 id="starting-an-application-project-from-a-template-repository"><a class="header" href="#starting-an-application-project-from-a-template-repository">Starting an application project from a template repository</a></h2>
+<p>Applications are expected to be developed out-of-tree, outside of the <code>ariel-os</code> directory.
+This is made possible by <a href="https://kaspar030.github.io/laze/dev/reference/imports.html">laze's <code>imports</code></a> feature.</p>
+<p>To start a new application project, you can either clone the <a href="https://github.com/ariel-os/ariel-os-hello"><code>ariel-os-hello</code> repository</a> or, <em>alternatively</em>, use one of the <a href="https://github.com/cargo-generate/cargo-generate"><code>cargo-generate</code></a> templates.</p>
+<h3 id="cloning-ariel-os-hello"><a class="header" href="#cloning-ariel-os-hello">Cloning <code>ariel-os-hello</code></a></h3>
+<pre><code class="language-sh">git clone https://github.com/ariel-os/ariel-os-hello
+</code></pre>
+<h3 id="using-a-cargo-generate-project-template"><a class="header" href="#using-a-cargo-generate-project-template">Using a <code>cargo-generate</code> project template</a></h3>
+<p>This requires installing <a href="https://github.com/cargo-generate/cargo-generate"><code>cargo-generate</code></a>, then a new application project can be created as follows:</p>
+<pre><code class="language-sh">cargo generate --git https://github.com/ariel-os/ariel-os-template --name &lt;new-project-name&gt;
+</code></pre>
+<h3 id="running-the-template-example"><a class="header" href="#running-the-template-example">Running the template example</a></h3>
+<p>To check your setup, the default application can be compiled and run as follows:</p>
+<pre><code class="language-sh">laze build -b nrf52840dk run
+</code></pre>
+<blockquote>
+<p>The board name needs to be replaced with your board's.</p>
+</blockquote>
+<p>See the <a href="./build-system.html">Build System page</a> to learn more about laze and how to work with out-of-tree applications.</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="laze"><a class="header" href="#laze"><a href="https://kaspar030.github.io/laze/dev/">laze</a></a></h1>
+<p>Ariel OS makes use of the laze build system to run cargo with the
+correct parameters for a specific board and application.</p>
+<p>laze provides a <code>laze build -b &lt;board&gt;</code> command, which in Ariel OS, internally uses <code>cargo build</code>.</p>
+<p>laze commands are by default applied to the application(s) within the directory laze is run.
+For example, when run in <code>examples/hello-world</code>, <code>laze build -b nrf52840dk</code>
+would build the hello-world example for the <code>nrf52840dk</code> board.
+Alternatively, the <code>-C</code> option can be used to switch to the given directory.</p>
+<p>laze allows to override global variables using e.g., <code>-DFOO=BAR</code>.</p>
+<h2 id="laze-tasks"><a class="header" href="#laze-tasks">laze tasks</a></h2>
+<p>For tasks like flashing and debugging, Ariel OS uses laze <em>tasks</em>.
+laze tasks currently have the syntax <code>laze build -b &lt;board&gt; [other options] &lt;task-name&gt;</code>.
+For example, to run the hello-world example from the <code>ariel-os</code> directory, the command would be:</p>
+<pre><code>laze -C examples/hello-world build -b nrf52840dk run
+</code></pre>
+<p>Tasks available in Ariel OS include:</p>
+<ul>
+<li><code>run</code>: Compiles, flashes, and runs an application. The <a href="./debug-console.html">debug output</a> is printed in the terminal.</li>
+<li><code>flash</code>: Compiles and flashes an application.</li>
+<li><code>debug</code>: Starts a GDB debug session for the selected application.
+The application needs to be flashed using the <code>flash</code> task beforehand.</li>
+<li><code>flash-erase-all</code>: Erases the entire flash memory, including user data. Unlocks it if locked.</li>
+<li><code>reset</code>: Reboots the target.</li>
+<li><code>tree</code>: Prints the application's <code>cargo tree</code>.</li>
+</ul>
+<blockquote>
+<p>As some tasks may trigger a rebuild, it is necessary to pass the same settings to related consecutive commands:
+<code>laze build -DFOO=1 flash</code> followed by <code>laze build -DFOO=other debug</code> might not
+work as expected, as the second command could be rebuilding the application
+before starting the debug session.</p>
+</blockquote>
+<h2 id="laze-modules"><a class="header" href="#laze-modules">laze modules</a></h2>
+<p>laze allows enabling/disabling individual features using <a href="build-system.html#laze-modules"><em>modules</em></a>, which can be selected
+or disabled on the command line using <code>--select &lt;module&gt;</code> or <code>--disable &lt;module&gt;</code>.
+To specify laze modules for an out-of-tree application, see <a href="build-system.html#enabling-laze-modules-for-an-application">below</a>.</p>
+<blockquote>
+<p>Modules are documented in their respective pages.</p>
+</blockquote>
+<h2 id="laze-contexts"><a class="header" href="#laze-contexts">laze contexts</a></h2>
+<p>The laze configuration defines a laze context for each MCU, MCU family, and board.
+These can be found in the <a href="./hardware-functionality-support.html">support matrix</a>, where they are called “Ariel OS name”.</p>
+<p>Out-of-tree applications can be restricted to specific laze contexts, see <a href="build-system.html#restricting-an-application-to-specific-mcusboards">below</a>.</p>
+<p>In addition, laze passes the names of all contexts related to the selected builder as rustc <code>--cfg context=$CONTEXT</code> flags.
+This makes it possible to use the <code>#[cfg]</code> attribute to introduce feature-gates based on the MCU, MCU family, or board, when required.</p>
+<h2 id="out-of-tree-applications"><a class="header" href="#out-of-tree-applications">Out-of-tree applications</a></h2>
+<p>New application projects should be <a href="./getting-started.html#starting-an-application-project-from-a-template-repository">started from a template</a>.
+Out-of-tree applications use the <code>laze-project.yml</code> file for configuration through laze.</p>
+<h3 id="importing-ariel-os"><a class="header" href="#importing-ariel-os">Importing Ariel OS</a></h3>
+<p>Ariel OS's source and configuration are imported using <a href="https://kaspar030.github.io/laze/dev/reference/imports.html">laze's <code>imports</code></a> feature.
+The <a href="./getting-started.html#starting-an-application-project-from-a-template-repository">project templates</a> use a <a href="https://kaspar030.github.io/laze/dev/reference/import/git.html"><code>git</code> import</a> to ask laze to clone Ariel OS's repository.
+The cloned repository is stored inside <code>build/imports</code>.</p>
+<blockquote>
+<p>It is currently recommended to use Ariel OS's commit ID to track the repository, to avoid surprising changes.
+This commit ID needs to be updated to update the version of Ariel OS used by the application.</p>
+</blockquote>
+<p>It is alternatively possible to clone the repository manually and specify the resulting directory using a <a href="https://kaspar030.github.io/laze/dev/reference/import/path.html"><code>path</code> import</a>.
+This can be useful when needing to modify Ariel OS itself, when also working on an application.</p>
+<h3 id="enabling-laze-modules-for-an-application"><a class="header" href="#enabling-laze-modules-for-an-application">Enabling laze modules for an application</a></h3>
+<p>Instead of manually specifying <a href="build-system.html#laze-modules">laze modules on the command line</a>, laze modules required for an application must be specified in the application's laze configuration file, <code>laze-project.yml</code>.</p>
+<p>The <a href="https://kaspar030.github.io/laze/dev/reference/module/selects.html"><code>selects</code> array</a> allows to specify a list of laze modules that will be enabled for the application, as follows:</p>
+<pre><code class="language-yaml">apps:
+  - name: &lt;project-name&gt;
+    selects:
+      - network
+      - random
+</code></pre>
+<blockquote>
+<p>Note that, while the <a href="build-system.html#laze-modules">CLI option is named <code>--select</code></a>, the configuration key is <code>selects</code>.</p>
+</blockquote>
+<p>The specified modules will be enabled for the application, some of which may enable associated Cargo features (as individually documented for each laze module).
+If a module is not available on a target—e.g., because networking is not available on the target, or not yet supported by Ariel OS—laze will prevent the application to be compiled for that target.</p>
+<h3 id="forbidding-laze-modules-for-an-application"><a class="header" href="#forbidding-laze-modules-for-an-application">Forbidding laze modules for an application</a></h3>
+<p>Conversely, to forbid laze modules through the configuration file, the <a href="https://kaspar030.github.io/laze/dev/reference/module/conflicts.html"><code>conflicts</code> array</a> is used:</p>
+<pre><code class="language-yaml">apps:
+  - name: &lt;project-name&gt;
+    selects:
+      - sw/threading
+    conflicts:
+      - multi-core
+</code></pre>
+<p>This enables <a href="./multithreading.html#multicore-support">support for multithreading, but disables multicore usage</a>.</p>
+<h3 id="restricting-an-application-to-specific-mcusboards"><a class="header" href="#restricting-an-application-to-specific-mcusboards">Restricting an application to specific MCUs/boards</a></h3>
+<p>Finally, an application may be restricted to specific MCUs, MCU families, or boards by explicitly specifying <a href="build-system.html#laze-contexts">laze contexts</a> the application is allowed to be compiled for:</p>
+<pre><code class="language-yaml">apps:
+  - name: &lt;project-name&gt;
+    context:
+      - bbc-microbit-v2
+      - nrf52
+      - nrf5340
+      - rpi-pico-w
+</code></pre>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="building-an-application"><a class="header" href="#building-an-application">Building an Application</a></h1>
+<p>This chapters covers fundamental concepts required to build an Ariel OS application.</p>
+<h2 id="obtaining-peripheral-access"><a class="header" href="#obtaining-peripheral-access">Obtaining Peripheral Access</a></h2>
+<p>Embassy defines a type for each MCU peripheral, which needs to be provided to the driver of that peripheral.
+These peripheral types, which we call <em>Embassy peripherals</em> or <em>peripheral ZSTs</em>, are <a href="https://doc.rust-lang.org/nomicon/exotic-sizes.html#zero-sized-types-zsts">Zero Sized Types</a> (ZSTs) that are used to statically enforce exclusive access to a peripheral.
+These ZSTs indeed are by design neither <a href="https://doc.rust-lang.org/stable/std/marker/trait.Copy.html"><code>Copy</code></a> nor <a href="https://doc.rust-lang.org/stable/std/clone/trait.Clone.html"><code>Clone</code></a>, making it impossible to duplicate them; they can only be <em>move</em>d around.</p>
+<p>Drivers therefore require such ZSTs to be provided to make sure that the caller has (a) access to the peripheral and (b) is the only one having access, since only a single instance of the type can exist at any time.
+Being ZSTs, they do not carry any data to the drivers, only their ownership is meaningful, which is enforced by taking them as parameters for drivers.</p>
+<blockquote>
+<p>If you are used to thinking about MCU peripherals as referenced by a base address (in the case of memory-mapped peripherals), you can think of these ZSTs as abstraction over these, with a zero-cost, statically-enforced lock ensuring exclusive access.</p>
+</blockquote>
+<p>These Embassy types are defined by <a href="./glossary.html#embassy-hal-crates">Embassy HAL crates</a> in the respective <code>peripherals</code> modules.
+In Ariel OS applications, the only safe way to obtain an instance of an Embassy peripheral is by using the <a href="https://ariel-os.github.io/ariel-os/dev/docs/api/ariel_os/hal/macro.define_peripherals.html"><code>define_peripherals!</code></a> macro, combined with a <a href="application.html#the-spawner-and-task-ariel-os-macros">spawner or task</a>.
+The <a href="https://ariel-os.github.io/ariel-os/dev/docs/api/ariel_os/hal/macro.group_peripherals.html"><code>group_peripherals!</code></a> macro can also be useful.</p>
+<h3 id="example"><a class="header" href="#example">Example</a></h3>
+<p>The <a href="https://ariel-os.github.io/ariel-os/dev/docs/api/ariel_os/hal/macro.define_peripherals.html"><code>define_peripherals!</code></a> macro allows to define a <em>Ariel OS peripheral struct</em>, an instance of which can be obtained with <a href="application.html#the-spawner-and-task-ariel-os-macros"><code>spawner</code> or <code>task</code></a>:</p>
+<pre><code class="language-rust ignore">ariel_os::hal::define_peripherals!(LedPeripherals { led: P0_13 });</code></pre>
+<p>Multiple Ariel OS peripheral structs can be grouped into another Ariel OS peripheral struct using the <a href="https://ariel-os.github.io/ariel-os/dev/docs/api/ariel_os/hal/macro.group_peripherals.html"><code>group_peripherals!</code></a> macro:</p>
+<!-- TODO: this needs to be kept up to date -->
+<pre><code class="language-rust ignore">ariel_os::hal::group_peripherals!(Peripherals {
+    leds: LedPeripherals,
+    buttons: ButtonPeripherals,
+});</code></pre>
+<p>Similarly to <code>LedPeripherals</code>, an instance of the <code>Peripherals</code> Ariel OS peripheral struct thus defined can be obtained with <a href="application.html#the-spawner-and-task-ariel-os-macros"><code>spawner</code> or <code>task</code></a>.</p>
+<h2 id="the-spawner-and-task-ariel-os-macros"><a class="header" href="#the-spawner-and-task-ariel-os-macros">The <code>spawner</code> and <code>task</code> Ariel OS macros</a></h2>
+<p>Unlike traditional Rust programs, Ariel OS applications do not have a single entrypoint.
+Instead, multiple functions can be registered to be started during boot.
+Functions can currently be registered as either <code>spawner</code>s or <code>task</code>s:</p>
+<!-- TODO: technically the Spawner links are for Cortex-M only -->
+<ul>
+<li><a href="https://ariel-os.github.io/ariel-os/dev/docs/api/ariel_os/attr.spawner.html"><code>spawner</code> functions</a> are non-<code>async</code> and should be used when no <code>async</code> functions need to be called.
+They are provided with a <a href="https://docs.embassy.dev/embassy-executor/git/cortex-m/struct.Spawner.html"><code>Spawner</code></a> instance and can therefore be used to <a href="https://docs.embassy.dev/embassy-executor/git/cortex-m/struct.Spawner.html#method.spawn"><code>spawn</code></a> other <code>async</code> tasks.</li>
+<li><a href="https://ariel-os.github.io/ariel-os/dev/docs/api/ariel_os/attr.task.html"><code>task</code> functions</a> are <code>async</code> functions that are statically allocated at compile-time.
+They are especially useful for long-running, <code>async</code> tasks.
+They must also be used to use <em>Ariel OS configuration hooks</em>, which can be requested with their associated macro parameter, and allow to provide configuration during boot.
+Please refer to the documentation of <a href="https://ariel-os.github.io/ariel-os/dev/docs/api/ariel_os/attr.task.html"><code>task</code></a> for a list of available hooks and to <a href="application.html#configuration-hooks">Configuration Hooks</a> to know more about hook usage.</li>
+</ul>
+<p>Both of these can be provided with an instance of an Ariel OS peripheral struct when needed, using the <code>peripherals</code> macro parameters (see the macros' documentation) and taking that Ariel OS peripheral struct as parameter.</p>
+<blockquote>
+<p>The Embassy peripherals obtained this way are regular Embassy peripherals, which are compatible with both Ariel OS portable drivers and <a href="./glossary.html#embassy-hal-crates">Embassy HAL crates'</a> HAL-specific drivers.</p>
+</blockquote>
+<h3 id="examples"><a class="header" href="#examples">Examples</a></h3>
+<p>Here is an example of the <code>task</code> macro (the <code>pins</code> module internally uses <code>define_peripherals!</code>) from the <a href="https://github.com/ariel-os/ariel-os/tree/main/examples/blinky"><code>blinky</code> example</a>:</p>
+<pre><code class="language-rust ignore">#[ariel_os::task(autostart, peripherals)]
+async fn blinky(peripherals: pins::LedPeripherals) {
+    let mut led = Output::new(peripherals.led, Level::Low);
+
+    loop {
+        led.toggle();
+        Timer::after(Duration::from_millis(500)).await;
+    }
+}</code></pre>
+<h2 id="configuration-hooks"><a class="header" href="#configuration-hooks">Configuration Hooks</a></h2>
+<p>TODO</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="async-executors"><a class="header" href="#async-executors">Async Executors</a></h1>
+<p>Ariel OS embraces async Rust and favors async interfaces over blocking ones.</p>
+<h2 id="system-executor-flavors"><a class="header" href="#system-executor-flavors">System Executor Flavors</a></h2>
+<p>Ariel OS provides a system executor which is automatically started at startup.
+It comes in three different flavors, identified by their laze module names:</p>
+<div class="table-wrapper"><table><thead><tr><th>laze module</th><th>Embassy executor</th><th>Description</th></tr></thead><tbody>
+<tr><td><code>executor-interrupt</code></td><td><a href="https://docs.embassy.dev/embassy-executor/git/cortex-m/struct.InterruptExecutor.html">InterruptExecutor</a></td><td>Runs in handler mode. A software interrupt (SWI) handler is used when the MCU provides one, otherwise the <a href="./adding-board-support.html#adding-support-for-a-board-1">board configuration must specify</a> which peripheral interrupt to dedicate to this executor.</td></tr>
+<tr><td><code>executor-single-thread</code></td><td><a href="https://docs.embassy.dev/embassy-executor/git/cortex-m/struct.Executor.html">Executor</a></td><td>Runs in thread mode in place of threads. Therefore not compatible with <a href="./multithreading.html">multithreading</a>.</td></tr>
+<tr><td><code>executor-thread</code></td><td><a href="https://ariel-os.github.io/ariel-os/dev/docs/api/ariel_os/asynch/thread_executor/index.html">Custom, based on <code>raw::Executor</code></a></td><td>Runs inside a dedicated thread automatically started at startup.</td></tr>
+</tbody></table>
+</div>
+<p>A default flavor compatible with the MCU is automatically selected by default in the order of preference in which they are listed above.
+Another flavor can be manually selected, replacing the default one, by <a href="./build-system.html#laze-modules">selecting its laze module</a>.
+Not all flavors are available on all MCUs however, and the laze configuration will only allow selecting one the compatible ones.</p>
+<blockquote>
+<p>The <code>executor-interrupt</code> might offer a slight performance advantage.</p>
+</blockquote>
+<!-- TODO: When to use each of them? -->
+<h2 id="using-multiple-executors"><a class="header" href="#using-multiple-executors">Using Multiple Executors</a></h2>
+<blockquote>
+<p>Using multiple executors is possible but currently undocumented.</p>
+</blockquote>
+<p>Running multiple executors allows running them with different priorities.</p>
+<!-- TODO: reference asynch-thread-executor-rustdoc to start a thread mode executor inside multiple threads manually -->
+<!-- ## Interaction with Multithreading -->
+<!-- TODO: How do threading and async interact? -->
+<!-- TODO: Power consumption optimization -->
+<div style="break-before: page; page-break-before: always;"></div><h1 id="debug-console"><a class="header" href="#debug-console">Debug Console</a></h1>
+<h2 id="printing-on-the-debug-console"><a class="header" href="#printing-on-the-debug-console">Printing on the Debug Console</a></h2>
+<p>The debug console is enabled by default and the corresponding <a href="./build-system.html#laze-modules">laze module</a> is <code>debug-console</code>.
+The <a href="https://ariel-os.github.io/ariel-os/dev/docs/api/ariel_os/debug/macro.print.html"><code>ariel_os::debug::print!()</code></a>/<a href="https://ariel-os.github.io/ariel-os/dev/docs/api/ariel_os/debug/macro.println.html"><code>ariel_os::debug::println!()</code></a> macros are used to print on the debug console.</p>
+<p>When the debug console is enabled, panic messages are automatically printed to it.
+If this is unwanted, the <code>panic-printing</code> <a href="./build-system.html#laze-modules">laze module</a> can be disabled.</p>
+<h2 id="debug-logging"><a class="header" href="#debug-logging">Debug Logging</a></h2>
+<p>Ariel OS supports debug logging on all platforms and it is enabled by default with the <code>debug-logging-facade</code> <a href="./build-system.html#laze-modules">laze module</a>.
+Debug logging offers a set of macros that print on the debug console with helpful logging formatting.</p>
+<h3 id="logging"><a class="header" href="#logging">Logging</a></h3>
+<p>Within Rust code, import <code>ariel_os::debug::log</code> items, then use Ariel OS logging macros:</p>
+<pre><pre class="playground"><code class="language-rust">use ariel_os::debug::log::info;
+
+#[ariel_os::task(autostart)]
+async fn main() {
+    info!("Hello!");
+}</code></pre></pre>
+<h3 id="filtering-logs"><a class="header" href="#filtering-logs">Filtering Logs</a></h3>
+<p>In Ariel OS, the log level defaults to <code>info</code>. It can be configured using the
+laze variable <code>LOG</code>.
+Depending on the logger, it may be possible to configure different levels per crate or per module.</p>
+<p>Example:</p>
+<pre><code class="language-shell">$ laze build -C examples/log --builders nrf52840dk -DLOG=info run
+</code></pre>
+<h3 id="logging-facades-and-loggers"><a class="header" href="#logging-facades-and-loggers">Logging Facades and Loggers</a></h3>
+<p>Ariel OS supports multiple logging facades and loggers.
+Only one of them may be enabled at a time;
+if none of them are enabled, logging statements become no-operations.
+Enabling either the <code>defmt</code> or <code>log</code> <a href="./build-system.html#laze-modules">laze modules</a> allows selecting which logging facade and logger is used.
+defmt should be preferred when possible as it results in smaller binaries.</p>
+<h4 id="defmt"><a class="header" href="#defmt"><a href="https://github.com/knurling-rs/defmt">defmt</a></a></h4>
+<p>See the <a href="https://defmt.ferrous-systems.com/">defmt documentation</a> for general info on the defmt's facade and logger.</p>
+<p>The defmt logger supports configuring the log level per crate and per module, as follows:</p>
+<pre><code class="language-shell">$ laze build -C examples/log --builders nrf52840dk -DLOG=info,ariel_os_rt=trace run
+</code></pre>
+<p>Note: On Cortex-M devices, the order of <code>ariel_os::debug::println!()</code> output and
+<code>defmt</code> log output is not deterministic.</p>
+<h4 id="log"><a class="header" href="#log"><a href="https://github.com/rust-lang/log">log</a></a></h4>
+<p>Ariel OS's logger for <code>log</code> supports configuring the log level globally, but does not currently support per-crate filtering.</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="networking"><a class="header" href="#networking">Networking</a></h1>
+<h2 id="enabling-networking"><a class="header" href="#enabling-networking">Enabling Networking</a></h2>
+<p>Networking is enabled by selecting the <code>network</code> <a href="./build-system.html#laze-modules">laze module</a>.
+When enabled, a network link is automatically selected among the ones available on the target board, currently preferring Wi-Fi networking.
+Overriding this default selection is possible by explicitly selecting the desired <a href="networking.html#network-link-selection">network link module</a>.</p>
+<h2 id="network-link-selection"><a class="header" href="#network-link-selection">Network Link Selection</a></h2>
+<p>Ariel OS currently supports two different networking links: Ethernet-over-USB (aka CDC-NCM) and Wi-Fi.
+Boards may support both of them, only one of them, or none of them. However, currently the network stack supports at most one interface.</p>
+<p>Which link layer is used for networking is selected at compile time,
+through <a href="./build-system.html#laze-modules">laze modules</a>.</p>
+<ul>
+<li><code>usb-ethernet</code>: Selects Ethernet-over-USB.</li>
+<li><code>wifi-cyw43</code>: Selects Wi-Fi using the CYW43 chip along an RP2040 MCU (e.g., on the Raspberry Pi Pico W).</li>
+<li><code>wifi-esp</code>: Selects Wi-Fi on an ESP32 MCU.</li>
+</ul>
+<h2 id="network-credentials"><a class="header" href="#network-credentials">Network Credentials</a></h2>
+<p>For Wi-Fi, the network credentials have to be supplied via environment variables:</p>
+<pre><code class="language-sh">CONFIG_WIFI_NETWORK=&lt;ssid&gt; CONFIG_WIFI_PASSWORD=&lt;pwd&gt; laze build ...
+</code></pre>
+<h2 id="using-the-networking-link-on-the-device"><a class="header" href="#using-the-networking-link-on-the-device">Using the Networking Link on the Device</a></h2>
+<h3 id="network-configuration"><a class="header" href="#network-configuration">Network Configuration</a></h3>
+<p>DHCPv4 is used by default for network configuration, including for IP address allocation.
+This is enabled by the <code>network-config-dhcp</code> <a href="./build-system.html#laze-modules">laze module</a>, selected by default.</p>
+<p>In order to provide a static configuration, select the <code>network-config-static</code> <a href="./build-system.html#laze-modules">laze module</a>, which will take precedence.
+The configuration can be customized with the following environment variables:</p>
+<div class="table-wrapper"><table><thead><tr><th>Variable</th><th>Default</th></tr></thead><tbody>
+<tr><td><code>CONFIG_NET_IPV4_STATIC_ADDRESS</code></td><td><code>10.42.0.61</code></td></tr>
+<tr><td><code>CONFIG_NET_IPV4_STATIC_CIDR_PREFIX_LEN</code></td><td><code>24</code></td></tr>
+<tr><td><code>CONFIG_NET_IPV4_STATIC_GATEWAY_ADDRESS</code></td><td><code>10.42.0.1</code></td></tr>
+</tbody></table>
+</div>
+<blockquote>
+<p>Non-static IPv6 address allocation will be supported in the future.</p>
+</blockquote>
+<h3 id="support-for-network-protocols"><a class="header" href="#support-for-network-protocols">Support for Network Protocols</a></h3>
+<p>Support for various network protocols can be enabled through <a href="https://ariel-os.github.io/ariel-os/dev/docs/api/ariel_os/index.html">Cargo features listed in the documentation</a>.
+Most of these use <code>embassy_net</code>, which should be used through the <a href="https://ariel-os.github.io/ariel-os/dev/docs/api/ariel_os/reexports/embassy_net/index.html"><code>ariel_os::reexports::embassy_net</code></a> re-export.</p>
+<h3 id="using-the-network-stack"><a class="header" href="#using-the-network-stack">Using the Network Stack</a></h3>
+<p>A network stack handle can then be obtained using <a href="https://ariel-os.github.io/ariel-os/dev/docs/api/ariel_os/net/fn.network_stack.html"><code>ariel_os::net::network_stack()</code></a>.</p>
+<p>See the <a href="https://github.com/ariel-os/ariel-os/tree/main/examples">examples</a> for details.</p>
+<h2 id="host-setup"><a class="header" href="#host-setup">Host Setup</a></h2>
+<h3 id="static-ipv4-address-configuration"><a class="header" href="#static-ipv4-address-configuration">Static IPv4 Address Configuration</a></h3>
+<p>When using a device with a static IPv4 address,
+the host computer can be configured as follows (where <code>host_address</code> is an IP address configured as gateway for the device):</p>
+<pre><code># ip address add &lt;host_address&gt;/24 dev &lt;interface&gt;
+# ip link set up dev &lt;interface&gt;
+</code></pre>
+<p>To verify that the address has indeed be added, you can use:</p>
+<pre><code class="language-sh">ip address show dev &lt;interface&gt;
+</code></pre>
+<p>Replace <code>&lt;interface&gt;</code> with the name of the used network interface.
+To find out the name of your interface you can use a command such as <code>ip address</code>.</p>
+<h3 id="ethernet-over-usb"><a class="header" href="#ethernet-over-usb">Ethernet-over-USB</a></h3>
+<p>For Ethernet-over-USB, ensure that, in addition to the USB cable used for flashing
+and debugging, the <em>user</em> USB port is also connected to the host computer with
+a second cable.</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="randomness-and-entropy-sources"><a class="header" href="#randomness-and-entropy-sources">Randomness and Entropy Sources</a></h1>
+<p>Ariel OS provides RNGs which fulfill needs for both fast and cryptographically secure sources of randomness.</p>
+<h2 id="provided-rngs"><a class="header" href="#provided-rngs">Provided RNGs</a></h2>
+<p>The <code>random</code> <a href="./build-system.html#laze-modules">laze module</a> needs to be enabled to be able to obtain the provided RNGs.
+Two different RNG interfaces are provided, which both implement <code>rand_core</code> traits:</p>
+<ul>
+<li>A fast RNG interface, not suitable for cryptography use, which can be obtained with <a href="https://ariel-os.github.io/ariel-os/dev/docs/api/ariel_os/random/fn.fast_rng.html"><code>random::fast_rng()</code></a>.</li>
+<li>A cryptographically secure pseudo-RNG (CSPRNG) interface, which can be obtained with <a href="https://ariel-os.github.io/ariel-os/dev/docs/api/ariel_os/random/fn.crypto_rng.html"><code>random::crypto_rng()</code></a> when the <code>csprng</code> Cargo feature is enabled.</li>
+</ul>
+<blockquote>
+<p>To ensure fast operation of the fast RNG, the obtained RNG must be reused between invocations, instead of obtaining new ones through <a href="https://ariel-os.github.io/ariel-os/dev/docs/api/ariel_os/random/fn.fast_rng.html"><code>random::fast_rng()</code></a>.</p>
+</blockquote>
+<h2 id="rng-seeding"><a class="header" href="#rng-seeding">RNG Seeding</a></h2>
+<p>When the <code>random</code> module is selected, the <code>hwrng</code> <a href="./build-system.html#laze-modules">laze module</a> is automatically enabled as well, so that the RNGs get automatically seeded from the hardware RNG (i.e., the TRNG) at startup.</p>
+<blockquote>
+<p>In the future, Ariel OS may also support leveraging persistent storage in combination with a pre-provisioned seed to enable to use the CSPRNG on MCUs which do not provide a hardware RNG.</p>
+</blockquote>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="multithreading"><a class="header" href="#multithreading">Multithreading</a></h1>
+<p>Ariel OS supports multithreading on the Cortex-M, RISC-V, and Xtensa architectures, and is compatible with async executors.</p>
+<p><strong>Important:</strong>
+When an application requires multithreading, it must enable it by <a href="./build-system.html#laze-modules">selecting the <code>sw/threading</code> laze module</a>, which enables the <code>threading</code> Cargo feature.</p>
+<h2 id="spawning-threads"><a class="header" href="#spawning-threads">Spawning Threads</a></h2>
+<p>The recommended way of starting threads is by using the <a href="https://ariel-os.github.io/ariel-os/dev/docs/api/ariel_os/attr.thread.html"><code>#[ariel_os::thread]</code> attribute macro</a>, which creates and starts the thread during startup.
+Threads can also be spawned dynamically at runtime. In this case, the thread stack must still be statically allocated at compile time.</p>
+<p>The maximum number of threads is defined by the <a href="https://ariel-os.github.io/ariel-os/dev/docs/api/ariel_os/thread/constant.THREAD_COUNT.html"><code>THREAD_COUNT</code></a> constant.</p>
+<h2 id="scheduling"><a class="header" href="#scheduling">Scheduling</a></h2>
+<h3 id="multicore-support"><a class="header" href="#multicore-support">Multicore Support</a></h3>
+<p>Ariel OS currently supports symmetric multiprocessing (SMP) on the following MCUs:</p>
+<ul>
+<li>ESP32-S3</li>
+<li>RP2040</li>
+<li>RP235XA</li>
+</ul>
+<p>When the <code>sw/threading</code> <a href="./build-system.html#laze-modules">laze module</a> is selected and when available on the MCU, the <code>multi-core</code> laze module automatically gets selected, which enables SMP.
+To disable multicore, disable the <code>multi-core</code> <a href="./build-system.html#laze-modules">laze module</a>.</p>
+<blockquote>
+<p>Porting single-core applications to support multicore requires no changes to them.</p>
+</blockquote>
+<h3 id="priority-scheduling"><a class="header" href="#priority-scheduling">Priority Scheduling</a></h3>
+<p>Ariel OS features a preemptive scheduler, which supports priority scheduling with up to <a href="https://ariel-os.github.io/ariel-os/dev/docs/api/ariel_os/thread/constant.SCHED_PRIO_LEVELS.html"><code>SCHED_PRIO_LEVELS</code></a> priority levels.
+The highest priority runnable thread (or threads in the multicore case) is always executed.
+Threads having the same priority are scheduled cooperatively.
+The scheduler itself is tickless, therefore time-slicing isn't supported.
+Thread priorities are dynamic and can be changed at runtime using <a href="https://ariel-os.github.io/ariel-os/dev/docs/api/ariel_os/thread/fn.set_priority.html"><code>thread::set_priority()</code></a>.</p>
+<p>On multicore, a single global runqueue is shared across all cores.
+The scheduler assigns the <em>C</em> highest-priority, ready, and non-conflicting threads to the <em>C</em> available cores.
+The scheduler gets invoked individually on each core.
+Whenever a higher priority thread becomes ready, the scheduler is triggered on the core with the lowest-priority running thread to perform a context switch.</p>
+<h3 id="idling"><a class="header" href="#idling">Idling</a></h3>
+<p>On single core, no idle threads are created.
+Instead, if no threads are to be scheduled, the processor enters sleep mode until a thread is ready.</p>
+<p>On multicore, one idle thread is created for each core.
+When an idle thread is scheduled, it prompts the current core to enter sleep mode.</p>
+<h3 id="core-affinity"><a class="header" href="#core-affinity">Core Affinity</a></h3>
+<p>Core affinity, also known as core pinning, is optionally configurable for each thread.
+It allows to restrict the execution of a thread to a specific core and prevent it from being scheduled on another one.</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="persistent-storage"><a class="header" href="#persistent-storage">Persistent Storage</a></h1>
+<p>Ariel OS supports persistent storage on a number of boards.
+It provides a key–value pair store based on <a href="https://crates.io/crates/sequential-storage">sequential-storage</a>.</p>
+<p>This storage module is responsible for setting up the flash storage,
+and provides the functions to interact with the key–value pair store in the storage.</p>
+<h2 id="use-cases"><a class="header" href="#use-cases">Use Cases</a></h2>
+<p>Persistent storage can be used to store configuration and other variables
+across reboots and power interruptions on the microcontroller.</p>
+<p>Both primitives and compound types can be stored.</p>
+<h2 id="usage"><a class="header" href="#usage">Usage</a></h2>
+<h3 id="enabling-the-storage-module"><a class="header" href="#enabling-the-storage-module">Enabling the Storage Module</a></h3>
+<p>The storage module can be enabled by <a href="./build-system.html#laze-modules">selecting the <code>sw/storage</code> laze module</a>,
+which enables the <code>storage</code> Cargo feature.</p>
+<h3 id="using-the-storage-module"><a class="header" href="#using-the-storage-module">Using the Storage Module</a></h3>
+<p>The <a href="https://ariel-os.github.io/ariel-os/dev/docs/api/ariel_os/storage/index.html">storage module</a> provides the necessary getters and setters
+to interact with the storage backend.</p>
+<p>Keys are always <code>&amp;str</code> typed.
+Values are required to implement the <a href="https://docs.rs/serde/latest/serde/trait.Serialize.html"><code>serde::Serialize</code></a>
+and <a href="https://docs.rs/serde/latest/serde/trait.Deserialize.html"><code>serde::Deserialize</code></a> traits.
+Under the hood, currently the values are serialized using <a href="https://github.com/jamesmunns/postcard">postcard</a>.</p>
+<p>Care must be taken to always read a key with the same value type
+that it was written before.
+While using a different value type for reading than for writing is never unsafe,
+it might result in bogus data.</p>
+<p>See the <a href="https://github.com/ariel-os/ariel-os/tree/main/examples/storage">example</a> for details on the usage.</p>
+<h3 id="durability-and-corruption"><a class="header" href="#durability-and-corruption">Durability and Corruption</a></h3>
+<p>The underlying <a href="https://crates.io/crates/sequential-storage">sequential-storage</a> crate guarantees that the storage can be repaired
+after power failure during operations.
+Corruption may lead to unrecoverable data that cannot be repaired.
+The repair will make sure that the flash state is recovered,
+so that any next operation should succeed.</p>
+<h2 id="flash-requirements"><a class="header" href="#flash-requirements">Flash Requirements</a></h2>
+<p>The storage module requires at least two flash pages.
+The effective storage space available is <code>(N - 1) * PAGE_SIZE</code>,
+where <code>N</code> is the number of flash pages allocated.</p>
+<blockquote>
+<p>Currently storage is only supported on flash whose pages have a uniform size.</p>
+</blockquote>
+<p>These pages are allocated by Ariel OS after the <code>rodata</code> section in the flash
+when the module is enabled.</p>
+<blockquote>
+<p>Updating the firmware can move and invalidate the storage pages
+when the firmware size differs from the previous version.</p>
+</blockquote>
+<p>NOR flash has limited endurance.
+When writing applications using the storage module,
+care must be taken to limit the writes to a reasonable amount,
+especially at startup when there is the danger of endless writing
+due to a crash leading to a reboot.</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="testing"><a class="header" href="#testing">Testing</a></h1>
+<p>Ariel OS supports in-hardware testing using the <a href="https://docs.rs/embedded-test/latest/embedded_test/"><code>embedded-test</code></a> crate.
+<code>embedded-test</code>, used in conjunction with <code>probe-rs</code>, serves as a replacement for the regular <code>cargo test</code> based test harness, as the latter cannot be used on <code>no_std</code>
+(embedded) devices.
+Please refer to the <a href="https://docs.rs/embedded-test/latest/embedded_test/"><code>embedded-test</code> documentation</a> for
+more info.</p>
+<p>The build system of Ariel OS integrates the <code>embedded-test</code>-based testing so that
+once set up, tests can be run by issuing <code>laze build -b &lt;board&gt; test</code>.
+<code>embedded-tests</code> can be used for any target that has <code>probe-rs</code> support (which currently means all targets).
+Both async and non-async code can be tested.</p>
+<blockquote>
+<p>Currently, Ariel OS requires a fork of <code>embedded-test</code>. When using Ariel's
+build system, this will be used automatically.</p>
+</blockquote>
+<h2 id="differences-from-vanilla-embedded-test"><a class="header" href="#differences-from-vanilla-embedded-test">Differences from vanilla <code>embedded-test</code></a></h2>
+<p>In Ariel OS, the OS itself will start and initialize components <em>before</em> the
+tests are run. Logging, networking, ... will be available as for regular
+Ariel OS applications.</p>
+<p>As a consequence, no Cargo features other than <code>ariel-os</code> should be enabled on the <code>embedded-test</code> dependency.
+In order to not require <code>default-features = false</code>, the (default)
+<code>panic-handler</code> feature is ignored when the <code>ariel-os</code> feature is enabled.</p>
+<h2 id="setting-up-embedded-test-for-ariel-os-applications-or-libraries"><a class="header" href="#setting-up-embedded-test-for-ariel-os-applications-or-libraries">Setting up <code>embedded-test</code> for Ariel OS applications or libraries</a></h2>
+<p>Steps for enabling tests:</p>
+<ol>
+<li>Add <code>embedded-test</code> as a dev-dependency of your crate, and enable its <code>ariel-os</code> Cargo feature, as follows:</li>
+</ol>
+<pre><code class="language-yaml">[dev-dependencies]
+embedded-test = { version = "0.6.0", features = ["ariel-os"] }
+</code></pre>
+<ol start="2">
+<li>Disable the default test harness:</li>
+</ol>
+<p>This depends on whether a lib, a bin or a separate test should be tested.</p>
+<p>Add the following to your <code>Cargo.toml</code>:</p>
+<pre><code class="language-yaml"># for a library crate
+[lib]
+harness = false
+</code></pre>
+<p>or</p>
+<pre><code class="language-yaml"># for the default `bin`, "name" needs to match the package name
+[[bin]]
+name = "ariel-os-hello"
+harness = false
+</code></pre>
+<p>or</p>
+<pre><code class="language-yaml"># for a separate test in `test.rs`
+[[test]]
+name = "test"
+harness = false
+</code></pre>
+<ol start="3">
+<li>Enable the <code>embedded-test</code> or <code>embedded-test-only</code> <a href="./build-system.html#laze-modules">laze module</a>:</li>
+</ol>
+<pre><code class="language-yaml">apps:
+# for an application:
+  - name: your-application
+    selects:
+      - embedded-test
+
+# for a library:
+  - name: crate/your-library
+    selects:
+      - embedded-test-only
+</code></pre>
+<blockquote>
+<p>Even a library crate needs an entry in laze's <code>apps</code> in order to make the <code>test</code> task available.
+Selecting <code>embedded-test-only</code> will make sure that <code>laze run</code> is disabled.</p>
+</blockquote>
+<ol start="4">
+<li>Add the following boilerplate to <code>lib.rs</code>, <code>main.rs</code> or <code>test.rs</code>:</li>
+</ol>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span><span class="boring">This goes to the top of the file
+</span>#![no_main]
+#![no_std]
+<span class="boring">}</span></code></pre></pre>
+<ol start="5">
+<li>Write the tests:</li>
+</ol>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>#[cfg(test)]
+#[embedded_test::tests]
+mod tests {
+    // Optional: An init function which is called before every test
+    #[init]
+    fn init() -&gt; u32 {
+        return 42;
+    }
+
+    // A test which takes the state returned by the init function (optional)
+    // This is an async function, it will be executed on the system executor.
+    #[test]
+    async fn trivial_async(n: u32) {
+        assert!(n == 42)
+    }
+}
+<span class="boring">}</span></code></pre></pre>
+<p>Again, please refer to the <a href="https://docs.rs/embedded-test/latest/embedded_test/"><code>embedded-test</code> documentation</a> for
+more information.</p>
+<h2 id="running-the-tests"><a class="header" href="#running-the-tests">Running the tests</a></h2>
+<p>To run a test, execute from within the crate's directory:</p>
+<pre><code class="language-shell">laze build -b &lt;board&gt; test
+</code></pre>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="tooling"><a class="header" href="#tooling">Tooling</a></h1>
+<p>This chapter contains documentation on tooling that Ariel OS provides or integrates.</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="coap"><a class="header" href="#coap">CoAP</a></h1>
+<p><a href="https://coap.space/">CoAP</a> is an <strong>application layer protocol similar to HTTP</strong> in its use
+(eg. you could POST data onto a resource on a server that is identified by a URL)
+but geared towards IoT devices in its format and its security mechanisms.</p>
+<p>CoAP provides a versatile set of transports
+(with IETF Proposed Standards for running <a href="https://datatracker.ietf.org/doc/html/rfc7252">over UDP</a> including multicast, <a href="https://datatracker.ietf.org/doc/html/rfc8323">over TCP and WebSockets</a>,
+other standards for running <a href="https://www.omaspecworks.org/wp-content/uploads/2018/10/Whitepaper-11.1.18.pdf">over SMS and NB-IoT</a>, and more in development).
+It relies on proxies to span across transports and to accommodate the characteristics of particular networks,
+and offers features exceeding the classical REST set such as <a href="https://datatracker.ietf.org/doc/html/rfc7641">observation</a>.</p>
+<p><strong>Ariel OS supports</strong> the use of CoAP
+for implementing clients, servers or both in a single device.
+As part of our mission for strong security,
+we use encrypted CoAP traffic by default as explained below.
+<em>Currently</em>, Ariel OS supports CoAP on its original UDP transport.
+Its CoAP server implementation supports several security mechanisms,
+whereas client support is not mature yet, and lacks security support.</p>
+<h2 id="usage-server-side"><a class="header" href="#usage-server-side">Usage: Server side</a></h2>
+<p>An example of a CoAP server is <a href="https://github.com/ariel-os/ariel-os/tree/main/examples/coap-server">provided as <code>examples/coap-server</code></a>, see <a href="https://github.com/ariel-os/ariel-os/blob/a5483e1cef1bba9b345719ed7e785d7013b8cf73/examples/coap-server/src/main.rs#L20">its <code>coap_run()</code> task</a> for the practical steps.
+This requires selecting the <code>coap-server</code> <a href="tooling/../build-system.html#laze-modules">laze module</a>, and on top of the user's handlers, it runs any operating-system-provided CoAP handlers
+(which would be started in an independent task if <code>coap-server</code> was not selected).</p>
+<p>A CoAP server is created by assembling several <strong>resource handlers on dedicated paths</strong>:
+There might be a path <code>/s/0</code> representing a particular sensor,
+and a path <code>/fwup</code> for interacting with firmware updates.
+The CoAP implementation can put additional resources at well-known locations,
+eg. <code>/.well-known/core</code> for discovery or <code>/.well-known/edhoc</code> for establishing secure connections.</p>
+<p>The handler needs to concern itself with security aspects of the request content
+(eg. file format parsers should treat incoming data as possibly malformed),
+but the decision whether or not a request is allowed is delegated to an <a href="tooling/coap.html#server-access-policy">access policy</a>.</p>
+<h2 id="usage-client-side"><a class="header" href="#usage-client-side">Usage: Client side</a></h2>
+<p>The example <a href="https://github.com/ariel-os/ariel-os/tree/main/examples/coap-client">provided as <code>examples/coap-client</code></a>, which sends a single POST request.
+It requires selecting the <code>coap-client</code> <a href="tooling/../build-system.html#laze-modules">laze module</a>.</p>
+<p>A program that triggers a CoAP request provides<sup class="footnote-reference" id="fr-whatsinarequest-1"><a href="#footnote-whatsinarequest">1</a></sup> some components to the CoAP stack before phrasing the actual request:</p>
+<ul>
+<li>
+<p>A <strong>URL describing the resource</strong>, eg. <code>coap://coap.summit.riot-os.org/agenda</code> or <code>coap+tcp://[2001:db8::1]/.well-known/core</code>.</p>
+<p>Note that while the address is printed here as a text URL
+(and may even be entered as such in code),
+its memory and transmitted representations are binary components.</p>
+</li>
+<li>
+<p>Optionally, directions regarding how to reach or find the host.</p>
+<p>This is not needed when there are IP literals involved, or DNS is available to resolve names.
+Directions may be available if the application discovered a usable proxy,
+or when it is desired to use opt-in discovery mechanisms such as multicast.</p>
+</li>
+<li>
+<p>A policy reference on how to authenticate the server, and which identity to present.
+This is optional if there is a global policy,
+or if there is an implied security mechanism for the URL.</p>
+</li>
+</ul>
+<h2 id="security"><a class="header" href="#security">Security</a></h2>
+<p>The CoAP stack is configured with server and client policies.
+The security mechanisms used depend on those selected in the policies.</p>
+<p>At this stage, Ariel OS uses three pieces of security components:
+OSCORE (for symmetric encryption), EDHOC (for key exchange) and ACE (for authentication).</p>
+<p>OSCORE/EDHOC/ACE were chosen first because they scale down
+well to the smallest devices, and because they
+all have in common that they sit naturally on top of CoAP:
+Their communication consists of CoAP requests and responses.
+Thus, they work homogeneously across all CoAP transports,
+and provide end-to-end security across untrusted proxies.</p>
+<p>Alternatives are possible (for instance DTLS, TLS, IPsec or link-layer encryption)
+but are currently not implemented in Ariel OS.</p>
+<h3 id="server-access-policy"><a class="header" href="#server-access-policy">Server access policy</a></h3>
+<p>A policy is configured for the whole server depending on the desired security mechanisms.
+Examples of described policy entries are:</p>
+<ul>
+<li>This is a fixed public key, and requests authenticated with that key are allowed to GET and PUT to <code>/limit</code>.</li>
+<li>The device has a shared secret from its authorization server, with which the authorization server secures the tokens it issues to clients. Clients may perform any action as long as they securely present a token that allows it. For example, a token may allow GET on <code>/limit</code> and PUT on <code>/led/0</code>.</li>
+<li>Any (even unauthenticated) device may GET <code>/hello/</code>.</li>
+</ul>
+<p>In Ariel OS, the policies are selected through <a href="tooling/../build-system.html#laze-modules">laze modules</a>:</p>
+<ul>
+<li><code>coap-server-config-demokeys</code> selects a set of hard-coded identities and policies usable for examples.</li>
+<li><code>coap-server-config-unprotected</code> allows access from any client without any authentication or integrity protection.</li>
+<li><code>coap-server-config-storage</code> reads configuration of the application, currently in a <code>peers.yml</code> file (<a href="https://github.com/ariel-os/ariel-os/blob/main/tests/coap/peers.yml">example</a>).
+CoAP clients described in there are assigned permissions as described there; the file format is currently only documented in the example file, and still in flux.
+The device generates an EDHOC key at first startup, <a href="tooling/../storage.html">stores it locally</a>, and reports its public credential at startup.</li>
+</ul>
+<p>The list of supported policies is being extended.</p>
+<h4 id="outlook-interacting-with-an-ariel-os-coap-server-from-the-host"><a class="header" href="#outlook-interacting-with-an-ariel-os-coap-server-from-the-host">Outlook: Interacting with an Ariel OS CoAP server from the host</a></h4>
+<p><em>This section is currently not implemented.</em></p>
+<p>A convenient policy (which is the default of Ariel OS's examples)
+is to grant the user who flashes the device all access on it.
+When that policy is enabled in the build system,
+an unencrypted key is created in the developer's <a href="https://specifications.freedesktop.org/basedir-spec/latest/">state home directory</a><!-- precise location TBD -->,
+from where it can be picked up by tools such as <a href="https://aiocoap.readthedocs.io/en/latest/tools.html">aiocoap-client</a>.</p>
+<p>Furthermore,
+when a CoAP server is provisioned through the Ariel OS build system,
+public keys and their device associations are stored
+in the developer's state home directory.</p>
+<p>Together, these files act in a similar way as the classic UNIX files <code>~/.netrc</code> and <code>~/.ssh/id_rsa{,.pub}</code>.
+They can also double as templates for an application akin to <code>ssh-copy-id</code>
+in that they enable a server policy like
+"any device previously flashed on this machine may GET all resources".</p>
+<h3 id="client-policies"><a class="header" href="#client-policies">Client policies</a></h3>
+<p>The policy for outgoing requests can be defined globally or per request.</p>
+<p>Examples of policies that can be available are
+"expect the server to present some concrete public key, use this secret key once the server is verified",
+"use a token for this audience and scope obtained from that authentication server",
+"expect the server to present a chain of certificates for its hostname down to a set of root certificates" (which is the default for web browsers),
+"establish an encrypted connection and trust the peer's key on first use",
+down to "do not use any encryption".</p>
+<p><em>Currently</em>, the only available client security policy is "use an insecure request".</p>
+<h3 id="available-security-mechanisms"><a class="header" href="#available-security-mechanisms">Available security mechanisms</a></h3>
+<p>These components are optional, but enabled as needed by the policy —
+only with the "unprotected" policy, none of them are built
+(which may make sense on a link layer with tight access control).
+The components also have internal dependencies:
+EDHOC can only practically be used in combination with OSCORE;
+ACE comes with profiles with individual dependencies
+(eg. using the ACE-EDHOC profile requires EDHOC).</p>
+<p><em>Currently</em>, while all the mechanisms described here are implemented in Ariel OS,
+only EDHOC can be set up through the policy features.</p>
+<h4 id="symmetric-encryption-oscore"><a class="header" href="#symmetric-encryption-oscore">Symmetric encryption: OSCORE</a></h4>
+<p>OSCORE (<a href="https://datatracker.ietf.org/doc/html/rfc8613">RFC8613</a>) provides symmetric encryption for CoAP requests:
+It allows clients to phrase their CoAP request,
+encrypts the parts that a proxy does not need to be aware of<sup class="footnote-reference" id="fr-parts-1"><a href="#footnote-parts">2</a></sup>
+and sends on the ciphertext in a CoAP request.
+The server can decrypt the request,
+process it like any other request (but with the access policy evaluated according to the key's properties),
+and its response gets encrypted likewise.</p>
+<p>Working with symmetric keys requires a lot of care and effort managing keys:
+assigning the same key twice can have catastrophic consequences,
+and even recovering from an unplanned reboot is by far not trivial.</p>
+<p>Ariel OS does not offer direct access to OSCORE for those reasons,
+and uses OSCORE's companion mechanisms to set up keys.</p>
+<p>Policies are not described in terms of OSCORE keys.</p>
+<h4 id="key-establishment-edhoc"><a class="header" href="#key-establishment-edhoc">Key establishment: EDHOC</a></h4>
+<p>EDHOC (<a href="https://datatracker.ietf.org/doc/html/rfc9528">RFC9528</a>) is a key establishment protocol
+that uses asymmetric keys to obtain mutual authentication and forward secrecy.
+In particular, two CoAP devices can run EDHOC over CoAP to obtain key material for OSCORE,
+which can then be used for fast communication.</p>
+<p>Unless ACE (or, later, certificate chains) are used,
+the main use of EDHOC in Ariel OS is with raw public keys:
+Devices (including the host machine) generate a private key,
+make the corresponding public key known,
+and then send the public key (or its short ID) along with EDHOC messages to be identified by that public key.
+This is similar to how SSH keys are commonly used.</p>
+<p>Policies described in terms of EDHOC keys include the public key of the peer,
+which private key to use,
+whether our public key needs to be sent as a full public key or can be sent by key ID,
+and what the peer is authorized to do.</p>
+<h4 id="authorization-ace"><a class="header" href="#authorization-ace">Authorization: ACE</a></h4>
+<p>The ACE framework (<a href="https://datatracker.ietf.org/doc/html/rfc9200">RFC9200</a>) describes how a trusted service (the Authorization Server, "AS")
+can facilitate secure connections between devices that are not explicitly configured to be used together.
+It frequently issues CWTs (CBOR Web Tokens) that are to JWTs (JSON Web Tokens) as CoAP is to HTTP.</p>
+<p>The general theme of it is that
+a client that wants to access some resource on a server under the AS's control
+first asks the AS for an access token,
+and then presents that token to the server (called Resource Server / RS in that context).</p>
+<p>Clients know the AS by having means to establish some secure connection with it,
+eg. through EDHOC.
+Resource Servers know the AS by verifying the tokens they receive from the AS,
+eg. by having a shared secret with the AS or knowing its signing key.</p>
+<p>Details of the process are specified in ACE profiles;
+apart from those listed here, popular profiles include the DTLS profile and the profiles for group communication.</p>
+<h5 id="ace-oscore-profile"><a class="header" href="#ace-oscore-profile">ACE-OSCORE profile</a></h5>
+<p>With the ACE-OSCORE profile (<a href="https://datatracker.ietf.org/doc/html/rfc9203">RFC9203</a>),
+the AS provides a random OSCORE key in the token (which is encrypted for the RS),
+and sends the token along with the same OSCORE key through its secure connection to the client.
+Before the client can send OSCORE requests,
+it POSTs the token to the server over an unprotected connection
+(the token itself is encrypted),
+along with a random number and some housekeeping data
+that go into the establishment of an OSCORE context.</p>
+<p>The <a href="https://gitlab.com/oscore/coap-ace-poc-overview">documentation of the CoAP/ACE-OAuth PoC project</a> describes the whole setup in more detail.</p>
+<h5 id="ace-edhoc-profile"><a class="header" href="#ace-edhoc-profile">ACE-EDHOC profile</a></h5>
+<p>The ACE-EDHOC profile is <a href="https://datatracker.ietf.org/doc/draft-ietf-ace-edhoc-oscore-profile/">under development in the ACE working group</a>.</p>
+<p>It differs from the ACE-OSCORE profile
+in that the AS does not provide symmetric key material
+but only points out the respective peer's public keys.</p>
+<p>The token may be signed or symmetrically encrypted.
+It is sent to the server as part of the EDHOC exchange,
+after the client has authenticated the server.</p>
+<h5 id="outlook-using-ace-from-the-host-during-development"><a class="header" href="#outlook-using-ace-from-the-host-during-development">Outlook: Using ACE from the host during development</a></h5>
+<p><em>This section is currently not implemented.</em></p>
+<p>While full operation of ACE requires having an AS as part of the network,
+CoAP servers running on Ariel OS can be used in the ACE framework without a live server.</p>
+<p>Similar to how an EDHOC key is created on demand on the host,
+an AS's list of Resource Servers is maintained by default.
+Tools at the host can then use the locally stored key to create tokens that grant fine-grained permissions on the Ariel OS device.</p>
+<p>With the <a href="https://www.ietf.org/archive/id/draft-ietf-ace-workflow-and-params-00.html#name-new-ace-workflow">New ACE Workflow developed in ACE</a>,
+such tokens can also be provisioned into Resource Servers on behalf of clients that are being provisioned.
+Thus,
+the offline AS can enable deployed Ariel OS based CoAP servers
+to accept requests from newly created Ariel OS based CoAP clients
+without the need for the CoAP client to create a network connection to the host.
+(Instead, the host needs to find the Resource Server over the network).</p>
+<blockquote>
+<p>Note: Some more exploration of this workflow will be necessary
+as to how the client can trigger the AS to re-install (or renew) its token
+in case the Resource Server retired the token before its expiration.
+For Ariel OS internal use,
+AS-provisioned tokens might just be retained longer.</p>
+</blockquote>
+<hr>
+<ol class="footnote-definition"><li id="footnote-whatsinarequest">
+<p>The components required for a request are not documented as such in the CoAP RFCs,
+but it is the author's opinion that they are a factual requirement:
+Implementations may implicitly make decisions on those,
+but the decisions are still made.
+At the time of writing, there <a href="https://github.com/core-wg/corrclar/issues/41">is an open issue</a> to clarify this in the specifications. <a href="#fr-whatsinarequest-1">↩</a></p>
+</li>
+<li id="footnote-parts">
+<p>Most of the message is encrypted.
+Noteworthy unencrypted parts are the hostname the request is sent to,
+the parts that link a response to a request,
+and housekeeping details such as whether a request is for an observation and thus needs to be kept alive longer. <a href="#fr-parts-1">↩</a></p>
+</li>
+</ol><div style="break-before: page; page-break-before: always;"></div><h1 id="ferrocene"><a class="header" href="#ferrocene"><a href="https://ferrocene.dev">Ferrocene</a></a></h1>
+<blockquote>
+<p>Ferrocene is the open-source qualified Rust compiler toolchain for safety- and mission-critical. Qualified for automotive, industrial and medical development.</p>
+</blockquote>
+<p>Note: Ferrocene requires a (paid) license to use.</p>
+<p>Ferrocene uses <a href="https://criticalup.ferrocene.dev"><code>criticalup</code></a>, its variant of <code>rustup</code>, to manage installing its toolchain and components. Once installed, wrapping regular Rust commands like <code>cargo</code> and <code>rustc</code> with <code>criticalup run</code> enables using the qualified tooling.</p>
+<p>The Ariel OS build system seamlessly integrates this for targets supported by Ferrocene (currently all Cortex-M).</p>
+<h2 id="installing-ferrocene"><a class="header" href="#installing-ferrocene">Installing Ferrocene</a></h2>
+<p>Please refer to the official <a href="https://public-docs.ferrocene.dev/main/user-manual/index.html">Ferrocene documentation</a> and the <a href="https://criticalup.ferrocene.dev"><code>criticalup</code> User Guide</a> for instructions.</p>
+<h2 id="using-ferrocene-with-ariel-os"><a class="header" href="#using-ferrocene-with-ariel-os">Using Ferrocene with Ariel OS</a></h2>
+<p>To select the Ferrocene toolchain, enable the <code>ferrocene</code> laze module.</p>
+<p>Example:</p>
+<pre><code>$ laze -Cexamples/hello-world build --builders nrf52830dk --select ferrocene
+</code></pre>
+<p>Alternatively, add <code>ferrocene</code> to the laze modules of your application.</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="glossary"><a class="header" href="#glossary">Glossary</a></h1>
+<h2 id="embassy-hal-crates"><a class="header" href="#embassy-hal-crates"><strong>Embassy HAL crates</strong></a></h2>
+<p>Embassy crates that implement support for specific MCU families:</p>
+<ul>
+<li><a href="https://docs.embassy.dev/embassy-nrf/">embassy-nrf</a></li>
+<li><a href="https://docs.embassy.dev/embassy-rp/">embassy-rp</a></li>
+<li><a href="https://docs.embassy.dev/embassy-stm32/">embassy-stm32</a></li>
+<li><a href="https://docs.esp-rs.org/esp-hal/">esp-hal</a> <!-- We cannot link to esp-hal specifically --></li>
+</ul>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="adding-support-for-a-board"><a class="header" href="#adding-support-for-a-board">Adding Support for a Board</a></h1>
+<p>This document serves as a guide as to what is currently needed for adding support
+for a board/device to Ariel OS.</p>
+<p>Feel free to report anything that is unclear or missing!</p>
+<blockquote>
+<p>This guide requires working on your own copy of Ariel OS.
+You may want to fork the repository to easily upstream your changes later.</p>
+</blockquote>
+<blockquote>
+<p>Unless documented in the User Guide, please expect the module and context names that are defined in the <code>laze-project.yml</code> file to change.
+We're still figuring out a proper naming scheme.
+You've been warned.</p>
+</blockquote>
+<h2 id="adding-support-for-a-board-1"><a class="header" href="#adding-support-for-a-board-1">Adding Support for a Board</a></h2>
+<p>The more similar a board is to one that is already supported, the easier.
+It is usually best to copy and adapt an existing one.</p>
+<ul>
+<li>Ensure that the HAL <a href="adding-board-support.html#adding-support-for-an-embassy-halmcu-family">is supported in <code>ariel-os-hal</code></a>.</li>
+<li>In <code>laze-project.yml</code>:
+<ul>
+<li><code>parent</code>: The MCU's laze context.</li>
+<li>If the MCU does not have a dedicated software interrupt (SWI), choose one
+now and set the <code>CONFIG_SWI</code> environment variable.</li>
+<li>Ensure there is a way to flash the board:
+<ul>
+<li>If the MCU is supported by probe-rs, specify <code>PROBE_RS_CHIP</code>
+and <code>PROBE_RS_PROTOCOL</code>.
+<code>PROBE_RS_PROTOCOL</code> can be omitted to inherit the default value from the <code>ariel-os</code> laze context.</li>
+<li>If the board is based on <code>esp</code>, it should inherit the espflash support.</li>
+<li>If neither of these are supported, please open an issue.</li>
+</ul>
+</li>
+<li>Add a builder for the actual board that uses the context from above as <code>parent</code>.</li>
+</ul>
+</li>
+</ul>
+<p>Whether to add an intermediate context or just a builder depends on whether the
+MCU-specific code can be re-used.</p>
+<p>Example for the <code>st-nucleo-f401re</code> board:</p>
+<pre><code class="language-yaml">builders:
+  # ...
+  - name: st-nucleo-f401re
+    parent: stm32f401re
+    provides:
+      - has_swi
+    env:
+      CARGO_ENV:
+        - CONFIG_SWI=USART2
+</code></pre>
+<h2 id="adding-support-for-an-mcu-from-a-supported-mcu-family"><a class="header" href="#adding-support-for-an-mcu-from-a-supported-mcu-family">Adding Support for an MCU from a Supported MCU family</a></h2>
+<ul>
+<li>In <code>laze-project.yml</code>:
+<ul>
+<li>Add a context for the MCU (if it does not already exist).
+<ul>
+<li><code>parent</code>: The closest Embassy HAL's context.</li>
+<li><code>selects</code>: A <a href="adding-board-support.html#adding-support-for-a-processor-architecture">rustc-target</a> module or one of the <code>cortex-m*</code> modules if applicable.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p>MCU-specific items inside Ariel OS crates are gated behind
+<code>#[cfg(context = $CONTEXT)]</code> attributes, where <code>$CONTEXT</code> is the <a href="./build-system.html#laze-contexts">MCU's <code>laze context</code> name</a>.
+These need to be expanded for adding support for the new MCU.</p>
+<p>At least the following crates may need to be updated:</p>
+<ul>
+<li>The Ariel OS HAL crate for the MCU family.</li>
+<li><code>ariel-os-storage</code></li>
+<li><code>ariel-os-embassy</code></li>
+</ul>
+<p>Example for the <code>stm32f401re</code> MCU:</p>
+<pre><code class="language-yaml">contexts:
+  # ...
+  - name: stm32f401re
+    parent: stm32
+    selects:
+      - cortex-m4f
+    env:
+      PROBE_RS_CHIP: STM32F401RE
+</code></pre>
+<h2 id="adding-support-for-an-embassy-halmcu-family"><a class="header" href="#adding-support-for-an-embassy-halmcu-family">Adding Support for an Embassy HAL/MCU family</a></h2>
+<p>As of this writing, Ariel OS supports most HALs that Embassy supports,
+including <code>esp-hal</code>, <code>nrf</code>, <code>rp</code>, and <code>stm32</code>, but excluding <code>std</code> and <code>wasm</code>.</p>
+<p>The steps to add support for another Embassy supported HAL are:</p>
+<ul>
+<li><code>src/ariel-os-hal</code>:
+<ul>
+<li><code>Cargo.toml</code>: Add a dependency on the Embassy HAL crate.</li>
+<li><code>src/lib.rs</code>: Add the Ariel OS HAL to the dispatch logic.</li>
+</ul>
+</li>
+<li>Create a new Ariel OS HAL crate (similar to <code>ariel-os-nrf</code>).</li>
+</ul>
+<h2 id="adding-support-for-a-processor-architecture"><a class="header" href="#adding-support-for-a-processor-architecture">Adding Support for a Processor Architecture</a></h2>
+<p>Each rustc target needs its own module in <code>laze-project.yml</code>.
+If the processor architecture that is being added is not listed yet, you will
+need to take care of that.</p>
+<p>Example:</p>
+<pre><code class="language-yaml">modules:
+  # ...
+  - name: thumbv6m-none-eabi
+    env:
+      global:
+        RUSTC_TARGET: thumbv6m-none-eabi
+        CARGO_TARGET_PREFIX: CARGO_TARGET_THUMBV6M_NONE_EABI
+        RUSTFLAGS:
+          - --cfg armv6m
+</code></pre>
+<p>The variables <code>RUSTC_TARGET</code> and <code>CARGO_TARGET_PREFIX</code> need to be adjusted.
+Add <code>--cfg $HAL</code> as needed.</p>
+<p>Chances are that if you need to add this, you will also have to add support for
+the processor architecture to <code>ariel-os-bench</code>, <code>ariel-os-rt</code>, <code>ariel-os-threads</code>.</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="coding-conventions"><a class="header" href="#coding-conventions">Coding Conventions</a></h1>
+<h2 id="rust"><a class="header" href="#rust">Rust</a></h2>
+<h3 id="item-order-in-rust-modules"><a class="header" href="#item-order-in-rust-modules">Item Order in Rust Modules</a></h3>
+<p>Items SHOULD appear in Rust modules in the following order, based on <a href="https://rust-analyzer.github.io/manual.html#auto-import">the one used by rust-analyzer</a>:</p>
+<ol>
+<li>Inner doc comment</li>
+<li><a href="https://doc.rust-lang.org/reference/attributes.html">Inner attributes</a></li>
+<li>Unconditional—i.e., not feature-gated—bodyless <a href="https://doc.rust-lang.org/reference/items/modules.html">modules</a></li>
+<li>Conditional—i.e., feature-gated—bodyless modules</li>
+<li>Unconditional imports from the following:
+<ol>
+<li><code>std</code>/<code>alloc</code>/<code>core</code></li>
+<li>External crates (including crates from the same workspace)</li>
+<li>Current crate, paths prefixed by <code>crate</code></li>
+<li>Current module, paths prefixed by <code>self</code></li>
+<li>Super module, paths prefixed by <code>super</code></li>
+<li>Re-exports—i.e., <code>pub</code> imports not used in the module</li>
+</ol>
+</li>
+<li>Conditional imports from the same</li>
+<li><a href="https://doc.rust-lang.org/reference/items/constant-items.html">Const items</a></li>
+<li><a href="https://doc.rust-lang.org/reference/items/static-items.html">Static items</a></li>
+<li>Other items</li>
+</ol>
+<p>TODO: type aliases before other items?</p>
+<p>TODO: how to organize type definitions w.r.t. related logic?</p>
+<h3 id="imports"><a class="header" href="#imports">Imports</a></h3>
+<p>Imports from the same crate with the same visibility MUST be <a href="https://rust-analyzer.github.io/manual.html#auto-import">merged into a single use statement</a>.</p>
+<h4 id="imports-from-re-exports"><a class="header" href="#imports-from-re-exports">Imports from Re-exports</a></h4>
+<p>When using whole-crate re-exports from <a href="https://ariel-os.github.io/ariel-os/dev/docs/api/ariel_os/reexports/index.html"><code>ariel_os::reexports</code></a>, two imports SHOULD be used: one to bring the re-exported crate into the scope, and the other one to import the required items from that crate, as it it were a direct dependency of the crate, as follows:</p>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>use ariel_os::reexports::embassy_usb;
+use embassy_usb::class::hid::HidReaderWriter;
+<span class="boring">}</span></code></pre></pre>
+<h3 id="comments"><a class="header" href="#comments">Comments</a></h3>
+<h4 id="doc-comments"><a class="header" href="#doc-comments">Doc Comments</a></h4>
+<p>All public items listed in the documentation—i.e., not marked with <a href="https://doc.rust-lang.org/rustdoc/write-documentation/the-doc-attribute.html#hidden"><code>#[doc(hidden)]</code></a>—SHOULD be documented.</p>
+<p>Doc comments MUST use the <a href="https://doc.rust-lang.org/reference/comments.html#doc-comments">line comment style</a>, not the block style.</p>
+<p>Doc comments MUST be written in third person present, not in the imperative mood, as recommended by <a href="https://github.com/rust-lang/rfcs/blob/master/text/1574-more-api-documentation-conventions.md#summary-sentence">RFC 1574</a>.
+Each sentence in doc comments—including the first one, before an empty line—SHOULD end with a period.
+For instance, instead of:</p>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>/// Get the underlying value
+<span class="boring">}</span></code></pre></pre>
+<p>write:</p>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>/// Returns the underlying value.
+<span class="boring">}</span></code></pre></pre>
+<p>More generally, use the <a href="https://doc.rust-lang.org/stable/std/"><code>std</code> docs</a> as inspiration.</p>
+<p>When possible—i.e., when items are in scope—items mentioned in the documentation MUST be linked to (see <a href="https://rust-lang.github.io/api-guidelines/documentation.html#prose-contains-hyperlinks-to-relevant-things-c-link">C-LINK</a>).
+This is useful for readers, to quickly access the mentioned item, but it also helps prevent the docs from lagging behind, as broken links are tested for in CI, making it easy to spot renamed or removed items.</p>
+<h3 id="unsafe-code"><a class="header" href="#unsafe-code"><code>unsafe</code> Code</a></h3>
+<p>When <code>unsafe</code> is used, a <code>SAFETY</code> comment MUST be added, in the style <a href="https://rust-lang.github.io/rust-clippy/master/index.html#/undocumented_unsafe_blocks">supported by Clippy</a>.</p>
+<p>TODO: enforce it in CI</p>
+<h3 id="naming-conventions"><a class="header" href="#naming-conventions">Naming Conventions</a></h3>
+<p>Names SHOULD adhere to the <a href="https://rust-lang.github.io/api-guidelines/naming.html">official API guidelines</a>.</p>
+<p>TODO: how to name error types/error enum variants (<code>CannotDoSth</code> vs <code>DoingSth</code>)?</p>
+<h2 id="dependencies"><a class="header" href="#dependencies">Dependencies</a></h2>
+<p>If the same dependency is used in multiples crates within the workspace, that dependency SHOULD be specified in the <em>workspace</em>'s <code>Cargo.toml</code> file and workspace crates should import them from there.</p>
+<h2 id="adding-a-new-workspace-crate-exposed-by-ariel-os"><a class="header" href="#adding-a-new-workspace-crate-exposed-by-ariel-os">Adding a new workspace crate, exposed by <code>ariel-os</code></a></h2>
+<p>To add a new workspace crate re-exported by <code>ariel-os</code>, follow these steps:</p>
+<ol>
+<li>Create the new crate's directory in <code>src/</code>.</li>
+<li>Run <code>cargo init --lib</code> in that directory.</li>
+<li>Add <code>#![deny(missing_docs)]</code> and <code>#![deny(clippy::pedantic)]</code> to the crate; some lints are already inherited from the workspace and do not need to be added to the new crate.</li>
+<li>In the workspace's <code>Cargo.toml</code> <code>workspace.members</code> array, ensure the new entry preserves the lexicographic order of that array.</li>
+<li>In the workspace's <code>Cargo.toml</code> <code>dependencies</code> array, add a (properly sorted) entry.</li>
+<li>Re-export the crate from the <code>ariel-os</code> crate, inline it in the docs as done for the other crates, and feature-gate it if necessary.</li>
+<li>Add the crate to the list of crates checked by Clippy in <code>.github/workflows/main.yml</code>, preserving lexicographic order.</li>
+<li>If the crate is expected to have tests that can be run with <code>cargo test</code>:
+<ol>
+<li>Add a feature named <code>_test</code> that enables all features that can be tested.</li>
+<li>Add a <code>laze.yml</code> with an application for the crate named <code>crates/your-crate-name</code> that selects the <code>host-test-only</code> module (see e.g., <code>src/ariel-os/laze.yml</code>)</li>
+<li>Add the crate's directory to its parent's <code>laze.yml</code> <code>subdirs</code>.</li>
+</ol>
+</li>
+<li>If the new crate is feature-gated and if this is possible, add the feature that enables it to the ones used by cargo doc in <code>.github/workflows/main.yml</code> and in <code>.github/workflows/build-deploy-docs.yml</code>, preserving lexicographic order.</li>
+</ol>
+<h2 id="laze-1"><a class="header" href="#laze-1">laze</a></h2>
+<h3 id="modules"><a class="header" href="#modules">Modules</a></h3>
+<p>laze modules in examples and tests MUST use <a href="https://kaspar030.github.io/laze/dev/reference/module/selects.html"><code>selects</code></a> instead of <a href="https://kaspar030.github.io/laze/dev/reference/module/depends.html"><code>depends</code></a>.
+Even though their behaviors are different in the general case, they are equivalent in our case.</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="ariel-os-code-of-conduct"><a class="header" href="#ariel-os-code-of-conduct">Ariel OS Code of Conduct</a></h1>
+<p>Ariel OS, like so many other free and open source software projects, is made up of a
+mixed group of professionals and volunteers from all over the world, working on
+every aspect of our goals - including teaching, steering, and connecting people.</p>
+<p>We want diversity to be one of our greatest strengths, but it can also lead to
+communication issues and unhappiness. This is why we ask people to adhere to a
+few ground rules. They apply equally to founders, maintainers, contributors and
+those seeking help and guidance.</p>
+<p>This is not meant to be an exhaustive list of things you are not allowed to do.
+We rather would like you to think of it as a guide to enrich our community and
+the technical community in general with new knowledge and perspectives by
+allowing everyone to participate.</p>
+<p>This code of conduct applies to all spaces managed by the Ariel OS community. This
+includes Matrix, the mailing lists, our GitHub projects, face to face events, and
+any other forums created by the community for communication within the
+community. In addition, violations of this code outside these spaces may also
+affect a person's ability to participate within them.</p>
+<p>If you believe someone is violating the code of conduct, we ask that you report
+it by emailing <a href="mailto:conduct@ariel-os.org">conduct@ariel-os.org</a>. For more details please see our <a href="https://ariel-os.github.io/ariel-os/dev/docs/book/COC_reporting.html">Reporting
+Guidelines</a>.</p>
+<ul>
+<li><strong>Be friendly and patient.</strong></li>
+<li><strong>Be welcoming.</strong> We strive to be a community that welcomes and supports
+people of all backgrounds and identities. This includes, but is not limited
+to members of any race, ethnicity, culture, national origin, color,
+immigration status, social and economic class, educational level, sex,
+sexual orientation, gender identity and expression, age, size, family
+status, political belief, religion, and mental and physical ability.</li>
+<li><strong>Be considerate.</strong> Your work will be used by other people, and you in turn
+will depend on the work of others. Any decision you take will affect users
+and colleagues, and you should take those consequences into account when
+making decisions. Remember that we're a world-wide community, so you might
+not be communicating in someone else's primary language.</li>
+<li><strong>Be respectful.</strong> Not all of us will agree all the time, but disagreement
+is no excuse for poor behavior and poor manners. We might all experience
+some frustration now and then, but we cannot allow that frustration to turn
+into a personal attack. It’s important to remember that a community where
+people feel uncomfortable or threatened is not a productive one. Members of
+the Ariel OS community should be respectful when dealing with other members as
+well as with people outside the Ariel OS community.</li>
+<li><strong>Be careful in the words that you choose.</strong> We are a community of
+professionals, and we conduct ourselves professionally. Be kind to others.
+Do not insult or put down other participants. Harassment and other
+exclusionary behavior aren't acceptable. This includes, but is not limited
+to:
+<ul>
+<li>Violent threats or language directed against another person.</li>
+<li>Discriminatory jokes and language.</li>
+<li>Posting sexually explicit or violent material.</li>
+<li>Posting (or threatening to post) other people's personally identifying
+information ("doxing").</li>
+<li>Personal insults, especially those using racist or sexist terms.</li>
+<li>Unwelcome sexual attention.</li>
+<li>Advocating for, or encouraging, any of the above behavior.</li>
+<li>Repeated harassment of others. In general, if someone asks you to stop,
+then stop.</li>
+</ul>
+</li>
+<li><strong>When we disagree, try to understand why.</strong> Disagreements, both social and
+technical, happen all the time and Ariel OS is no exception. It is important
+that we resolve disagreements and differing views constructively. Remember
+that we’re different. The strength of Ariel OS comes from its varied community,
+people from a wide range of backgrounds. Different people have different
+perspectives on issues. Being unable to understand why someone holds a
+viewpoint doesn’t mean that they’re wrong. Don’t forget that it is human to
+err and blaming each other doesn’t get us anywhere. Instead, focus on
+helping to resolve issues and learning from mistakes.</li>
+</ul>
+<p>Text based on the Code of Conduct of the <a href="https://www.djangoproject.com/conduct/">Django
+community</a>.</p>
+<h2 id="questions"><a class="header" href="#questions">Questions?</a></h2>
+<p>If you have questions, please feel free to <a href="mailto:conduct@ariel-os.org">contact us</a>.</p>
+<h2 id="reporting-guidelines"><a class="header" href="#reporting-guidelines">Reporting Guidelines</a></h2>
+<p>If you believe someone is violating the code of conduct we ask that you
+report it to us by emailing <a href="mailto:conduct@ariel-os.org">conduct@ariel-os.org</a>.</p>
+<p><strong>All reports will be kept confidential.</strong> In some cases we may determine that a
+public statement will need to be made. If that's the case, the identities of all
+victims and reporters will remain confidential unless those individuals instruct
+us otherwise.</p>
+<p><strong>If you believe anyone is in physical danger, please notify appropriate law
+enforcement first.</strong> If you are unsure what law enforcement agency is
+appropriate, please include this in your report and we will attempt to notify
+them.</p>
+<p>If you are unsure whether the incident is a violation, or whether the space
+where it happened is covered by this Code of Conduct, we encourage you to still
+report it. We would much rather have a few extra reports where we decide to take
+no action, rather than miss a report of an actual violation. We do not look
+negatively on you if we find the incident is not a violation. And knowing about
+incidents that are not violations, or happen outside our spaces, can also help
+us to improve the Code of Conduct or the processes surrounding it.</p>
+<p>In your report please include:</p>
+<ul>
+<li>Your contact info (so we can get in touch with you if we need to follow up)</li>
+<li>Names (real, nicknames, or pseudonyms) of any individuals involved. If there
+were other witnesses besides you, please try to include them as well.</li>
+<li>When and where the incident occurred. Please be as specific as possible.</li>
+<li>Your account of what occurred. If there is a publicly available record (e.g.
+a mailing list archive or a public Matrix logger) please include a link.</li>
+<li>Any extra context you believe existed for the incident.</li>
+<li>If you believe this incident is ongoing.</li>
+<li>Any other information you believe we should have.</li>
+</ul>
+<h3 id="what-happens-after-you-file-a-report"><a class="header" href="#what-happens-after-you-file-a-report">What happens after you file a report?</a></h3>
+<p>You will receive an email from one of the core community members as soon as
+possible. We promise to acknowledge receipt within 24 hours (and will aim for
+much quicker than that).</p>
+<p>They will review the incident and determine:</p>
+<ul>
+<li>What happened.</li>
+<li>Whether this event constitutes a code of conduct violation.</li>
+<li>Who the bad actor was.</li>
+<li>Whether this is an ongoing situation, or if there is a threat to anyone's
+physical safety.</li>
+</ul>
+<p>If this is determined to be an ongoing incident or a threat to physical safety,
+their immediate priority will be to protect everyone involved.
+This means we may delay an "official" response until we believe that the
+situation has ended and that everyone is physically safe.</p>
+<p>Once the working group has a complete account of the events they will make a
+decision as to how to response. Responses may include:</p>
+<ul>
+<li>Nothing (if we determine no violation occurred).</li>
+<li>A private reprimand from us to the individual(s) involved.</li>
+<li>A public reprimand.</li>
+<li>An imposed vacation (i.e. asking someone to "take a week off" from a mailing
+list or Matrix).</li>
+<li>A permanent or temporary ban from some or all Ariel OS spaces (mailing lists,
+Matrix, etc.)</li>
+<li>A request for a public or private apology.</li>
+</ul>
+<p>We'll respond within one week to the person who filed the report with either a
+resolution or an explanation of why the situation is not yet resolved.</p>
+<p>Once we've determined our final action, we'll contact the original reporter to
+let them know what action (if any) we'll be taking. We'll take into account
+feedback from the reporter on the appropriateness of our response, but we don't
+guarantee we'll act on it.</p>
+<h4 id="reference"><a class="header" href="#reference">Reference</a></h4>
+<p>These reporting guidelines were adapted from the <a href="https://www.djangoproject.com/conduct/reporting/">Django reporting guidelines</a></p>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+
+            </nav>
+
+        </div>
+
+
+
+
+        <script>
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="elasticlunr.min.js"></script>
+        <script src="mark.min.js"></script>
+        <script src="searcher.js"></script>
+
+        <script src="clipboard.min.js"></script>
+        <script src="highlight.js"></script>
+        <script src="book.js"></script>
+
+        <!-- Custom JS scripts -->
+
+        <script>
+        window.addEventListener('load', function() {
+            window.setTimeout(window.print, 100);
+        });
+        </script>
+
+    </div>
+    </body>
+</html>

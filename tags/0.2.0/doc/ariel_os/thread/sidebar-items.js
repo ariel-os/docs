@@ -1,0 +1,1 @@
+window.SIDEBAR_ITEMS = {"constant":["CORE_COUNT","IDLE_THREAD_STACK_SIZE","SCHED_PRIO_LEVELS","THREAD_COUNT"],"fn":["core_id","create","create_noarg","current_tid","get_priority","is_valid_tid","park","set_priority","unpark","yield_same"],"mod":["sync","thread_flags"],"struct":["CoreAffinity","CoreId","RunqueueId","ThreadId"],"trait":["Arguable"]};
