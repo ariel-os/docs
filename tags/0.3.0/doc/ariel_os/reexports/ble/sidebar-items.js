@@ -1,0 +1,1 @@
+window.SIDEBAR_ITEMS = {"constant":["MAX_CHANNELS","MAX_CONNS","MTU"],"fn":["get_ble_host_resources"],"struct":["Config"],"type":["BleHostResources"]};

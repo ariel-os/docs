@@ -1,0 +1,1 @@
+rd_("hariel_oslariel_os_nrfkariel_os_rpnariel_os_stm32hcoapcorelembedded_halAbembedded_hal_asyncAaembedded_io_async")

@@ -1,0 +1,1 @@
+window.SIDEBAR_ITEMS = {"mod":["cdc_acm","cdc_ncm","cmsis_dap_v2","hid","midi","uac1","web_usb"]};

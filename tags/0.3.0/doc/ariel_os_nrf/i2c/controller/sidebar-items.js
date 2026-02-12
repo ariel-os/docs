@@ -1,0 +1,1 @@
+window.SIDEBAR_ITEMS = {"enum":["Frequency","I2c"],"struct":["Config","TWISPI0","TWISPI1"]};

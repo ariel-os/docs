@@ -1,0 +1,1 @@
+window.SIDEBAR_ITEMS = {"mod":["ble","embassy_executor","embassy_net","embassy_time","embassy_usb","linkme","usbd_hid"]};
