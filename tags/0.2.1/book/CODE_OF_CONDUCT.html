@@ -1,0 +1,358 @@
+<!DOCTYPE HTML>
+<html lang="en" class="light sidebar-visible" dir="ltr">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>Code of Conduct - Ariel OS manual</title>
+
+
+        <!-- Custom HTML head -->
+
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff">
+
+        <link rel="icon" href="favicon.svg">
+        <link rel="shortcut icon" href="favicon.png">
+        <link rel="stylesheet" href="css/variables.css">
+        <link rel="stylesheet" href="css/general.css">
+        <link rel="stylesheet" href="css/chrome.css">
+        <link rel="stylesheet" href="css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="fonts/fonts.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" id="highlight-css" href="highlight.css">
+        <link rel="stylesheet" id="tomorrow-night-css" href="tomorrow-night.css">
+        <link rel="stylesheet" id="ayu-highlight-css" href="ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+
+
+        <!-- Provide site root and default themes to javascript -->
+        <script>
+            const path_to_root = "";
+            const default_light_theme = "light";
+            const default_dark_theme = "navy";
+        </script>
+        <!-- Start loading toc.js asap -->
+        <script src="toc.js"></script>
+    </head>
+    <body>
+    <div id="mdbook-help-container">
+        <div id="mdbook-help-popup">
+            <h2 class="mdbook-help-title">Keyboard shortcuts</h2>
+            <div>
+                <p>Press <kbd>←</kbd> or <kbd>→</kbd> to navigate between chapters</p>
+                <p>Press <kbd>S</kbd> or <kbd>/</kbd> to search in the book</p>
+                <p>Press <kbd>?</kbd> to show this help</p>
+                <p>Press <kbd>Esc</kbd> to hide this help</p>
+            </div>
+        </div>
+    </div>
+    <div id="body-container">
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script>
+            try {
+                let theme = localStorage.getItem('mdbook-theme');
+                let sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script>
+            const default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? default_dark_theme : default_light_theme;
+            let theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            const html = document.documentElement;
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add("js");
+        </script>
+
+        <input type="checkbox" id="sidebar-toggle-anchor" class="hidden">
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script>
+            let sidebar = null;
+            const sidebar_toggle = document.getElementById("sidebar-toggle-anchor");
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            } else {
+                sidebar = 'hidden';
+            }
+            sidebar_toggle.checked = sidebar === 'visible';
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <!-- populated by js -->
+            <mdbook-sidebar-scrollbox class="sidebar-scrollbox"></mdbook-sidebar-scrollbox>
+            <noscript>
+                <iframe class="sidebar-iframe-outer" src="toc.html"></iframe>
+            </noscript>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle">
+                <div class="sidebar-resize-indicator"></div>
+            </div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky">
+                    <div class="left-buttons">
+                        <label id="sidebar-toggle" class="icon-button" for="sidebar-toggle-anchor" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </label>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="default_theme">Auto</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search (`/`)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="/ s" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">Ariel OS manual</h1>
+
+                    <div class="right-buttons">
+                        <a href="print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+                        <a href="https://github.com/ariel-os/ariel-os" title="Git repository" aria-label="Git repository">
+                            <i id="git-repository-button" class="fa fa-github"></i>
+                        </a>
+                        <a href="https://github.com/ariel-os/ariel-os/edit/main/book/src/CODE_OF_CONDUCT.md" title="Suggest an edit" aria-label="Suggest an edit">
+                            <i id="git-edit-button" class="fa fa-edit"></i>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script>
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h1 id="ariel-os-code-of-conduct"><a class="header" href="#ariel-os-code-of-conduct">Ariel OS Code of Conduct</a></h1>
+<p>Ariel OS, like so many other free and open source software projects, is made up of a
+mixed group of professionals and volunteers from all over the world, working on
+every aspect of our goals - including teaching, steering, and connecting people.</p>
+<p>We want diversity to be one of our greatest strengths, but it can also lead to
+communication issues and unhappiness. This is why we ask people to adhere to a
+few ground rules. They apply equally to founders, maintainers, contributors and
+those seeking help and guidance.</p>
+<p>This is not meant to be an exhaustive list of things you are not allowed to do.
+We rather would like you to think of it as a guide to enrich our community and
+the technical community in general with new knowledge and perspectives by
+allowing everyone to participate.</p>
+<p>This code of conduct applies to all spaces managed by the Ariel OS community. This
+includes Matrix, the mailing lists, our GitHub projects, face to face events, and
+any other forums created by the community for communication within the
+community. In addition, violations of this code outside these spaces may also
+affect a person's ability to participate within them.</p>
+<p>If you believe someone is violating the code of conduct, we ask that you report
+it by emailing <a href="mailto:conduct@ariel-os.org">conduct@ariel-os.org</a>. For more details please see our <a href="https://ariel-os.github.io/ariel-os/dev/docs/book/COC_reporting.html">Reporting
+Guidelines</a>.</p>
+<ul>
+<li><strong>Be friendly and patient.</strong></li>
+<li><strong>Be welcoming.</strong> We strive to be a community that welcomes and supports
+people of all backgrounds and identities. This includes, but is not limited
+to members of any race, ethnicity, culture, national origin, color,
+immigration status, social and economic class, educational level, sex,
+sexual orientation, gender identity and expression, age, size, family
+status, political belief, religion, and mental and physical ability.</li>
+<li><strong>Be considerate.</strong> Your work will be used by other people, and you in turn
+will depend on the work of others. Any decision you take will affect users
+and colleagues, and you should take those consequences into account when
+making decisions. Remember that we're a world-wide community, so you might
+not be communicating in someone else's primary language.</li>
+<li><strong>Be respectful.</strong> Not all of us will agree all the time, but disagreement
+is no excuse for poor behavior and poor manners. We might all experience
+some frustration now and then, but we cannot allow that frustration to turn
+into a personal attack. It’s important to remember that a community where
+people feel uncomfortable or threatened is not a productive one. Members of
+the Ariel OS community should be respectful when dealing with other members as
+well as with people outside the Ariel OS community.</li>
+<li><strong>Be careful in the words that you choose.</strong> We are a community of
+professionals, and we conduct ourselves professionally. Be kind to others.
+Do not insult or put down other participants. Harassment and other
+exclusionary behavior aren't acceptable. This includes, but is not limited
+to:
+<ul>
+<li>Violent threats or language directed against another person.</li>
+<li>Discriminatory jokes and language.</li>
+<li>Posting sexually explicit or violent material.</li>
+<li>Posting (or threatening to post) other people's personally identifying
+information ("doxing").</li>
+<li>Personal insults, especially those using racist or sexist terms.</li>
+<li>Unwelcome sexual attention.</li>
+<li>Advocating for, or encouraging, any of the above behavior.</li>
+<li>Repeated harassment of others. In general, if someone asks you to stop,
+then stop.</li>
+</ul>
+</li>
+<li><strong>When we disagree, try to understand why.</strong> Disagreements, both social and
+technical, happen all the time and Ariel OS is no exception. It is important
+that we resolve disagreements and differing views constructively. Remember
+that we’re different. The strength of Ariel OS comes from its varied community,
+people from a wide range of backgrounds. Different people have different
+perspectives on issues. Being unable to understand why someone holds a
+viewpoint doesn’t mean that they’re wrong. Don’t forget that it is human to
+err and blaming each other doesn’t get us anywhere. Instead, focus on
+helping to resolve issues and learning from mistakes.</li>
+</ul>
+<p>Text based on the Code of Conduct of the <a href="https://www.djangoproject.com/conduct/">Django
+community</a>.</p>
+<h2 id="questions"><a class="header" href="#questions">Questions?</a></h2>
+<p>If you have questions, please feel free to <a href="mailto:conduct@ariel-os.org">contact us</a>.</p>
+<h2 id="reporting-guidelines"><a class="header" href="#reporting-guidelines">Reporting Guidelines</a></h2>
+<p>If you believe someone is violating the code of conduct we ask that you
+report it to us by emailing <a href="mailto:conduct@ariel-os.org">conduct@ariel-os.org</a>.</p>
+<p><strong>All reports will be kept confidential.</strong> In some cases we may determine that a
+public statement will need to be made. If that's the case, the identities of all
+victims and reporters will remain confidential unless those individuals instruct
+us otherwise.</p>
+<p><strong>If you believe anyone is in physical danger, please notify appropriate law
+enforcement first.</strong> If you are unsure what law enforcement agency is
+appropriate, please include this in your report and we will attempt to notify
+them.</p>
+<p>If you are unsure whether the incident is a violation, or whether the space
+where it happened is covered by this Code of Conduct, we encourage you to still
+report it. We would much rather have a few extra reports where we decide to take
+no action, rather than miss a report of an actual violation. We do not look
+negatively on you if we find the incident is not a violation. And knowing about
+incidents that are not violations, or happen outside our spaces, can also help
+us to improve the Code of Conduct or the processes surrounding it.</p>
+<p>In your report please include:</p>
+<ul>
+<li>Your contact info (so we can get in touch with you if we need to follow up)</li>
+<li>Names (real, nicknames, or pseudonyms) of any individuals involved. If there
+were other witnesses besides you, please try to include them as well.</li>
+<li>When and where the incident occurred. Please be as specific as possible.</li>
+<li>Your account of what occurred. If there is a publicly available record (e.g.
+a mailing list archive or a public Matrix logger) please include a link.</li>
+<li>Any extra context you believe existed for the incident.</li>
+<li>If you believe this incident is ongoing.</li>
+<li>Any other information you believe we should have.</li>
+</ul>
+<h3 id="what-happens-after-you-file-a-report"><a class="header" href="#what-happens-after-you-file-a-report">What happens after you file a report?</a></h3>
+<p>You will receive an email from one of the core community members as soon as
+possible. We promise to acknowledge receipt within 24 hours (and will aim for
+much quicker than that).</p>
+<p>They will review the incident and determine:</p>
+<ul>
+<li>What happened.</li>
+<li>Whether this event constitutes a code of conduct violation.</li>
+<li>Who the bad actor was.</li>
+<li>Whether this is an ongoing situation, or if there is a threat to anyone's
+physical safety.</li>
+</ul>
+<p>If this is determined to be an ongoing incident or a threat to physical safety,
+their immediate priority will be to protect everyone involved.
+This means we may delay an "official" response until we believe that the
+situation has ended and that everyone is physically safe.</p>
+<p>Once the working group has a complete account of the events they will make a
+decision as to how to response. Responses may include:</p>
+<ul>
+<li>Nothing (if we determine no violation occurred).</li>
+<li>A private reprimand from us to the individual(s) involved.</li>
+<li>A public reprimand.</li>
+<li>An imposed vacation (i.e. asking someone to "take a week off" from a mailing
+list or Matrix).</li>
+<li>A permanent or temporary ban from some or all Ariel OS spaces (mailing lists,
+Matrix, etc.)</li>
+<li>A request for a public or private apology.</li>
+</ul>
+<p>We'll respond within one week to the person who filed the report with either a
+resolution or an explanation of why the situation is not yet resolved.</p>
+<p>Once we've determined our final action, we'll contact the original reporter to
+let them know what action (if any) we'll be taking. We'll take into account
+feedback from the reporter on the appropriateness of our response, but we don't
+guarantee we'll act on it.</p>
+<h4 id="reference"><a class="header" href="#reference">Reference</a></h4>
+<p>These reporting guidelines were adapted from the <a href="https://www.djangoproject.com/conduct/reporting/">Django reporting guidelines</a></p>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="coding-conventions.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="coding-conventions.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+
+            </nav>
+
+        </div>
+
+
+
+
+        <script>
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="elasticlunr.min.js"></script>
+        <script src="mark.min.js"></script>
+        <script src="searcher.js"></script>
+
+        <script src="clipboard.min.js"></script>
+        <script src="highlight.js"></script>
+        <script src="book.js"></script>
+
+        <!-- Custom JS scripts -->
+
+
+    </div>
+    </body>
+</html>

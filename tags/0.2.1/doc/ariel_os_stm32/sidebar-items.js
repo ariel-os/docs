@@ -1,0 +1,1 @@
+window.SIDEBAR_ITEMS = {"mod":["gpio","i2c","peripherals","spi"]};
