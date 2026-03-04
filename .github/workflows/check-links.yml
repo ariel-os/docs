@@ -34,7 +34,7 @@ jobs:
         run: |
           echo "# Summary ${{ matrix.tags }}" > summary-comment.md
           # Only keep the # Summary header and the table by deleting every thing after a ## Then add the matrix info to the heading
-          sed '/^##\s/,/$EOF/{d}' lychee/out.md | sed 's/^# Summary/## Api docs/g' >> summary-comment.md
+          sed '/^##\s/,/$EOF/{d}' lychee/out.md | sed 's/^# Summary/## Book/g' >> summary-comment.md
 
       - name: Link Checker in the api docs
         uses: lycheeverse/lychee-action@8646ba30535128ac92d33dfc9133794bfdd9b411 # v2
