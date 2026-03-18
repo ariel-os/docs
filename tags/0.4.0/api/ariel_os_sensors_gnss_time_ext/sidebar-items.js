@@ -1,0 +1,1 @@
+window.SIDEBAR_ITEMS = {"enum":["GnssTimeExtConvertError","GnssTimeExtError"],"fn":["convert_datetime_to_parts"],"trait":["GnssTimeExt"]};

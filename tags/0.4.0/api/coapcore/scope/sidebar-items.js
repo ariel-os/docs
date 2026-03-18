@@ -1,0 +1,1 @@
+window.SIDEBAR_ITEMS = {"enum":["UnionScope"],"struct":["AifValue","AllowAll","DenyAll","InvalidScope"],"trait":["Scope"]};
