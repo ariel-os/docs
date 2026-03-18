@@ -1,0 +1,80 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Ariel OS is an operating system for secure, memory-safe, low-power Internet of Things (IoT). Supported hardware includes various 32-bit microcontrollers."><title>ariel_os - Rust</title><script>if(window.location.protocol!=="file:")document.head.insertAdjacentHTML("beforeend","SourceSerif4-Regular-6b053e98.ttf.woff2,FiraSans-Italic-81dc35de.woff2,FiraSans-Regular-0fe48ade.woff2,FiraSans-MediumItalic-ccf7e434.woff2,FiraSans-Medium-e1aa3f0a.woff2,SourceCodePro-Regular-8badfe75.ttf.woff2,SourceCodePro-Semibold-aa29a496.ttf.woff2".split(",").map(f=>`<link rel="preload" as="font" type="font/woff2"href="../static.files/${f}">`).join(""))</script><link rel="stylesheet" href="../static.files/normalize-9960930a.css"><link rel="stylesheet" href="../static.files/rustdoc-77263533.css"><meta name="rustdoc-vars" data-root-path="../" data-static-root-path="../static.files/" data-current-crate="ariel_os" data-themes="" data-resource-suffix="" data-rustdoc-version="1.95.0-nightly (d940e5684 2026-01-19)" data-channel="nightly" data-search-js="search-9e2438ea.js" data-stringdex-js="stringdex-b897f86f.js" data-settings-js="settings-c38705f0.js" ><script src="../static.files/storage-e2aeef58.js"></script><script defer src="../crates.js"></script><script defer src="../static.files/main-7bab91a1.js"></script><noscript><link rel="stylesheet" href="../static.files/noscript-ffcac47a.css"></noscript><link rel="alternate icon" type="image/png" href="../static.files/favicon-32x32-eab170b8.png"><link rel="icon" type="image/svg+xml" href="../static.files/favicon-044be391.svg"></head><body class="rustdoc mod crate"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><rustdoc-topbar><h2><a href="#">Crate ariel_os</a></h2></rustdoc-topbar><nav class="sidebar"><div class="sidebar-crate"><h2><a href="../ariel_os/index.html">ariel_<wbr>os</a><span class="version">0.4.0</span></h2></div><div class="sidebar-elems"><ul class="block"><li><a id="all-types" href="all.html">All Items</a></li></ul><section id="rustdoc-toc"><h3><a href="#">Sections</a></h3><ul class="block top-toc"><li><a href="#cargo-features" title="Cargo features">Cargo features</a><ul><li><a href="#system-functionality" title="System functionality">System functionality</a></li><li><a href="#network-protocols" title="Network protocols">Network protocols</a></li><li><a href="#serial-communication" title="Serial communication">Serial communication</a></li><li><a href="#system-configuration" title="System configuration">System configuration</a></li><li><a href="#multicore-functionality" title="Multicore functionality">Multicore functionality</a></li><li><a href="#timer-queue-size-configuration" title="Timer queue size configuration">Timer queue size configuration</a></li><li><a href="#development-and-debugging" title="Development and debugging">Development and debugging</a></li></ul></li></ul><h3><a href="#modules">Crate Items</a></h3><ul class="block"><li><a href="#modules" title="Modules">Modules</a></li><li><a href="#attributes" title="Attribute Macros">Attribute Macros</a></li></ul></section><div id="rustdoc-modnav"></div></div></nav><div class="sidebar-resizer" title="Drag to resize sidebar"></div><main><div class="width-limiter"><section id="main-content" class="content"><div class="main-heading"><h1>Crate <span>ariel_<wbr>os</span>&nbsp;<button id="copy-path" title="Copy item path to clipboard">Copy item path</button></h1><rustdoc-toolbar></rustdoc-toolbar><span class="sub-heading"><a class="src" href="../src/ariel_os/lib.rs.html#1-83">Source</a> </span></div><details class="toggle top-doc" open><summary class="hideme"><span>Expand description</span></summary><div class="docblock"><p>Ariel OS is an operating system for secure, memory-safe, low-power Internet of Things (IoT).
+Supported hardware includes various 32-bit microcontrollers.</p>
+<p>This is the API documentation for Ariel OS.
+Other resources available are:</p>
+<ul>
+<li>📔 Extensive documentation for Ariel OS can be found in the
+<a href="https://ariel-os.github.io/ariel-os/dev/docs/book/">book</a>.</li>
+<li>⚙️  The git repository is available on
+<a href="https://github.com/ariel-os/ariel-os">GitHub</a>.</li>
+<li>✨ <a href="https://github.com/ariel-os/ariel-os/tree/main/examples">Examples</a>
+demonstrate various features of Ariel OS.</li>
+<li>🧪 A set of <a href="https://github.com/ariel-os/ariel-os/tree/main/tests">test cases</a>
+further verifies the capabilities of Ariel OS.</li>
+<li>🚧 The <a href="https://github.com/ariel-os/ariel-os/blob/main/ROADMAP.md">roadmap</a>
+shows the planned features for Ariel OS.</li>
+</ul>
+<h2 id="cargo-features"><a class="doc-anchor" href="#cargo-features">§</a>Cargo features</h2>
+<p>Ariel OS is highly modular with a significant number of features
+to configure the operating system.</p>
+<h3 id="system-functionality"><a class="doc-anchor" href="#system-functionality">§</a>System functionality</h3>
+<ul>
+<li><span class="stab portability"><code>alloc</code></span> —  Enables a global system allocator.</li>
+<li><span class="stab portability"><code>external-interrupts</code></span> —  Enables GPIO interrupt support.</li>
+<li><span class="stab portability"><code>time</code></span> —  Enables timing functionality.
+Currently: Additionally enables the HAL-specific time driver.</li>
+<li><span class="stab portability"><code>csprng</code></span> —  Enables a cryptographically secure random number generator in the <a href="random/index.html" title="mod ariel_os::random"><code>random</code></a>
+module and support for the <code>getrandom</code> crate.</li>
+<li><span class="stab portability"><code>sensors</code></span> —  Enables unified support for sensors.</li>
+</ul>
+<h3 id="network-protocols"><a class="doc-anchor" href="#network-protocols">§</a>Network protocols</h3>
+<ul>
+<li><span class="stab portability"><code>ipv4</code></span> —  Enables support for IPv4.</li>
+<li><span class="stab portability"><code>ipv6</code></span> —  Enables support for IPv6.</li>
+<li><span class="stab portability"><code>tcp</code></span> —  Enables support for TCP.</li>
+<li><span class="stab portability"><code>udp</code></span> —  Enables support for UDP.</li>
+<li><span class="stab portability"><code>dns</code></span> —  Enables support for DNS.</li>
+<li><span class="stab portability"><code>mdns</code></span> —  Enables support for mDNS.</li>
+<li><span class="stab portability"><code>multicast</code></span> —  Enables support for multicast (for both IPv4 and/or IPv6 if enabled).</li>
+<li><span class="stab portability"><code>coap</code></span> —  Enables support for <a href="https://ariel-os.github.io/ariel-os/dev/docs/book/tooling/coap.html">CoAP</a>.</li>
+<li><span class="stab portability"><code>coap-server</code></span> —  Enables applications to set up CoAP server handlers.
+See <a href="coap/fn.coap_run.html" title="fn ariel_os::coap::coap_run"><code>coap::coap_run()</code></a>.</li>
+</ul>
+<h3 id="serial-communication"><a class="doc-anchor" href="#serial-communication">§</a>Serial communication</h3>
+<ul>
+<li><span class="stab portability"><code>i2c</code></span> —  Enables I2C support.</li>
+<li><span class="stab portability"><code>spi</code></span> —  Enables SPI support.</li>
+<li><span class="stab portability"><code>uart</code></span> —  Enables UART support.</li>
+<li><span class="stab portability"><code>usb</code></span> —  Enables USB support.</li>
+<li><span class="stab portability"><code>usb-hid</code></span> —  Enables USB HID support.</li>
+</ul>
+<h3 id="system-configuration"><a class="doc-anchor" href="#system-configuration">§</a>System configuration</h3>
+<p>The <a href="attr.config.html" title="attr ariel_os::config"><code>config</code></a> attribute macro allows to provide configuration for
+specific system functionality.
+The features below need to be enabled so that the provided custom
+configuration is taken into account.</p>
+<ul>
+<li><span class="stab portability"><code>rcc-config-override</code></span> —  Enables custom RCC configuration (currently only available on STM32).</li>
+<li><span class="stab portability"><code>override-usb-config</code></span> —  Enables custom USB configuration.</li>
+</ul>
+<h3 id="multicore-functionality"><a class="doc-anchor" href="#multicore-functionality">§</a>Multicore functionality</h3>
+<ul>
+<li><span class="stab portability"><code>core-affinity</code></span> —  Enables support for core affinities (restricting threads to specific cores).</li>
+</ul>
+<h3 id="timer-queue-size-configuration"><a class="doc-anchor" href="#timer-queue-size-configuration">§</a>Timer queue size configuration</h3>
+<p>Should only be enabled when threading is enabled, too.
+Default is 64 entries for regular boards and 8 entries for those with little ram.
+When more than this number of concurrent timers are used, the system will loop (and not sleep/idle anymore).</p>
+<ul>
+<li><span class="stab portability"><code>timer-generic-queue-8</code></span> —  Enables support for up to 8 concurrent timers. (default on <code>ram-tiny</code> boards)</li>
+<li><span class="stab portability"><code>timer-generic-queue-16</code></span> —  Enables support for up to 16 concurrent timers.</li>
+<li><span class="stab portability"><code>timer-generic-queue-32</code></span> —  Enables support for up to 32 concurrent timers.</li>
+<li><span class="stab portability"><code>timer-generic-queue-64</code></span> —  Enables support for up to 64 concurrent timers. (default)</li>
+<li><span class="stab portability"><code>timer-generic-queue-128</code></span> —  Enables support for up to 128 concurrent timers.</li>
+</ul>
+<h3 id="development-and-debugging"><a class="doc-anchor" href="#development-and-debugging">§</a>Development and debugging</h3>
+<ul>
+<li><span class="stab portability"><code>bench</code></span> —  Enables benchmarking facilities.</li>
+<li><span class="stab portability"><code>no-boards</code></span> —  Allows to have no boards selected, useful to run target-independent tooling.</li>
+</ul>
+</div></details><h2 id="modules" class="section-header">Modules<a href="#modules" class="anchor">§</a></h2><dl class="item-table"><dt><a class="mod" href="asynch/index.html" title="mod ariel_os::asynch">asynch</a></dt><dd>Provides async functionality.</dd><dt><a class="mod" href="bench/index.html" title="mod ariel_os::bench">bench</a><wbr><span class="stab portability" title="Available on crate feature `bench` only"><code>bench</code></span></dt><dd>Provides on-board benchmarking facilities.</dd><dt><a class="mod" href="ble/index.html" title="mod ariel_os::ble">ble</a><wbr><span class="stab portability" title="Available on crate feature `ble` only"><code>ble</code></span></dt><dd>Provides control over the system BLE (Bluetooth Low Energy) stack.</dd><dt><a class="mod" href="buildinfo/index.html" title="mod ariel_os::buildinfo">buildinfo</a></dt><dd>Exposes information about the build.</dd><dt><a class="mod" href="cell/index.html" title="mod ariel_os::cell">cell</a></dt><dd>Shareable containers.</dd><dt><a class="mod" href="coap/index.html" title="mod ariel_os::coap">coap</a><wbr><span class="stab portability" title="Available on crate feature `coap` only"><code>coap</code></span></dt><dd>A CoAP stack preconfigured for Ariel OS.</dd><dt><a class="mod" href="config/index.html" title="mod ariel_os::config">config</a></dt><dd>Provides configuration to the system and the application.</dd><dt><a class="mod" href="debug/index.html" title="mod ariel_os::debug">debug</a></dt><dd>Provides debug interface facilities.</dd><dt><a class="mod" href="delegate/index.html" title="mod ariel_os::delegate">delegate</a></dt><dd>Delegate or lend an object to another task.</dd><dt><a class="mod" href="gpio/index.html" title="mod ariel_os::gpio">gpio</a></dt><dd>Provides consistent GPIO access.</dd><dt><a class="mod" href="hal/index.html" title="mod ariel_os::hal">hal</a></dt><dd>Provides MCU-specific items.</dd><dt><a class="mod" href="i2c/index.html" title="mod ariel_os::i2c">i2c</a><wbr><span class="stab portability" title="Available on crate feature `i2c` only"><code>i2c</code></span></dt><dd>Provides support for the I2C communication bus.</dd><dt><a class="mod" href="identity/index.html" title="mod ariel_os::identity">identity</a></dt><dd>Access to unique identifiers provided by the device.</dd><dt><a class="mod" href="net/index.html" title="mod ariel_os::net">net</a><wbr><span class="stab portability" title="Available on crate feature `net` only"><code>net</code></span></dt><dd>Provides network access.</dd><dt><a class="mod" href="power/index.html" title="mod ariel_os::power">power</a></dt><dd>Provides power management functionality.</dd><dt><a class="mod" href="random/index.html" title="mod ariel_os::random">random</a><wbr><span class="stab portability" title="Available on crate feature `random` only"><code>random</code></span></dt><dd>Provides a seeded random number generator depending on Ariel OS’s configuration.</dd><dt><a class="mod" href="reexports/index.html" title="mod ariel_os::reexports">reexports</a></dt><dd>This module contains all third party crates as used by Ariel OS.</dd><dt><a class="mod" href="rt/index.html" title="mod ariel_os::rt">rt</a></dt><dd>Provides runtime helpers.</dd><dt><a class="mod" href="sensors/index.html" title="mod ariel_os::sensors">sensors</a><wbr><span class="stab portability" title="Available on crate feature `sensors` only"><code>sensors</code></span></dt><dd>Provides a sensor abstraction layer.</dd><dt><a class="mod" href="spi/index.html" title="mod ariel_os::spi">spi</a><wbr><span class="stab portability" title="Available on crate feature `spi` only"><code>spi</code></span></dt><dd>Provides support for the SPI communication bus.</dd><dt><a class="mod" href="storage/index.html" title="mod ariel_os::storage">storage</a><wbr><span class="stab portability" title="Available on crate feature `storage` only"><code>storage</code></span></dt><dd>Provides key-value pair persistent storage on flash.</dd><dt><a class="mod" href="thread/index.html" title="mod ariel_os::thread">thread</a><wbr><span class="stab portability" title="Available on crate feature `threading` only"><code>threading</code></span></dt><dd>Multi-threading for Ariel OS.</dd><dt><a class="mod" href="time/index.html" title="mod ariel_os::time">time</a><wbr><span class="stab portability" title="Available on crate feature `time` only"><code>time</code></span></dt><dd>Provides time-related facilities.</dd><dt><a class="mod" href="uart/index.html" title="mod ariel_os::uart">uart</a><wbr><span class="stab portability" title="Available on crate feature `uart` only"><code>uart</code></span></dt><dd>Provides support for UART.</dd><dt><a class="mod" href="usb/index.html" title="mod ariel_os::usb">usb</a><wbr><span class="stab portability" title="Available on crate feature `usb` only"><code>usb</code></span></dt><dd>Provides USB-related items.</dd></dl><h2 id="attributes" class="section-header">Attribute Macros<a href="#attributes" class="anchor">§</a></h2><dl class="item-table"><dt><a class="attr" href="attr.config.html" title="attr ariel_os::config">config</a></dt><dd>Allows to provide configuration for the associated driver during initial system configuration.</dd><dt><a class="attr" href="attr.spawner.html" title="attr ariel_os::spawner">spawner</a></dt><dd>Registers a non-async function for autostart.</dd><dt><a class="attr" href="attr.task.html" title="attr ariel_os::task">task</a></dt><dd>Defines an async task and optionally registers it for autostart.</dd><dt><a class="attr" href="attr.thread.html" title="attr ariel_os::thread">thread</a><wbr><span class="stab portability" title="Available on crate features `threading` only"><code>threading</code></span></dt><dd>Runs the function decorated with this attribute macro as a separate thread.</dd></dl></section></div></main></body></html>

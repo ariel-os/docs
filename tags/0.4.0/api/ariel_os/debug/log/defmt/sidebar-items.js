@@ -1,0 +1,1 @@
+window.SIDEBAR_ITEMS = {"derive":["Format"],"macro":["unreachable"],"struct":["Debug2Format","Display2Format","Formatter","Str"],"trait":["Format"]};
