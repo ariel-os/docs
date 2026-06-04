@@ -1,0 +1,2 @@
+window.ALL_CRATES = ["ariel_os","ariel_os_esp","ariel_os_nrf","ariel_os_rp","ariel_os_sensors","ariel_os_sensors_gnss_time_ext","ariel_os_sensors_utils","ariel_os_stm32","coapcore","embedded_hal","embedded_hal_async","embedded_io_async"];
+//{"start":21,"fragment_lengths":[10,15,14,19,33,25,17,11,15,21,20]}
