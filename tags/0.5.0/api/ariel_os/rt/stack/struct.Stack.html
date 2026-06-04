@@ -14,7 +14,7 @@ the stack may “collide” with the paint values.
 In the current implementation, and assuming the stack data follows a uniform distribution, this
 is unlikely to result in an underestimation of more than one byte.</p>
 <h2 id="note"><a class="doc-anchor" href="#note">§</a>Note</h2>
-<p>On <a href="https://ariel-os.github.io/ariel-os/dev/docs/book/native-target.html">native</a>, the stack <em>modeled by this type</em> is currently empty, so its usage and
+<p>On <a href="https://ariel-os.github.io/ariel-os/0.5.0/docs/book/native-target.html">native</a>, the stack <em>modeled by this type</em> is currently empty, so its usage and
 free space will both be reported as zero.</p>
 </div></details><h2 id="implementations" class="section-header">Implementations<a href="#implementations" class="anchor">§</a></h2><div id="implementations-list"><details class="toggle implementors-toggle" open><summary><section id="impl-Stack" class="impl"><a href="#impl-Stack" class="anchor">§</a><h3 class="code-header">impl <a class="struct" href="struct.Stack.html" title="struct ariel_os::rt::stack::Stack">Stack</a></h3></section></summary><div class="impl-items"><details class="toggle method-toggle" open><summary><section id="method.get" class="method"><h4 class="code-header">pub fn <a href="#method.get" class="fn">get</a>() -&gt; <a class="struct" href="struct.Stack.html" title="struct ariel_os::rt::stack::Stack">Stack</a></h4></section></summary><div class="docblock"><p>Returns a handle for the currently active stack.</p>
 <h5 id="panics"><a class="doc-anchor" href="#panics">§</a>Panics</h5>

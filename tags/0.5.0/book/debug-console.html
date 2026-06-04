@@ -188,14 +188,14 @@ The debug console is enabled by default and the corresponding <a href="./build-s
 <p>When the <code>logging-over-debug-channel</code> <a href="./build-system.html#laze-modules">laze module</a> is enabled, <a href="./logging.html">logs</a> are printed on the <a href="./flashing-debugging.html#debug-channel-transports">debug channel output</a>.</p>
 <h2 id="closing-the-debug-console-from-firmware"><a class="header" href="#closing-the-debug-console-from-firmware">Closing the Debug Console from Firmware</a></h2>
 <p>When using <a href="./flashing-debugging.html#semihosting">semihosting</a>, it is possible for the target to request the debug console to exit, and to return an exit code indicating success or failure.
-In Ariel OS, the <a href="https://ariel-os.github.io/ariel-os/dev/docs/api/ariel_os/debug/fn.exit.html"><code>ariel_os::debug::exit()</code> function</a> can be used for this.
-When using a host tool that supports semihosting, this will cause the tool to exit, with the exit code given to <a href="https://ariel-os.github.io/ariel-os/dev/docs/api/ariel_os/debug/fn.exit.html"><code>exit()</code></a> on the target being passed to the host.</p>
+In Ariel OS, the <a href="https://ariel-os.github.io/ariel-os/0.5.0/docs/api/ariel_os/debug/fn.exit.html"><code>ariel_os::debug::exit()</code> function</a> can be used for this.
+When using a host tool that supports semihosting, this will cause the tool to exit, with the exit code given to <a href="https://ariel-os.github.io/ariel-os/0.5.0/docs/api/ariel_os/debug/fn.exit.html"><code>exit()</code></a> on the target being passed to the host.</p>
 <p>The laze configuration automatically enables semihosting on the target when the host tool used <em>for flashing</em> supports semihosting (e.g., probe-rs).
 When the flashing tool does not, support for semihosting can still be enabled in the firmware by selecting the <code>semihosting</code> <a href="./build-system.html#laze-modules">laze module</a>.
 This is needed to later be able to attach a semihosting-enabled host tool to the target.</p>
 <blockquote class="blockquote-tag blockquote-tag-note">
 <p class="blockquote-tag-title"><svg viewbox="0 0 16 16" width="18" height="18"><path d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8Zm8-6.5a6.5 6.5 0 1 0 0 13 6.5 6.5 0 0 0 0-13ZM6.5 7.75A.75.75 0 0 1 7.25 7h1a.75.75 0 0 1 .75.75v2.75h.25a.75.75 0 0 1 0 1.5h-2a.75.75 0 0 1 0-1.5h.25v-2h-.25a.75.75 0 0 1-.75-.75ZM8 6a1 1 0 1 1 0-2 1 1 0 0 1 0 2Z"></path></svg>Note</p>
-<p>When semihosting is enabled on the target and no host tool supporting semihosting (or a debugger) is connected, calling <a href="https://ariel-os.github.io/ariel-os/dev/docs/api/ariel_os/debug/fn.exit.html"><code>ariel_os::debug::exit()</code></a> may result in a panic.
+<p>When semihosting is enabled on the target and no host tool supporting semihosting (or a debugger) is connected, calling <a href="https://ariel-os.github.io/ariel-os/0.5.0/docs/api/ariel_os/debug/fn.exit.html"><code>ariel_os::debug::exit()</code></a> may result in a panic.
 For example on ESP using <code>espflash</code> you would get:</p>
 <pre><code>[ERROR] panicked at 'Unhandled interrupt on ProCpu' (esp_hal src/interrupt/mod.rs:90)
 </code></pre>

@@ -186,9 +186,9 @@ Multithreading is also <a href="./native-target.html#multithreading-behavior">su
 <p><strong>Important:</strong>
 When an application requires multithreading, it must enable it by <a href="./build-system.html#laze-modules">selecting the <code>sw/threading</code> laze module</a>, which enables the <code>threading</code> Cargo feature.</p>
 <h2 id="spawning-threads"><a class="header" href="#spawning-threads">Spawning Threads</a></h2>
-<p>The recommended way of starting threads is by using the <a href="https://ariel-os.github.io/ariel-os/dev/docs/api/ariel_os/attr.thread.html"><code>#[ariel_os::thread]</code> attribute macro</a>, which creates and starts the thread during startup.
+<p>The recommended way of starting threads is by using the <a href="https://ariel-os.github.io/ariel-os/0.5.0/docs/api/ariel_os/attr.thread.html"><code>#[ariel_os::thread]</code> attribute macro</a>, which creates and starts the thread during startup.
 Threads can also be spawned dynamically at runtime. In this case, the thread stack must still be statically allocated at compile time.</p>
-<p>The maximum number of threads is defined by the <a href="https://ariel-os.github.io/ariel-os/dev/docs/api/ariel_os/thread/constant.THREAD_COUNT.html"><code>THREAD_COUNT</code></a> constant.</p>
+<p>The maximum number of threads is defined by the <a href="https://ariel-os.github.io/ariel-os/0.5.0/docs/api/ariel_os/thread/constant.THREAD_COUNT.html"><code>THREAD_COUNT</code></a> constant.</p>
 <h2 id="scheduling"><a class="header" href="#scheduling">Scheduling</a></h2>
 <h3 id="multicore-support"><a class="header" href="#multicore-support">Multicore Support</a></h3>
 <p>Ariel OS currently supports symmetric multiprocessing (SMP) on the following MCUs:</p>
@@ -211,11 +211,11 @@ model.
 See <a href="https://github.com/ariel-os/ariel-os/issues/1716">#1716</a>.</p>
 </blockquote>
 <h3 id="priority-scheduling"><a class="header" href="#priority-scheduling">Priority Scheduling</a></h3>
-<p>Ariel OS features a preemptive scheduler, which supports priority scheduling with up to <a href="https://ariel-os.github.io/ariel-os/dev/docs/api/ariel_os/thread/constant.SCHED_PRIO_LEVELS.html"><code>SCHED_PRIO_LEVELS</code></a> priority levels.
+<p>Ariel OS features a preemptive scheduler, which supports priority scheduling with up to <a href="https://ariel-os.github.io/ariel-os/0.5.0/docs/api/ariel_os/thread/constant.SCHED_PRIO_LEVELS.html"><code>SCHED_PRIO_LEVELS</code></a> priority levels.
 The highest priority runnable thread (or threads in the multicore case) is always executed.
 Threads having the same priority are scheduled cooperatively.
 The scheduler itself is tickless, therefore time-slicing isn’t supported.
-Thread priorities are dynamic and can be changed at runtime using <a href="https://ariel-os.github.io/ariel-os/dev/docs/api/ariel_os/thread/fn.set_priority.html"><code>thread::set_priority()</code></a>.</p>
+Thread priorities are dynamic and can be changed at runtime using <a href="https://ariel-os.github.io/ariel-os/0.5.0/docs/api/ariel_os/thread/fn.set_priority.html"><code>thread::set_priority()</code></a>.</p>
 <p>On multicore, a single global runqueue is shared across all cores.
 The scheduler assigns the <em>C</em> highest-priority, ready, and non-conflicting threads to the <em>C</em> available cores.
 The scheduler gets invoked individually on each core.
@@ -226,7 +226,7 @@ Instead, if no threads are to be scheduled, the processor enters sleep mode unti
 <p>On multicore, one idle thread is created for each core.
 When an idle thread is scheduled, it prompts the current core to enter sleep mode.</p>
 <h3 id="core-affinity"><a class="header" href="#core-affinity">Core Affinity</a></h3>
-<p>Core affinity, also known as core pinning, is optionally configurable for each thread using the <a href="https://ariel-os.github.io/ariel-os/dev/docs/api/ariel_os/attr.thread.html"><code>#[ariel_os:thread]</code> attribute macro</a>.
+<p>Core affinity, also known as core pinning, is optionally configurable for each thread using the <a href="https://ariel-os.github.io/ariel-os/0.5.0/docs/api/ariel_os/attr.thread.html"><code>#[ariel_os:thread]</code> attribute macro</a>.
 It allows to restrict the execution of a thread to a specific core and prevent it from being scheduled on another one.
 See the <a href="https://github.com/ariel-os/ariel-os/tree/main/examples/threading-multicore"><code>threading-multicore</code> example</a> for a usage example.</p>
 

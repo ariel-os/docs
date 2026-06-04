@@ -5,7 +5,7 @@
 <p>The underlying HALs manage peripherals differently: for instance, the drivers from
 Embassy HALs require a <code>Peri</code> instance constrained on the required peripheral ZST, while
 drivers from <code>esp-hal</code> require the peripheral ZST directly.</p>
-<p>In practice, this trait allows passing the peripheral ZSTs <a href="https://ariel-os.github.io/ariel-os/dev/docs/book/application.html#obtaining-peripheral-access">obtained through Ariel OS
+<p>In practice, this trait allows passing the peripheral ZSTs <a href="https://ariel-os.github.io/ariel-os/0.5.0/docs/book/application.html#obtaining-peripheral-access">obtained through Ariel OS
 facilities</a> directly to Ariel OS drivers that have a trait
 bound on <a href="trait.IntoPeripheral.html" title="trait ariel_os::hal::IntoPeripheral"><code>IntoPeripheral</code></a>.</p>
 <p>Note: It is never necessary to implement this trait outside of Ariel OS, and the trait is

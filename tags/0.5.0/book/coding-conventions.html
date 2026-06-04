@@ -209,7 +209,7 @@
 <h3 id="imports"><a class="header" href="#imports">Imports</a></h3>
 <p>Imports from the same crate with the same visibility MUST be <a href="https://web.archive.org/web/20241228143509/https://rust-analyzer.github.io/manual.html#auto-import">merged into a single use statement</a>.</p>
 <h4 id="imports-from-re-exports"><a class="header" href="#imports-from-re-exports">Imports from Re-exports</a></h4>
-<p>When using whole-crate re-exports from <a href="https://ariel-os.github.io/ariel-os/dev/docs/api/ariel_os/reexports/index.html"><code>ariel_os::reexports</code></a>, two imports SHOULD be used: one to bring the re-exported crate into the scope, and the other one to import the required items from that crate, as it it were a direct dependency of the crate, as follows:</p>
+<p>When using whole-crate re-exports from <a href="https://ariel-os.github.io/ariel-os/0.5.0/docs/api/ariel_os/reexports/index.html"><code>ariel_os::reexports</code></a>, two imports SHOULD be used: one to bring the re-exported crate into the scope, and the other one to import the required items from that crate, as it it were a direct dependency of the crate, as follows:</p>
 <pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
 </span><span class="boring">fn main() {
 </span>use ariel_os::reexports::embassy_usb;

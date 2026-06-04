@@ -192,7 +192,7 @@ It comes in different flavors, identified by their laze module names:</p>
 </thead>
 <tbody>
 <tr><td><code>executor-interrupt</code></td><td><a href="https://docs.embassy.dev/embassy-executor/git/cortex-m/struct.InterruptExecutor.html">InterruptExecutor</a></td><td>Runs in handler mode. A software interrupt (SWI) handler is used when the MCU provides one, otherwise the <a href="./adding-board-support.html#adding-support-for-a-board-1">board configuration must specify</a> which peripheral interrupt to dedicate to this executor.</td></tr>
-<tr><td><code>executor-thread</code></td><td><a href="https://ariel-os.github.io/ariel-os/dev/docs/api/ariel_os/asynch/thread_executor/index.html">Custom, based on <code>raw::Executor</code></a></td><td>Runs inside a dedicated thread automatically started at startup.</td></tr>
+<tr><td><code>executor-thread</code></td><td><a href="https://ariel-os.github.io/ariel-os/0.5.0/docs/api/ariel_os/asynch/thread_executor/index.html">Custom, based on <code>raw::Executor</code></a></td><td>Runs inside a dedicated thread automatically started at startup.</td></tr>
 </tbody>
 </table>
 </div>

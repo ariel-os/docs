@@ -11,7 +11,7 @@ being addressed there.</p>
 proof-of-concept firmware</a>. Since this
 crate matured, that firmware now uses coapcore.</li>
 <li>The crate is maintained as part of <a href="https://ariel-os.org/">Ariel OS</a>, whose CoAP stack
-integrates it and <a href="https://ariel-os.github.io/ariel-os/dev/docs/book/tooling/coap.html#server-access-policy">manages server access
+integrates it and <a href="https://ariel-os.github.io/ariel-os/0.5.0/docs/book/tooling/coap.html#server-access-policy">manages server access
 policies</a>.
 Nothing in this crate depends on Ariel OS, but some examples may refer to it.</li>
 </ul>
@@ -32,7 +32,7 @@ handling, more fine grained control can be implemented (eg. offering an option t
 <a href="defmt_or_log::Debug2Format"><code>Debug2Format</code></a> merely print the type name or even make it empty).</p>
 <p>This crate mainly logs on the trace, debug and error level; the latter provides details when an
 error is sent over the network and the details are not visible to the peer.</p>
-<p>See the book for <a href="https://ariel-os.github.io/ariel-os/dev/docs/book/tooling/defmt.html">how defmt is configured in
+<p>See the book for <a href="https://ariel-os.github.io/ariel-os/0.5.0/docs/book/tooling/defmt.html">how defmt is configured in
 Ariel OS</a>; outside of
 that, regular [<code>defmt_or_log</code>] practica applies.</p>
 <p><strong>Warning</strong>: At the Debug level, this module may show cryptographic key material. This will be
