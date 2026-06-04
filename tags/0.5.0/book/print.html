@@ -182,14 +182,14 @@
 <p>Ariel OS is an operating system for secure, memory-safe, networked applications
 running on low-power microcontrollers.
 It is based on Rust from the ground up
-and <a href="https://ariel-os.github.io/ariel-os/dev/docs/book/hardware-functionality-support.html">supports hardware</a>
+and <a href="https://ariel-os.github.io/ariel-os/0.5.0/docs/book/hardware-functionality-support.html">supports hardware</a>
 based on 32-bit microcontroller architectures (Cortex-M, RISC-V, and Xtensa).
 Many features provided by Ariel OS can individually be enabled or disabled at build time
 in order to minimize resource consumption.</p>
 <p>This is the manual of Ariel OS. Other resources available are:</p>
 <ul>
 <li>🛠️ Reference documentation for Ariel OS can be found in the
-<a href="https://ariel-os.github.io/ariel-os/dev/docs/api/ariel_os/">API documentation</a>.</li>
+<a href="https://ariel-os.github.io/ariel-os/0.5.0/docs/api/ariel_os/">API documentation</a>.</li>
 <li>⚙️  The git repository is available on
 <a href="https://github.com/ariel-os/ariel-os">GitHub</a>.</li>
 <li>✨ <a href="https://github.com/ariel-os/ariel-os/tree/main/examples">Examples</a>
@@ -12646,7 +12646,7 @@ dt, dd {
 </style>
 <h2 id="additional-notes-5"><a class="header" href="#additional-notes-5">Additional Notes</a></h2>
 <h3 id="ethernet-link"><a class="header" href="#ethernet-link">Ethernet Link</a></h3>
-<p>The Ethernet MAC address is derived from the device identity using <a href="https://ariel-os.github.io/ariel-os/dev/docs/api/ariel_os/identity/fn.interface_eui48.html"><code>if_index</code> <code>0</code></a>.
+<p>The Ethernet MAC address is derived from the device identity using <a href="https://ariel-os.github.io/ariel-os/0.5.0/docs/api/ariel_os/identity/fn.interface_eui48.html"><code>if_index</code> <code>0</code></a>.
 A different index should therefore be used to generate other EUI-48 identifiers.</p>
 <hr>
 <ol class="footnote-definition">
@@ -12898,7 +12898,7 @@ dt, dd {
 </style>
 <h2 id="additional-notes-6"><a class="header" href="#additional-notes-6">Additional Notes</a></h2>
 <h3 id="ethernet-link-1"><a class="header" href="#ethernet-link-1">Ethernet Link</a></h3>
-<p>The Ethernet MAC address is derived from the device identity using <a href="https://ariel-os.github.io/ariel-os/dev/docs/api/ariel_os/identity/fn.interface_eui48.html"><code>if_index</code> <code>0</code></a>.
+<p>The Ethernet MAC address is derived from the device identity using <a href="https://ariel-os.github.io/ariel-os/0.5.0/docs/api/ariel_os/identity/fn.interface_eui48.html"><code>if_index</code> <code>0</code></a>.
 A different index should therefore be used to generate other EUI-48 identifiers.</p>
 <hr>
 <ol class="footnote-definition">
@@ -14961,12 +14961,12 @@ Being ZSTs, they do not carry any data to the drivers, only their ownership is m
 <p>If you are used to thinking about MCU peripherals as referenced by a base address (in the case of memory-mapped peripherals), you can think of these ZSTs as abstraction over these, with a zero-cost, statically-enforced lock ensuring exclusive access.</p>
 </blockquote>
 <p>In Ariel OS, these peripheral ZSTs are provided by <a href="#ariel-os-hals">Ariel OS HAL crates</a> in the respective <code>peripherals</code> modules.
-In applications, the only safe way to obtain an instance of such types is by using the <a href="https://ariel-os.github.io/ariel-os/dev/docs/api/ariel_os/hal/macro.define_peripherals.html"><code>define_peripherals!</code></a> macro, combined with a <a href="#the-spawner-and-task-ariel-os-macros">spawner or task</a>.
-The <a href="https://ariel-os.github.io/ariel-os/dev/docs/api/ariel_os/hal/macro.group_peripherals.html"><code>group_peripherals!</code></a> macro can also be useful.</p>
+In applications, the only safe way to obtain an instance of such types is by using the <a href="https://ariel-os.github.io/ariel-os/0.5.0/docs/api/ariel_os/hal/macro.define_peripherals.html"><code>define_peripherals!</code></a> macro, combined with a <a href="#the-spawner-and-task-ariel-os-macros">spawner or task</a>.
+The <a href="https://ariel-os.github.io/ariel-os/0.5.0/docs/api/ariel_os/hal/macro.group_peripherals.html"><code>group_peripherals!</code></a> macro can also be useful.</p>
 <h3 id="example"><a class="header" href="#example">Example</a></h3>
-<p>The <a href="https://ariel-os.github.io/ariel-os/dev/docs/api/ariel_os/hal/macro.define_peripherals.html"><code>define_peripherals!</code></a> macro allows to define an <em>Ariel OS peripheral struct</em>, an instance of which can be obtained with <a href="#the-spawner-and-task-ariel-os-macros"><code>spawner</code> or <code>task</code></a>:</p>
+<p>The <a href="https://ariel-os.github.io/ariel-os/0.5.0/docs/api/ariel_os/hal/macro.define_peripherals.html"><code>define_peripherals!</code></a> macro allows to define an <em>Ariel OS peripheral struct</em>, an instance of which can be obtained with <a href="#the-spawner-and-task-ariel-os-macros"><code>spawner</code> or <code>task</code></a>:</p>
 <pre><code class="language-rust ignore">ariel_os::hal::define_peripherals!(LedPeripherals { led: P0_13 });</code></pre>
-<p>Multiple Ariel OS peripheral structs can be grouped into another Ariel OS peripheral struct using the <a href="https://ariel-os.github.io/ariel-os/dev/docs/api/ariel_os/hal/macro.group_peripherals.html"><code>group_peripherals!</code></a> macro:</p>
+<p>Multiple Ariel OS peripheral structs can be grouped into another Ariel OS peripheral struct using the <a href="https://ariel-os.github.io/ariel-os/0.5.0/docs/api/ariel_os/hal/macro.group_peripherals.html"><code>group_peripherals!</code></a> macro:</p>
 <!-- TODO: this needs to be kept up to date -->
 <pre><code class="language-rust ignore">ariel_os::hal::group_peripherals!(Peripherals {
     leds: LedPeripherals,
@@ -14979,12 +14979,12 @@ Instead, multiple functions can be registered to be started during boot.
 Functions can currently be registered as either <code>spawner</code>s or <code>task</code>s:</p>
 <!-- TODO: technically the Spawner links are for Cortex-M only -->
 <ul>
-<li><a href="https://ariel-os.github.io/ariel-os/dev/docs/api/ariel_os/attr.spawner.html"><code>spawner</code> functions</a> are non-<code>async</code> and should be used when no <code>async</code> functions need to be called.
+<li><a href="https://ariel-os.github.io/ariel-os/0.5.0/docs/api/ariel_os/attr.spawner.html"><code>spawner</code> functions</a> are non-<code>async</code> and should be used when no <code>async</code> functions need to be called.
 They are provided with a <a href="https://docs.embassy.dev/embassy-executor/git/cortex-m/struct.Spawner.html"><code>Spawner</code></a> instance and can therefore be used to <a href="https://docs.embassy.dev/embassy-executor/git/cortex-m/struct.Spawner.html#method.spawn"><code>spawn</code></a> other <code>async</code> tasks.</li>
-<li><a href="https://ariel-os.github.io/ariel-os/dev/docs/api/ariel_os/attr.task.html"><code>task</code> functions</a> are <code>async</code> functions that are statically allocated at compile-time.
+<li><a href="https://ariel-os.github.io/ariel-os/0.5.0/docs/api/ariel_os/attr.task.html"><code>task</code> functions</a> are <code>async</code> functions that are statically allocated at compile-time.
 They are especially useful for long-running, <code>async</code> tasks.
 They must also be used to use <em>Ariel OS configuration hooks</em>, which can be requested with their associated macro parameter, and allow to provide configuration during boot.
-Please refer to the documentation of <a href="https://ariel-os.github.io/ariel-os/dev/docs/api/ariel_os/attr.task.html"><code>task</code></a> for a list of available hooks and to <a href="#configuration-hooks">Configuration Hooks</a> to know more about hook usage.</li>
+Please refer to the documentation of <a href="https://ariel-os.github.io/ariel-os/0.5.0/docs/api/ariel_os/attr.task.html"><code>task</code></a> for a list of available hooks and to <a href="#configuration-hooks">Configuration Hooks</a> to know more about hook usage.</li>
 </ul>
 <p>Both of these can be provided with an instance of an Ariel OS peripheral struct when needed, using the <code>peripherals</code> macro parameters (see the macros’ documentation) and taking that Ariel OS peripheral struct as parameter.</p>
 <blockquote class="blockquote-tag blockquote-tag-tip">
@@ -15182,9 +15182,9 @@ robustness to potential future changes.</p>
 </blockquote>
 <p>The precise set of formatting operations and traits required on formatted data
 depends on the selected backend.
-There are some wrapper structs available in the <a href="https://ariel-os.github.io/ariel-os/dev/docs/api/ariel_os/log/"><code>ariel_os::log</code></a> module
+There are some wrapper structs available in the <a href="https://ariel-os.github.io/ariel-os/0.5.0/docs/api/ariel_os/log/"><code>ariel_os::log</code></a> module
 that help represent some types in a portable way;
-in particular, this includes <a href="https://ariel-os.github.io/ariel-os/dev/docs/api/ariel_os/log/struct.Debug2Format.html"><code>Debug2Format</code></a> and <a href="https://ariel-os.github.io/ariel-os/dev/docs/api/ariel_os/log/struct.Display2Format.html"><code>Display2Format</code></a>,
+in particular, this includes <a href="https://ariel-os.github.io/ariel-os/0.5.0/docs/api/ariel_os/log/struct.Debug2Format.html"><code>Debug2Format</code></a> and <a href="https://ariel-os.github.io/ariel-os/0.5.0/docs/api/ariel_os/log/struct.Display2Format.html"><code>Display2Format</code></a>,
 which (while defeating some of <code>defmt</code>’s optimizations) come in handy when debugging third party types.</p>
 <h3 id="defmt"><a class="header" href="#defmt"><a href="https://github.com/knurling-rs/defmt">defmt</a></a></h3>
 <p>See the <a href="https://defmt.ferrous-systems.com/">defmt documentation</a> for general info on the defmt’s facade and logger.</p>
@@ -15267,14 +15267,14 @@ The debug console is enabled by default and the corresponding <a href="#laze-mod
 <p>When the <code>logging-over-debug-channel</code> <a href="#laze-modules">laze module</a> is enabled, <a href="#logging">logs</a> are printed on the <a href="#debug-channel-transports">debug channel output</a>.</p>
 <h2 id="closing-the-debug-console-from-firmware"><a class="header" href="#closing-the-debug-console-from-firmware">Closing the Debug Console from Firmware</a></h2>
 <p>When using <a href="#semihosting">semihosting</a>, it is possible for the target to request the debug console to exit, and to return an exit code indicating success or failure.
-In Ariel OS, the <a href="https://ariel-os.github.io/ariel-os/dev/docs/api/ariel_os/debug/fn.exit.html"><code>ariel_os::debug::exit()</code> function</a> can be used for this.
-When using a host tool that supports semihosting, this will cause the tool to exit, with the exit code given to <a href="https://ariel-os.github.io/ariel-os/dev/docs/api/ariel_os/debug/fn.exit.html"><code>exit()</code></a> on the target being passed to the host.</p>
+In Ariel OS, the <a href="https://ariel-os.github.io/ariel-os/0.5.0/docs/api/ariel_os/debug/fn.exit.html"><code>ariel_os::debug::exit()</code> function</a> can be used for this.
+When using a host tool that supports semihosting, this will cause the tool to exit, with the exit code given to <a href="https://ariel-os.github.io/ariel-os/0.5.0/docs/api/ariel_os/debug/fn.exit.html"><code>exit()</code></a> on the target being passed to the host.</p>
 <p>The laze configuration automatically enables semihosting on the target when the host tool used <em>for flashing</em> supports semihosting (e.g., probe-rs).
 When the flashing tool does not, support for semihosting can still be enabled in the firmware by selecting the <code>semihosting</code> <a href="#laze-modules">laze module</a>.
 This is needed to later be able to attach a semihosting-enabled host tool to the target.</p>
 <blockquote class="blockquote-tag blockquote-tag-note">
 <p class="blockquote-tag-title"><svg viewbox="0 0 16 16" width="18" height="18"><path d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8Zm8-6.5a6.5 6.5 0 1 0 0 13 6.5 6.5 0 0 0 0-13ZM6.5 7.75A.75.75 0 0 1 7.25 7h1a.75.75 0 0 1 .75.75v2.75h.25a.75.75 0 0 1 0 1.5h-2a.75.75 0 0 1 0-1.5h.25v-2h-.25a.75.75 0 0 1-.75-.75ZM8 6a1 1 0 1 1 0-2 1 1 0 0 1 0 2Z"></path></svg>Note</p>
-<p>When semihosting is enabled on the target and no host tool supporting semihosting (or a debugger) is connected, calling <a href="https://ariel-os.github.io/ariel-os/dev/docs/api/ariel_os/debug/fn.exit.html"><code>ariel_os::debug::exit()</code></a> may result in a panic.
+<p>When semihosting is enabled on the target and no host tool supporting semihosting (or a debugger) is connected, calling <a href="https://ariel-os.github.io/ariel-os/0.5.0/docs/api/ariel_os/debug/fn.exit.html"><code>ariel_os::debug::exit()</code></a> may result in a panic.
 For example on ESP using <code>espflash</code> you would get:</p>
 <pre><code>[ERROR] panicked at 'Unhandled interrupt on ProCpu' (esp_hal src/interrupt/mod.rs:90)
 </code></pre>
@@ -15292,7 +15292,7 @@ It comes in different flavors, identified by their laze module names:</p>
 </thead>
 <tbody>
 <tr><td><code>executor-interrupt</code></td><td><a href="https://docs.embassy.dev/embassy-executor/git/cortex-m/struct.InterruptExecutor.html">InterruptExecutor</a></td><td>Runs in handler mode. A software interrupt (SWI) handler is used when the MCU provides one, otherwise the <a href="#adding-support-for-a-board-1">board configuration must specify</a> which peripheral interrupt to dedicate to this executor.</td></tr>
-<tr><td><code>executor-thread</code></td><td><a href="https://ariel-os.github.io/ariel-os/dev/docs/api/ariel_os/asynch/thread_executor/index.html">Custom, based on <code>raw::Executor</code></a></td><td>Runs inside a dedicated thread automatically started at startup.</td></tr>
+<tr><td><code>executor-thread</code></td><td><a href="https://ariel-os.github.io/ariel-os/0.5.0/docs/api/ariel_os/asynch/thread_executor/index.html">Custom, based on <code>raw::Executor</code></a></td><td>Runs inside a dedicated thread automatically started at startup.</td></tr>
 </tbody>
 </table>
 </div>
@@ -15406,12 +15406,12 @@ IPv4 and IPv6 can both be enabled at the same time.</p>
 </blockquote>
 <h4 id="custom-configuration-provider"><a class="header" href="#custom-configuration-provider">Custom Configuration Provider</a></h4>
 <p>Instead of using DHCP or passing static configuration through environment variables it is also possible to use a custom configuration provider if needed.
-To do that, the <code>network-config-override</code> <a href="#laze-modules">laze module</a> needs to be enabled, and the <a href="https://ariel-os.github.io/ariel-os/dev/docs/api/ariel_os/attr.config.html"><code>#[ariel_os::config]</code> attribute macro</a> can be used to provide the configuration.</p>
+To do that, the <code>network-config-override</code> <a href="#laze-modules">laze module</a> needs to be enabled, and the <a href="https://ariel-os.github.io/ariel-os/0.5.0/docs/api/ariel_os/attr.config.html"><code>#[ariel_os::config]</code> attribute macro</a> can be used to provide the configuration.</p>
 <h3 id="support-for-network-protocols"><a class="header" href="#support-for-network-protocols">Support for Network Protocols</a></h3>
-<p>Support for various network protocols can be enabled through <a href="https://ariel-os.github.io/ariel-os/dev/docs/api/ariel_os/index.html">Cargo features listed in the documentation</a>.
-Most of these use <code>embassy_net</code>, which should be used through the <a href="https://ariel-os.github.io/ariel-os/dev/docs/api/ariel_os/reexports/embassy_net/index.html"><code>ariel_os::reexports::embassy_net</code></a> re-export.</p>
+<p>Support for various network protocols can be enabled through <a href="https://ariel-os.github.io/ariel-os/0.5.0/docs/api/ariel_os/index.html">Cargo features listed in the documentation</a>.
+Most of these use <code>embassy_net</code>, which should be used through the <a href="https://ariel-os.github.io/ariel-os/0.5.0/docs/api/ariel_os/reexports/embassy_net/index.html"><code>ariel_os::reexports::embassy_net</code></a> re-export.</p>
 <h3 id="using-the-network-stack"><a class="header" href="#using-the-network-stack">Using the Network Stack</a></h3>
-<p>A network stack handle can then be obtained using <a href="https://ariel-os.github.io/ariel-os/dev/docs/api/ariel_os/net/fn.network_stack.html"><code>ariel_os::net::network_stack()</code></a>.</p>
+<p>A network stack handle can then be obtained using <a href="https://ariel-os.github.io/ariel-os/0.5.0/docs/api/ariel_os/net/fn.network_stack.html"><code>ariel_os::net::network_stack()</code></a>.</p>
 <p>See the <a href="https://github.com/ariel-os/ariel-os/tree/main/examples">examples</a> for details.</p>
 <h2 id="host-setup"><a class="header" href="#host-setup">Host Setup</a></h2>
 <h3 id="static-ipv4-address-configuration"><a class="header" href="#static-ipv4-address-configuration">Static IPv4 Address Configuration</a></h3>
@@ -15482,13 +15482,13 @@ let host = stack.build();
 <p>The <code>random</code> <a href="#laze-modules">laze module</a> needs to be enabled to be able to obtain the provided RNGs.
 Two different RNG interfaces are provided, which both implement <code>rand_core</code> traits:</p>
 <ul>
-<li>A fast RNG interface, not suitable for cryptography use, which can be obtained with <a href="https://ariel-os.github.io/ariel-os/dev/docs/api/ariel_os/random/fn.fast_rng.html"><code>random::fast_rng()</code></a>.</li>
-<li>A cryptographically secure pseudo-RNG (CSPRNG) interface, which can be obtained with <a href="https://ariel-os.github.io/ariel-os/dev/docs/api/ariel_os/random/fn.crypto_rng.html"><code>random::crypto_rng()</code></a> when the <code>csprng</code> Cargo feature is enabled.
+<li>A fast RNG interface, not suitable for cryptography use, which can be obtained with <a href="https://ariel-os.github.io/ariel-os/0.5.0/docs/api/ariel_os/random/fn.fast_rng.html"><code>random::fast_rng()</code></a>.</li>
+<li>A cryptographically secure pseudo-RNG (CSPRNG) interface, which can be obtained with <a href="https://ariel-os.github.io/ariel-os/0.5.0/docs/api/ariel_os/random/fn.crypto_rng.html"><code>random::crypto_rng()</code></a> when the <code>csprng</code> Cargo feature is enabled.
 In addition, the <code>csprng</code> Cargo feature also enables support for the <a href="https://crates.io/crates/getrandom"><code>getrandom</code> crate</a>, even when it is present as a transitive dependency only.</li>
 </ul>
 <blockquote class="blockquote-tag blockquote-tag-important">
 <p class="blockquote-tag-title"><svg viewbox="0 0 16 16" width="18" height="18"><path d="M0 1.75C0 .784.784 0 1.75 0h12.5C15.216 0 16 .784 16 1.75v9.5A1.75 1.75 0 0 1 14.25 13H8.06l-2.573 2.573A1.458 1.458 0 0 1 3 14.543V13H1.75A1.75 1.75 0 0 1 0 11.25Zm1.75-.25a.25.25 0 0 0-.25.25v9.5c0 .138.112.25.25.25h2a.75.75 0 0 1 .75.75v2.19l2.72-2.72a.749.749 0 0 1 .53-.22h6.5a.25.25 0 0 0 .25-.25v-9.5a.25.25 0 0 0-.25-.25Zm7 2.25v2.5a.75.75 0 0 1-1.5 0v-2.5a.75.75 0 0 1 1.5 0ZM9 9a1 1 0 1 1-2 0 1 1 0 0 1 2 0Z"></path></svg>Important</p>
-<p>To ensure fast operation of the fast RNG, the obtained RNG must be reused between invocations, instead of obtaining new ones through <a href="https://ariel-os.github.io/ariel-os/dev/docs/api/ariel_os/random/fn.fast_rng.html"><code>random::fast_rng()</code></a>.</p>
+<p>To ensure fast operation of the fast RNG, the obtained RNG must be reused between invocations, instead of obtaining new ones through <a href="https://ariel-os.github.io/ariel-os/0.5.0/docs/api/ariel_os/random/fn.fast_rng.html"><code>random::fast_rng()</code></a>.</p>
 </blockquote>
 <h2 id="rng-seeding"><a class="header" href="#rng-seeding">RNG Seeding</a></h2>
 <p>When the <code>random</code> module is selected, the <code>hwrng</code> <a href="#laze-modules">laze module</a> is automatically enabled as well, so that the RNGs get automatically seeded from the hardware RNG (i.e., the TRNG) at startup.</p>
@@ -15503,9 +15503,9 @@ Multithreading is also <a href="#multithreading-behavior">supported on native</a
 <p><strong>Important:</strong>
 When an application requires multithreading, it must enable it by <a href="#laze-modules">selecting the <code>sw/threading</code> laze module</a>, which enables the <code>threading</code> Cargo feature.</p>
 <h2 id="spawning-threads"><a class="header" href="#spawning-threads">Spawning Threads</a></h2>
-<p>The recommended way of starting threads is by using the <a href="https://ariel-os.github.io/ariel-os/dev/docs/api/ariel_os/attr.thread.html"><code>#[ariel_os::thread]</code> attribute macro</a>, which creates and starts the thread during startup.
+<p>The recommended way of starting threads is by using the <a href="https://ariel-os.github.io/ariel-os/0.5.0/docs/api/ariel_os/attr.thread.html"><code>#[ariel_os::thread]</code> attribute macro</a>, which creates and starts the thread during startup.
 Threads can also be spawned dynamically at runtime. In this case, the thread stack must still be statically allocated at compile time.</p>
-<p>The maximum number of threads is defined by the <a href="https://ariel-os.github.io/ariel-os/dev/docs/api/ariel_os/thread/constant.THREAD_COUNT.html"><code>THREAD_COUNT</code></a> constant.</p>
+<p>The maximum number of threads is defined by the <a href="https://ariel-os.github.io/ariel-os/0.5.0/docs/api/ariel_os/thread/constant.THREAD_COUNT.html"><code>THREAD_COUNT</code></a> constant.</p>
 <h2 id="scheduling"><a class="header" href="#scheduling">Scheduling</a></h2>
 <h3 id="multicore-support"><a class="header" href="#multicore-support">Multicore Support</a></h3>
 <p>Ariel OS currently supports symmetric multiprocessing (SMP) on the following MCUs:</p>
@@ -15528,11 +15528,11 @@ model.
 See <a href="https://github.com/ariel-os/ariel-os/issues/1716">#1716</a>.</p>
 </blockquote>
 <h3 id="priority-scheduling"><a class="header" href="#priority-scheduling">Priority Scheduling</a></h3>
-<p>Ariel OS features a preemptive scheduler, which supports priority scheduling with up to <a href="https://ariel-os.github.io/ariel-os/dev/docs/api/ariel_os/thread/constant.SCHED_PRIO_LEVELS.html"><code>SCHED_PRIO_LEVELS</code></a> priority levels.
+<p>Ariel OS features a preemptive scheduler, which supports priority scheduling with up to <a href="https://ariel-os.github.io/ariel-os/0.5.0/docs/api/ariel_os/thread/constant.SCHED_PRIO_LEVELS.html"><code>SCHED_PRIO_LEVELS</code></a> priority levels.
 The highest priority runnable thread (or threads in the multicore case) is always executed.
 Threads having the same priority are scheduled cooperatively.
 The scheduler itself is tickless, therefore time-slicing isn’t supported.
-Thread priorities are dynamic and can be changed at runtime using <a href="https://ariel-os.github.io/ariel-os/dev/docs/api/ariel_os/thread/fn.set_priority.html"><code>thread::set_priority()</code></a>.</p>
+Thread priorities are dynamic and can be changed at runtime using <a href="https://ariel-os.github.io/ariel-os/0.5.0/docs/api/ariel_os/thread/fn.set_priority.html"><code>thread::set_priority()</code></a>.</p>
 <p>On multicore, a single global runqueue is shared across all cores.
 The scheduler assigns the <em>C</em> highest-priority, ready, and non-conflicting threads to the <em>C</em> available cores.
 The scheduler gets invoked individually on each core.
@@ -15543,7 +15543,7 @@ Instead, if no threads are to be scheduled, the processor enters sleep mode unti
 <p>On multicore, one idle thread is created for each core.
 When an idle thread is scheduled, it prompts the current core to enter sleep mode.</p>
 <h3 id="core-affinity"><a class="header" href="#core-affinity">Core Affinity</a></h3>
-<p>Core affinity, also known as core pinning, is optionally configurable for each thread using the <a href="https://ariel-os.github.io/ariel-os/dev/docs/api/ariel_os/attr.thread.html"><code>#[ariel_os:thread]</code> attribute macro</a>.
+<p>Core affinity, also known as core pinning, is optionally configurable for each thread using the <a href="https://ariel-os.github.io/ariel-os/0.5.0/docs/api/ariel_os/attr.thread.html"><code>#[ariel_os:thread]</code> attribute macro</a>.
 It allows to restrict the execution of a thread to a specific core and prevent it from being scheduled on another one.
 See the <a href="https://github.com/ariel-os/ariel-os/tree/main/examples/threading-multicore"><code>threading-multicore</code> example</a> for a usage example.</p>
 <div style="break-before: page; page-break-before: always;"></div>
@@ -15561,7 +15561,7 @@ across reboots and power interruptions on the microcontroller.</p>
 <p>The storage module can be enabled by <a href="#laze-modules">selecting the <code>sw/storage</code> laze module</a>,
 which enables the <code>storage</code> Cargo feature.</p>
 <h3 id="using-the-storage-module"><a class="header" href="#using-the-storage-module">Using the Storage Module</a></h3>
-<p>The <a href="https://ariel-os.github.io/ariel-os/dev/docs/api/ariel_os/storage/index.html">storage module</a> provides the necessary getters and setters
+<p>The <a href="https://ariel-os.github.io/ariel-os/0.5.0/docs/api/ariel_os/storage/index.html">storage module</a> provides the necessary getters and setters
 to interact with the storage backend.</p>
 <p>Keys are always <code>&amp;str</code> typed.
 Values are required to implement the <a href="https://docs.rs/serde/latest/serde/trait.Serialize.html"><code>serde::Serialize</code></a>
@@ -16064,10 +16064,10 @@ Links are provided when relevant to learn more about each concept.</p>
   
 <dd>
     Currently the following crates:
-    <a href="https://ariel-os.github.io/ariel-os/dev/docs/api/ariel_os_esp/index.html"><code>ariel-os-esp</code></a>,
-    <a href="https://ariel-os.github.io/ariel-os/dev/docs/api/ariel_os_nrf/index.html"><code>ariel-os-nrf</code></a>,
-    <a href="https://ariel-os.github.io/ariel-os/dev/docs/api/ariel_os_rp/index.html"><code>ariel-os-rp</code></a>, and
-    <a href="https://ariel-os.github.io/ariel-os/dev/docs/api/ariel_os_stm32/index.html"><code>ariel-os-stm32</code></a>.
+    <a href="https://ariel-os.github.io/ariel-os/0.5.0/docs/api/ariel_os_esp/index.html"><code>ariel-os-esp</code></a>,
+    <a href="https://ariel-os.github.io/ariel-os/0.5.0/docs/api/ariel_os_nrf/index.html"><code>ariel-os-nrf</code></a>,
+    <a href="https://ariel-os.github.io/ariel-os/0.5.0/docs/api/ariel_os_rp/index.html"><code>ariel-os-rp</code></a>, and
+    <a href="https://ariel-os.github.io/ariel-os/0.5.0/docs/api/ariel_os_stm32/index.html"><code>ariel-os-stm32</code></a>.
   </dd>
 
   
@@ -16518,7 +16518,7 @@ The title of the PR updating the changelog should start with <code>chore(release
 <h3 id="imports"><a class="header" href="#imports">Imports</a></h3>
 <p>Imports from the same crate with the same visibility MUST be <a href="https://web.archive.org/web/20241228143509/https://rust-analyzer.github.io/manual.html#auto-import">merged into a single use statement</a>.</p>
 <h4 id="imports-from-re-exports"><a class="header" href="#imports-from-re-exports">Imports from Re-exports</a></h4>
-<p>When using whole-crate re-exports from <a href="https://ariel-os.github.io/ariel-os/dev/docs/api/ariel_os/reexports/index.html"><code>ariel_os::reexports</code></a>, two imports SHOULD be used: one to bring the re-exported crate into the scope, and the other one to import the required items from that crate, as it it were a direct dependency of the crate, as follows:</p>
+<p>When using whole-crate re-exports from <a href="https://ariel-os.github.io/ariel-os/0.5.0/docs/api/ariel_os/reexports/index.html"><code>ariel_os::reexports</code></a>, two imports SHOULD be used: one to bring the re-exported crate into the scope, and the other one to import the required items from that crate, as it it were a direct dependency of the crate, as follows:</p>
 <pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
 </span><span class="boring">fn main() {
 </span>use ariel_os::reexports::embassy_usb;
@@ -16600,7 +16600,7 @@ any other forums created by the community for communication within the
 community. In addition, violations of this code outside these spaces may also
 affect a person’s ability to participate within them.</p>
 <p>If you believe someone is violating the code of conduct, we ask that you report
-it by emailing <a href="mailto:conduct@ariel-os.org">conduct@ariel-os.org</a>. For more details please see our <a href="https://ariel-os.github.io/ariel-os/dev/docs/book/CODE_OF_CONDUCT.html#reporting-guidelines">Reporting
+it by emailing <a href="mailto:conduct@ariel-os.org">conduct@ariel-os.org</a>. For more details please see our <a href="https://ariel-os.github.io/ariel-os/0.5.0/docs/book/CODE_OF_CONDUCT.html#reporting-guidelines">Reporting
 Guidelines</a>.</p>
 <ul>
 <li><strong>Be friendly and patient.</strong></li>
