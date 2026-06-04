@@ -1,0 +1,1 @@
+window.SIDEBAR_ITEMS = {"macro":["define_peripherals","group_peripherals"],"trait":["IntoPeripheral"]};

@@ -1,0 +1,84 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `src/lib/coapcore/src/lib.rs`."><title>lib.rs - source</title><script>if(window.location.protocol!=="file:")document.head.insertAdjacentHTML("beforeend","SourceSerif4-Regular-6b053e98.ttf.woff2,FiraSans-Italic-81dc35de.woff2,FiraSans-Regular-0fe48ade.woff2,FiraSans-MediumItalic-ccf7e434.woff2,FiraSans-Medium-e1aa3f0a.woff2,SourceCodePro-Regular-8badfe75.ttf.woff2,SourceCodePro-Semibold-aa29a496.ttf.woff2".split(",").map(f=>`<link rel="preload" as="font" type="font/woff2"href="../../static.files/${f}">`).join(""))</script><link rel="stylesheet" href="../../static.files/normalize-9960930a.css"><link rel="stylesheet" href="../../static.files/rustdoc-17e0aaed.css"><meta name="rustdoc-vars" data-root-path="../../" data-static-root-path="../../static.files/" data-current-crate="coapcore" data-themes="" data-resource-suffix="" data-rustdoc-version="1.97.0-nightly (52b6e2c20 2026-04-27)" data-channel="nightly" data-search-js="search-b5634cc7.js" data-stringdex-js="stringdex-2da4960a.js" data-settings-js="settings-170eb4bf.js" ><script src="../../static.files/storage-41dd4d93.js"></script><script defer src="../../static.files/src-script-813739b1.js"></script><script defer src="../../src-files.js"></script><script defer src="../../static.files/main-aa4d37ac.js"></script><noscript><link rel="stylesheet" href="../../static.files/noscript-f7c3ffd8.css"></noscript><link rel="alternate icon" type="image/png" href="../../static.files/favicon-32x32-eab170b8.png"><link rel="icon" type="image/svg+xml" href="../../static.files/favicon-044be391.svg"></head><body class="rustdoc src"><a class="skip-main-content" href="#main-content">Skip to main content</a><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"><div class="src-sidebar-title"><h2>Files</h2></div></nav><div class="sidebar-resizer" title="Drag to resize sidebar"></div><main><section id="main-content" class="content" tabindex="-1"><div class="main-heading"><h1><div class="sub-heading">coapcore/</div>lib.rs</h1><rustdoc-toolbar></rustdoc-toolbar></div><div class="example-wrap digits-2"><pre class="rust"><code><a href=#1 id=1 data-nosnippet>1</a><span class="doccomment">//! A CoAP security tool for embedded devices, supporting OSCORE/EDHOC and managing credentials.
+<a href=#2 id=2 data-nosnippet>2</a>//!
+<a href=#3 id=3 data-nosnippet>3</a>//! This crate is under active development; breaking changes will be made as necessary. It
+<a href=#4 id=4 data-nosnippet>4</a>//! currently only handles the server side of CoAP exchanges. At runtime, there is more copying of
+<a href=#5 id=5 data-nosnippet>5</a>//! messages than is generally preferred; those result from limitations of underlying tools and are
+<a href=#6 id=6 data-nosnippet>6</a>//! being addressed there.
+<a href=#7 id=7 data-nosnippet>7</a>//!
+<a href=#8 id=8 data-nosnippet>8</a>//! This crate builds on several components technically and logically:
+<a href=#9 id=9 data-nosnippet>9</a>//!
+<a href=#10 id=10 data-nosnippet>10</a>//! * [libOSCORE](https://gitlab.com/oscore/liboscore/) provides the OSCORE implementation.
+<a href=#11 id=11 data-nosnippet>11</a>//! * [Lakers](https://github.com/openwsn-berkeley/lakers) provides the EDHOC implementation.
+<a href=#12 id=12 data-nosnippet>12</a>//! * The combined handling of OSCORE and EDHOC was originally explored in [EDF's CoAP/ACE-OAuth
+<a href=#13 id=13 data-nosnippet>13</a>//!   proof-of-concept firmware](https://gitlab.com/oscore/coap-ace-poc-firmware/). Since this
+<a href=#14 id=14 data-nosnippet>14</a>//!   crate matured, that firmware now uses coapcore.
+<a href=#15 id=15 data-nosnippet>15</a>//! * The crate is maintained as part of [Ariel OS](https://ariel-os.org/), whose CoAP stack
+<a href=#16 id=16 data-nosnippet>16</a>//!   integrates it and [manages server access
+<a href=#17 id=17 data-nosnippet>17</a>//!   policies](https://ariel-os.github.io/ariel-os/0.5.0/docs/book/tooling/coap.html#server-access-policy).
+<a href=#18 id=18 data-nosnippet>18</a>//!   Nothing in this crate depends on Ariel OS, but some examples may refer to it.
+<a href=#19 id=19 data-nosnippet>19</a>//!
+<a href=#20 id=20 data-nosnippet>20</a>//! # Usage
+<a href=#21 id=21 data-nosnippet>21</a>//!
+<a href=#22 id=22 data-nosnippet>22</a>//! This crate is mainly used with a CoAP stack (something that takes a [`coap_handler::Handler`])
+<a href=#23 id=23 data-nosnippet>23</a>//! and a CoAP server application (an implementation of a [`coap_handler::Handler`]). Rather than
+<a href=#24 id=24 data-nosnippet>24</a>//! passing the handler directly to the stack (which then only applies security mechanisms built
+<a href=#25 id=25 data-nosnippet>25</a>//! into that concrete stack, if any), a [`OscoreEdhocHandler`] is
+<a href=#26 id=26 data-nosnippet>26</a>//! [created][OscoreEdhocHandler::new] from the application, and passed into the stack.
+<a href=#27 id=27 data-nosnippet>27</a>//!
+<a href=#28 id=28 data-nosnippet>28</a>//! The arguments passed to the [`OscoreEdhocHandler`] at construction guide its behavior.
+<a href=#29 id=29 data-nosnippet>29</a>//!
+<a href=#30 id=30 data-nosnippet>30</a>//! # Logging
+<a href=#31 id=31 data-nosnippet>31</a>//!
+<a href=#32 id=32 data-nosnippet>32</a>//! Extensive logging is available in this crate through [`defmt_or_log`], depending on features
+<a href=#33 id=33 data-nosnippet>33</a>//! enabled.
+<a href=#34 id=34 data-nosnippet>34</a>//!
+<a href=#35 id=35 data-nosnippet>35</a>//! Errors from CoAP are currently logged through its [`Debug2Format`](defmt_or_log::Debug2Format)
+<a href=#36 id=36 data-nosnippet>36</a>//! facility, representing a compromise between development and runtime complexity. Should
+<a href=#37 id=37 data-nosnippet>37</a>//! benchmarks show this to be a significant factor in code size in applications that need error
+<a href=#38 id=38 data-nosnippet>38</a>//! handling, more fine grained control can be implemented (eg. offering an option to make
+<a href=#39 id=39 data-nosnippet>39</a>//! [`Debug2Format`](defmt_or_log::Debug2Format) merely print the type name or even make it empty).
+<a href=#40 id=40 data-nosnippet>40</a>//!
+<a href=#41 id=41 data-nosnippet>41</a>//! This crate mainly logs on the trace, debug and error level; the latter provides details when an
+<a href=#42 id=42 data-nosnippet>42</a>//! error is sent over the network and the details are not visible to the peer.
+<a href=#43 id=43 data-nosnippet>43</a>//!
+<a href=#44 id=44 data-nosnippet>44</a>//! See the book for [how defmt is configured in
+<a href=#45 id=45 data-nosnippet>45</a>//! Ariel OS](https://ariel-os.github.io/ariel-os/0.5.0/docs/book/tooling/defmt.html); outside of
+<a href=#46 id=46 data-nosnippet>46</a>//! that, regular [`defmt_or_log`] practica applies.
+<a href=#47 id=47 data-nosnippet>47</a>//!
+<a href=#48 id=48 data-nosnippet>48</a>//! **Warning**: At the Debug level, this module may show cryptographic key material. This will be
+<a href=#49 id=49 data-nosnippet>49</a>//! revised once all components have been interop-tested.
+<a href=#50 id=50 data-nosnippet>50</a>//!
+<a href=#51 id=51 data-nosnippet>51</a>//! # Caveats
+<a href=#52 id=52 data-nosnippet>52</a>//!
+<a href=#53 id=53 data-nosnippet>53</a>//! Currently, this has hidden dependencies on a particular implementation of the [`coap_message`]
+<a href=#54 id=54 data-nosnippet>54</a>//! provided (it needs to be a [`coap_message_implementations::inmemory_write::Message`]) by the
+<a href=#55 id=55 data-nosnippet>55</a>//! stack. There are plans for removing this limitation by integrating deeper with libOSCORE.
+<a href=#56 id=56 data-nosnippet>56</a></span><span class="attr">#![doc = <span class="macro">document_features::document_features!</span>(feature_label = <span class="string">r#"&lt;span class="stab portability"&gt;&lt;code&gt;{feature}&lt;/code&gt;&lt;/span&gt;"#</span>)]
+<a href=#57 id=57 data-nosnippet>57</a>#![no_std]
+<a href=#58 id=58 data-nosnippet>58</a>#![cfg_attr(feature = <span class="string">"_nightly_docs"</span>, feature(doc_cfg))]
+<a href=#59 id=59 data-nosnippet>59</a>#![deny(missing_docs)]
+<a href=#60 id=60 data-nosnippet>60</a>
+<a href=#61 id=61 data-nosnippet>61</a></span><span class="kw">mod </span>iana;
+<a href=#62 id=62 data-nosnippet>62</a>
+<a href=#63 id=63 data-nosnippet>63</a><span class="kw">mod </span>helpers;
+<a href=#64 id=64 data-nosnippet>64</a>
+<a href=#65 id=65 data-nosnippet>65</a><span class="kw">pub mod </span>time;
+<a href=#66 id=66 data-nosnippet>66</a>
+<a href=#67 id=67 data-nosnippet>67</a><span class="kw">pub mod </span>ace;
+<a href=#68 id=68 data-nosnippet>68</a><span class="kw">mod </span>generalclaims;
+<a href=#69 id=69 data-nosnippet>69</a><span class="kw">pub mod </span>scope;
+<a href=#70 id=70 data-nosnippet>70</a><span class="kw">pub use </span>generalclaims::GeneralClaims;
+<a href=#71 id=71 data-nosnippet>71</a><span class="kw">pub mod </span>seccfg;
+<a href=#72 id=72 data-nosnippet>72</a>
+<a href=#73 id=73 data-nosnippet>73</a><span class="comment">// Might warrant a standalone crate at some point
+<a href=#74 id=74 data-nosnippet>74</a>//
+<a href=#75 id=75 data-nosnippet>75</a>// This is pub only to make the doctests run (but the crate's pub-ness needs a major overhaul
+<a href=#76 id=76 data-nosnippet>76</a>// anyway)
+<a href=#77 id=77 data-nosnippet>77</a></span><span class="attr">#[doc(hidden)]
+<a href=#78 id=78 data-nosnippet>78</a></span><span class="kw">pub mod </span>oluru;
+<a href=#79 id=79 data-nosnippet>79</a><span class="kw">mod </span>seccontext;
+<a href=#80 id=80 data-nosnippet>80</a><span class="kw">pub use </span>seccontext::<span class="kw-2">*</span>;
+<a href=#81 id=81 data-nosnippet>81</a>
+<a href=#82 id=82 data-nosnippet>82</a><span class="kw">mod </span>error;
+<a href=#83 id=83 data-nosnippet>83</a><span class="kw">pub use </span>error::{CredentialError, CredentialErrorDetail <span class="kw">as </span>CredentialErrorKind};
+</code></pre></div></section></main></body></html>

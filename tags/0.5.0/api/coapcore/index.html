@@ -1,0 +1,67 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="A CoAP security tool for embedded devices, supporting OSCORE/EDHOC and managing credentials."><title>coapcore - Rust</title><script>if(window.location.protocol!=="file:")document.head.insertAdjacentHTML("beforeend","SourceSerif4-Regular-6b053e98.ttf.woff2,FiraSans-Italic-81dc35de.woff2,FiraSans-Regular-0fe48ade.woff2,FiraSans-MediumItalic-ccf7e434.woff2,FiraSans-Medium-e1aa3f0a.woff2,SourceCodePro-Regular-8badfe75.ttf.woff2,SourceCodePro-Semibold-aa29a496.ttf.woff2".split(",").map(f=>`<link rel="preload" as="font" type="font/woff2"href="../static.files/${f}">`).join(""))</script><link rel="stylesheet" href="../static.files/normalize-9960930a.css"><link rel="stylesheet" href="../static.files/rustdoc-17e0aaed.css"><meta name="rustdoc-vars" data-root-path="../" data-static-root-path="../static.files/" data-current-crate="coapcore" data-themes="" data-resource-suffix="" data-rustdoc-version="1.97.0-nightly (52b6e2c20 2026-04-27)" data-channel="nightly" data-search-js="search-b5634cc7.js" data-stringdex-js="stringdex-2da4960a.js" data-settings-js="settings-170eb4bf.js" ><script src="../static.files/storage-41dd4d93.js"></script><script defer src="../crates.js"></script><script defer src="../static.files/main-aa4d37ac.js"></script><noscript><link rel="stylesheet" href="../static.files/noscript-f7c3ffd8.css"></noscript><link rel="alternate icon" type="image/png" href="../static.files/favicon-32x32-eab170b8.png"><link rel="icon" type="image/svg+xml" href="../static.files/favicon-044be391.svg"></head><body class="rustdoc mod crate"><a class="skip-main-content" href="#main-content">Skip to main content</a><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><rustdoc-topbar><h2><a href="#">Crate coapcore</a></h2></rustdoc-topbar><nav class="sidebar"><div class="sidebar-crate"><h2><a href="../coapcore/index.html">coapcore</a><span class="version">0.1.1</span></h2></div><div class="sidebar-elems"><ul class="block"><li><a id="all-types" href="all.html">All Items</a></li></ul><section id="rustdoc-toc"><h3><a href="#">Sections</a></h3><ul class="block top-toc"><li><a href="#usage" title="Usage">Usage</a></li><li><a href="#logging" title="Logging">Logging</a></li><li><a href="#caveats" title="Caveats">Caveats</a></li><li><a href="#cargo-features" title="Cargo features">Cargo features</a></li></ul><h3><a href="#modules">Crate Items</a></h3><ul class="block"><li><a href="#modules" title="Modules">Modules</a></li><li><a href="#structs" title="Structs">Structs</a></li><li><a href="#enums" title="Enums">Enums</a></li><li><a href="#traits" title="Traits">Traits</a></li></ul></section><div id="rustdoc-modnav"></div></div></nav><div class="sidebar-resizer" title="Drag to resize sidebar"></div><main><div class="width-limiter"><section id="main-content" class="content" tabindex="-1"><div class="main-heading"><h1>Crate <span>coapcore</span>&nbsp;<button id="copy-path" title="Copy item path to clipboard">Copy item path</button></h1><rustdoc-toolbar></rustdoc-toolbar><span class="sub-heading"><a class="src" href="../src/coapcore/lib.rs.html#1-83">Source</a> </span></div><details class="toggle top-doc" open><summary class="hideme"><span>Expand description</span></summary><div class="docblock"><p>A CoAP security tool for embedded devices, supporting OSCORE/EDHOC and managing credentials.</p>
+<p>This crate is under active development; breaking changes will be made as necessary. It
+currently only handles the server side of CoAP exchanges. At runtime, there is more copying of
+messages than is generally preferred; those result from limitations of underlying tools and are
+being addressed there.</p>
+<p>This crate builds on several components technically and logically:</p>
+<ul>
+<li><a href="https://gitlab.com/oscore/liboscore/">libOSCORE</a> provides the OSCORE implementation.</li>
+<li><a href="https://github.com/openwsn-berkeley/lakers">Lakers</a> provides the EDHOC implementation.</li>
+<li>The combined handling of OSCORE and EDHOC was originally explored in <a href="https://gitlab.com/oscore/coap-ace-poc-firmware/">EDF’s CoAP/ACE-OAuth
+proof-of-concept firmware</a>. Since this
+crate matured, that firmware now uses coapcore.</li>
+<li>The crate is maintained as part of <a href="https://ariel-os.org/">Ariel OS</a>, whose CoAP stack
+integrates it and <a href="https://ariel-os.github.io/ariel-os/0.5.0/docs/book/tooling/coap.html#server-access-policy">manages server access
+policies</a>.
+Nothing in this crate depends on Ariel OS, but some examples may refer to it.</li>
+</ul>
+<h2 id="usage"><a class="doc-anchor" href="#usage">§</a>Usage</h2>
+<p>This crate is mainly used with a CoAP stack (something that takes a [<code>coap_handler::Handler</code>])
+and a CoAP server application (an implementation of a [<code>coap_handler::Handler</code>]). Rather than
+passing the handler directly to the stack (which then only applies security mechanisms built
+into that concrete stack, if any), a <a href="struct.OscoreEdhocHandler.html" title="struct coapcore::OscoreEdhocHandler"><code>OscoreEdhocHandler</code></a> is
+<a href="struct.OscoreEdhocHandler.html#method.new" title="associated function coapcore::OscoreEdhocHandler::new">created</a> from the application, and passed into the stack.</p>
+<p>The arguments passed to the <a href="struct.OscoreEdhocHandler.html" title="struct coapcore::OscoreEdhocHandler"><code>OscoreEdhocHandler</code></a> at construction guide its behavior.</p>
+<h2 id="logging"><a class="doc-anchor" href="#logging">§</a>Logging</h2>
+<p>Extensive logging is available in this crate through [<code>defmt_or_log</code>], depending on features
+enabled.</p>
+<p>Errors from CoAP are currently logged through its <a href="defmt_or_log::Debug2Format"><code>Debug2Format</code></a>
+facility, representing a compromise between development and runtime complexity. Should
+benchmarks show this to be a significant factor in code size in applications that need error
+handling, more fine grained control can be implemented (eg. offering an option to make
+<a href="defmt_or_log::Debug2Format"><code>Debug2Format</code></a> merely print the type name or even make it empty).</p>
+<p>This crate mainly logs on the trace, debug and error level; the latter provides details when an
+error is sent over the network and the details are not visible to the peer.</p>
+<p>See the book for <a href="https://ariel-os.github.io/ariel-os/0.5.0/docs/book/tooling/defmt.html">how defmt is configured in
+Ariel OS</a>; outside of
+that, regular [<code>defmt_or_log</code>] practica applies.</p>
+<p><strong>Warning</strong>: At the Debug level, this module may show cryptographic key material. This will be
+revised once all components have been interop-tested.</p>
+<h2 id="caveats"><a class="doc-anchor" href="#caveats">§</a>Caveats</h2>
+<p>Currently, this has hidden dependencies on a particular implementation of the [<code>coap_message</code>]
+provided (it needs to be a [<code>coap_message_implementations::inmemory_write::Message</code>]) by the
+stack. There are plans for removing this limitation by integrating deeper with libOSCORE.</p>
+<h2 id="cargo-features"><a class="doc-anchor" href="#cargo-features">§</a>Cargo features</h2>
+<ul>
+<li>
+<p><span class="stab portability"><code>defmt</code></span> —  Sends the output of the crate’s log statements to the <code>defmt</code> ecosystem.</p>
+</li>
+<li>
+<p><span class="stab portability"><code>log</code></span> —  Sends the output of the crate’s log statements to the <code>log</code> ecosystem.</p>
+</li>
+<li>
+<p><span class="stab portability"><code>liboscore-defaults</code></span> <em>(enabled by default)</em> —  Selects the libOSCORE default features.</p>
+<p>libOSCORE generally provides abort and assert symbols for its C code. When
+used in environments where they are provided by other code (eg. ESP32 some
+variants), this default feature can be disabled, leaving the user to manually
+select the right libOSCORE features.</p>
+</li>
+<li>
+<p><span class="stab portability"><code>liboscore-provide-abort</code></span> <em>(enabled by default)</em> —  Feature passed on to libOSCORE (see <code>liboscore-defaults</code>)</p>
+</li>
+<li>
+<p><span class="stab portability"><code>liboscore-provide-assert</code></span> <em>(enabled by default)</em> —  Feature passed on to libOSCORE (see <code>liboscore-defaults</code>)</p>
+</li>
+</ul>
+</div></details><h2 id="modules" class="section-header">Modules<a href="#modules" class="anchor">§</a></h2><dl class="item-table"><dt><a class="mod" href="ace/index.html" title="mod coapcore::ace">ace</a></dt><dd>Types representing ACE, COSE and CWT structures.</dd><dt><a class="mod" href="scope/index.html" title="mod coapcore::scope">scope</a></dt><dd>Expressions for access policy as evaluated for a particular security context.</dd><dt><a class="mod" href="seccfg/index.html" title="mod coapcore::seccfg">seccfg</a></dt><dd>Descriptions of trust sources for the Resource Server (RS) which coapcore runs on.</dd><dt><a class="mod" href="time/index.html" title="mod coapcore::time">time</a></dt><dd>Traits and types around representing time, as used to consider token expiration.</dd></dl><h2 id="structs" class="section-header">Structs<a href="#structs" class="anchor">§</a></h2><dl class="item-table"><dt><a class="struct" href="struct.CredentialError.html" title="struct coapcore::CredentialError">Credential<wbr>Error</a></dt><dd>Error type returned from various functions that ingest any input to an authentication or
+authorization step.</dd><dt><a class="struct" href="struct.OscoreEdhocHandler.html" title="struct coapcore::OscoreEdhocHandler">Oscore<wbr>Edhoc<wbr>Handler</a></dt><dd>A CoAP handler wrapping inner resources, and adding EDHOC, OSCORE and ACE support.</dd></dl><h2 id="enums" class="section-header">Enums<a href="#enums" class="anchor">§</a></h2><dl class="item-table"><dt><a class="enum" href="enum.CredentialErrorKind.html" title="enum coapcore::CredentialErrorKind">Credential<wbr>Error<wbr>Kind</a></dt><dd>Classification of a <a href="struct.CredentialError.html" title="struct coapcore::CredentialError"><code>CredentialError</code></a>.</dd></dl><h2 id="traits" class="section-header">Traits<a href="#traits" class="anchor">§</a></h2><dl class="item-table"><dt><a class="trait" href="trait.GeneralClaims.html" title="trait coapcore::GeneralClaims">General<wbr>Claims</a></dt><dd>Claims about a peer that are independent of the security mechanism.</dd></dl></section></div></main></body></html>
