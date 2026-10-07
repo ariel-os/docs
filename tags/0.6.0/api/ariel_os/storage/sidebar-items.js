@@ -1,0 +1,1 @@
+window.SIDEBAR_ITEMS = {"constant":["DATA_BUFFER_SIZE","MAX_KEY_LEN"],"derive":["Deserialize","Serialize"],"fn":["erase_all","get","insert","lock","remove"],"struct":["PostcardValue","Storage"],"trait":["Deserialize","Serialize"]};

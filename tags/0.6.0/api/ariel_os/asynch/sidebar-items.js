@@ -1,0 +1,1 @@
+window.SIDEBAR_ITEMS = {"fn":["spawner","yield_now"],"mod":["thread_executor"],"struct":["SendSpawner","Spawner"]};

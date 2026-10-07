@@ -1,0 +1,1 @@
+window.SIDEBAR_ITEMS = {"enum":["Category","Label","MeasurementUnit"],"mod":["sensor","signal"],"trait":["Reading","Sensor"]};

@@ -1,0 +1,1 @@
+window.SIDEBAR_ITEMS = {"enum":["Frequency","Spi"],"struct":["Config","SPI2"]};

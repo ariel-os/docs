@@ -1,0 +1,1 @@
+window.SIDEBAR_ITEMS = {"fn":["device_id_bytes","interface_eui48"],"struct":["Eui48"]};

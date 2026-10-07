@@ -1,0 +1,1 @@
+window.SIDEBAR_ITEMS = {"enum":["DataBits","Parity","StopBits","Uart"],"struct":["Baudrate","Config","UART0","UART1"]};
