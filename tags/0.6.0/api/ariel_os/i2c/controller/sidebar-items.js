@@ -1,0 +1,1 @@
+window.SIDEBAR_ITEMS = {"constant":["I2C_TIMEOUT"],"enum":["Error","Frequency","NoAcknowledgeSource","Operation"],"fn":["highest_freq_in"],"type":["I2cDevice","Kilohertz"]};

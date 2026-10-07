@@ -1,0 +1,1 @@
+window.SIDEBAR_ITEMS = {"constant":["CONFIGURATION_NONE","CONFIGURATION_VALUE"],"enum":["RemoteWakeupError","UsbDeviceState","UsbVersion"],"mod":["class","control","descriptor","driver","msos","types"],"struct":["Builder","Config","FunctionBuilder","InterfaceAltBuilder","InterfaceBuilder","UsbBufferReport","UsbDevice"],"trait":["Handler"]};

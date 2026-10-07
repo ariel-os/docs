@@ -1,0 +1,1 @@
+window.SIDEBAR_ITEMS = {"enum":["Mode","ReadingError","SampleError","SampleMetadata","SetModeError","State","TriggerMeasurementError"],"struct":["ReadingChannel","ReadingChannels","ReadingWaiter","Sample","Samples","TryFromIntError"],"trait":["Reading","Sensor","SensorAccess"],"type":["ReadingResult"]};
