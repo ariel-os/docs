@@ -232,7 +232,7 @@ When configuring the PLL, care must be taken to minimize the settling time and t
 Additionally, if the RTC is needed, an appropriate clock source must also be configured, especially if it needs to run in low-power modes.</p>
 <p>At reset, the CPU clock is set by hardware to the default clock source (often one of the <a href="#internal-oscillators">internal oscillators</a>).
 Early in Ariel OS’s startup, clocks are configured with a default configuration that depends on the MCU and the board.
-The <a href="https://ariel-os.github.io/ariel-os/dev/docs/api/ariel_os/attr.config.html"><code>#[ariel_os::config]</code> macro</a> allows providing a custom configuration for clocks, which will be used by Ariel OS instead of the default one; currently this is only supported on STM32 MCUs.</p>
+The <a href="https://ariel-os.github.io/ariel-os/0.6.0/docs/api/ariel_os/attr.config.html"><code>#[ariel_os::config]</code> macro</a> allows providing a custom configuration for clocks, which will be used by Ariel OS instead of the default one; currently this is only supported on STM32 MCUs.</p>
 <p>Peripheral drivers automatically enable the peripheral’s clock when instantiated, and disable it (<a href="./power-management.html#clock-gating">“gate it”</a>) when dropped, but the clock tree still needs to be configured manually to distribute the required clock signal to the peripheral.</p>
 
                     </main>

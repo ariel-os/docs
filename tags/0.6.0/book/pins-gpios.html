@@ -205,7 +205,7 @@ Some microcontroller families (e.g., ESP32, nRF) do however provide greater flex
 These restrictions are enforced by Ariel OS (and by <a href="./glossary.html#embassy-style-hals">Embassy-style HALs</a>) at compile time, so it should not be possible to connect the wrong pin to a peripheral.
 Refer to your microcontroller’s datasheet to learn about the structure of its pins and about the peripherals that can be used with each of them.</p>
 <h2 id="gpios-as-inputs"><a class="header" href="#gpios-as-inputs">GPIOs as Inputs</a></h2>
-<p>Ariel OS provides <a href="https://ariel-os.github.io/ariel-os/dev/docs/api/ariel_os/gpio/struct.Input.html">a portable driver</a> allowing to read the logic level of a GPIO:</p>
+<p>Ariel OS provides <a href="https://ariel-os.github.io/ariel-os/0.6.0/docs/api/ariel_os/gpio/struct.Input.html">a portable driver</a> allowing to read the logic level of a GPIO:</p>
 <pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
 </span><span class="boring">fn main() {
 </span>let btn0 = Input::new(peripherals.buttons.button0, Pull::Up);
@@ -248,7 +248,7 @@ When the pair of transistors is used in a complementary way—i.e., driving the 
 If only the transistor able to drive the output low is used—i.e., the output is either driven low or is left in high impedance—the output is used as open-drain (OD).
 Open-drain outputs are useful to “release” the output and allow another device, or a <a href="#pull-uppull-down-resistors">pull-up resistor</a>, to take control of it.
 They are for instance used by certain bus protocols, such as <a href="./i2c.html">I2C</a>.</p>
-<p>Ariel OS provides <a href="https://ariel-os.github.io/ariel-os/dev/docs/api/ariel_os/gpio/struct.Output.html">a portable driver</a> allowing to set the level of a GPIO:</p>
+<p>Ariel OS provides <a href="https://ariel-os.github.io/ariel-os/0.6.0/docs/api/ariel_os/gpio/struct.Output.html">a portable driver</a> allowing to set the level of a GPIO:</p>
 <pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
 </span><span class="boring">fn main() {
 </span>let mut led0 = Output::new(peripherals.leds.led0, Level::Low);
@@ -271,7 +271,7 @@ Refer to your microcontroller’s datasheet.</p>
 </blockquote>
 <h4 id="output-configuration"><a class="header" href="#output-configuration">Output Configuration</a></h4>
 <p>Depending on the microcontroller, outputs may support configuring their drive strength and/or their speed/slew rate.
-In Ariel OS, this is done through <a href="https://ariel-os.github.io/ariel-os/dev/docs/api/ariel_os/gpio/struct.Output.html#method.builder"><code>Output::builder()</code></a>.</p>
+In Ariel OS, this is done through <a href="https://ariel-os.github.io/ariel-os/0.6.0/docs/api/ariel_os/gpio/struct.Output.html#method.builder"><code>Output::builder()</code></a>.</p>
 <p>The drive strength of a pin determines how much current it can source/sink <em>without the voltage being affected</em>.
 Increasing this setting is necessary when the load attached to the pin requires more current than the default, or when it is necessary to reduce the rise/fall time (i.e., to increase the slew rate).</p>
 <blockquote class="blockquote-tag blockquote-tag-important">
@@ -288,7 +288,7 @@ Increasing this setting is necessary when the load attached to the pin requires 
 <!-- NOTE: The API does assume that both types are supported. -->
 <p>Because the logic level of a floating input is unpredictable, inputs should not be left floating and should either be driven by an external component or by a pull-up or pull-down resistor.
 Such resistors can be added on the board, but all supported microcontrollers also feature internal pull-up and pull-down resistors which can be enabled in software.
-In Ariel OS, <a href="https://ariel-os.github.io/ariel-os/dev/docs/api/ariel_os/gpio/enum.Pull.html"><code>Pull</code></a> is used in the <a href="#gpios-as-inputs">input constructor</a> to configure its resistors.</p>
+In Ariel OS, <a href="https://ariel-os.github.io/ariel-os/0.6.0/docs/api/ariel_os/gpio/enum.Pull.html"><code>Pull</code></a> is used in the <a href="#gpios-as-inputs">input constructor</a> to configure its resistors.</p>
 <blockquote class="blockquote-tag blockquote-tag-tip">
 <p class="blockquote-tag-title"><svg viewbox="0 0 16 16" width="18" height="18"><path d="M8 1.5c-2.363 0-4 1.69-4 3.75 0 .984.424 1.625.984 2.304l.214.253c.223.264.47.556.673.848.284.411.537.896.621 1.49a.75.75 0 0 1-1.484.211c-.04-.282-.163-.547-.37-.847a8.456 8.456 0 0 0-.542-.68c-.084-.1-.173-.205-.268-.32C3.201 7.75 2.5 6.766 2.5 5.25 2.5 2.31 4.863 0 8 0s5.5 2.31 5.5 5.25c0 1.516-.701 2.5-1.328 3.259-.095.115-.184.22-.268.319-.207.245-.383.453-.541.681-.208.3-.33.565-.37.847a.751.751 0 0 1-1.485-.212c.084-.593.337-1.078.621-1.489.203-.292.45-.584.673-.848.075-.088.147-.173.213-.253.561-.679.985-1.32.985-2.304 0-2.06-1.637-3.75-4-3.75ZM5.75 12h4.5a.75.75 0 0 1 0 1.5h-4.5a.75.75 0 0 1 0-1.5ZM6 15.25a.75.75 0 0 1 .75-.75h2.5a.75.75 0 0 1 0 1.5h-2.5a.75.75 0 0 1-.75-.75Z"></path></svg>Tip</p>
 <p>Enabling internal pull-up resistors even if external ones are also present is electrically safe, and only <a href="https://en.wikipedia.org/wiki/Series_and_parallel_circuits#Resistance_2">reduces the resistance</a> as the resistors are in parallel, which only (slightly) increases power consumption.</p>

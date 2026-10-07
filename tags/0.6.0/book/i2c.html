@@ -245,7 +245,7 @@ It is not currently possible to select another one.</p>
 </span>let mut i2c_config = ariel_os::hal::i2c::controller::Config::default();
 <span class="boring">}</span></code></pre>
 <h4 id="selecting-the-bus-frequency"><a class="header" href="#selecting-the-bus-frequency">Selecting the Bus Frequency</a></h4>
-<p>Ariel OS provides a <a href="https://ariel-os.github.io/ariel-os/dev/docs/api/ariel_os/i2c/controller/fn.highest_freq_in.html">helper function <code>highest_freq_in()</code></a> that helps keep the application portable while allowing to use the bus at the highest frequency possible on the hardware:</p>
+<p>Ariel OS provides a <a href="https://ariel-os.github.io/ariel-os/0.6.0/docs/api/ariel_os/i2c/controller/fn.highest_freq_in.html">helper function <code>highest_freq_in()</code></a> that helps keep the application portable while allowing to use the bus at the highest frequency possible on the hardware:</p>
 <pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
 </span><span class="boring">fn main() {
 </span>i2c_config.frequency = const { highest_freq_in(Kilohertz::kHz(100)..=Kilohertz::kHz(400)) };

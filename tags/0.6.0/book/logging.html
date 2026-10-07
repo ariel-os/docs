@@ -217,9 +217,9 @@ robustness to potential future changes.</p>
 </blockquote>
 <p>The precise set of formatting operations and traits required on formatted data
 depends on the selected backend.
-There are some wrapper structs available in the <a href="https://ariel-os.github.io/ariel-os/dev/docs/api/ariel_os/log/"><code>ariel_os::log</code></a> module
+There are some wrapper structs available in the <a href="https://ariel-os.github.io/ariel-os/0.6.0/docs/api/ariel_os/log/"><code>ariel_os::log</code></a> module
 that help represent some types in a portable way;
-in particular, this includes <a href="https://ariel-os.github.io/ariel-os/dev/docs/api/ariel_os/log/struct.Debug2Format.html"><code>Debug2Format</code></a> and <a href="https://ariel-os.github.io/ariel-os/dev/docs/api/ariel_os/log/struct.Display2Format.html"><code>Display2Format</code></a>,
+in particular, this includes <a href="https://ariel-os.github.io/ariel-os/0.6.0/docs/api/ariel_os/log/struct.Debug2Format.html"><code>Debug2Format</code></a> and <a href="https://ariel-os.github.io/ariel-os/0.6.0/docs/api/ariel_os/log/struct.Display2Format.html"><code>Display2Format</code></a>,
 which (while defeating some of <code>defmt</code>’s optimizations) come in handy when debugging third party types.</p>
 <h3 id="defmt"><a class="header" href="#defmt"><a href="https://github.com/knurling-rs/defmt">defmt</a></a></h3>
 <p>See the <a href="https://defmt.ferrous-systems.com/">defmt documentation</a> for general info on the defmt’s facade and logger.</p>
@@ -270,19 +270,19 @@ This means that logging can still be used in production, even if the debug inter
 <h3 id="custom-logging-transports"><a class="header" href="#custom-logging-transports">Custom Logging Transports</a></h3>
 <p>An application can connect a custom logging transport to send the logs through.</p>
 <p>This is enabled using the <code>logging-over-custom-transport</code> <a href="./build-system.html#laze-modules">laze module</a>.
-This will give access to <a href="https://ariel-os.github.io/ariel-os/dev/docs/api/ariel_os/log/transport/fn.register_custom_transport.html"><code>register_custom_transport()</code></a>, which takes two arguments:</p>
+This will give access to <a href="https://ariel-os.github.io/ariel-os/0.6.0/docs/api/ariel_os/log/transport/fn.register_custom_transport.html"><code>register_custom_transport()</code></a>, which takes two arguments:</p>
 <ul>
 <li><code>write_bytes</code>: this function should take a reference to a slice of bytes (<code>&amp;[u8]</code>) as input and send it through the transport.</li>
 <li><code>flush</code>: this function should flush the data through the transport when available for the transport.</li>
 </ul>
 <blockquote class="blockquote-tag blockquote-tag-important">
 <p class="blockquote-tag-title"><svg viewbox="0 0 16 16" width="18" height="18"><path d="M0 1.75C0 .784.784 0 1.75 0h12.5C15.216 0 16 .784 16 1.75v9.5A1.75 1.75 0 0 1 14.25 13H8.06l-2.573 2.573A1.458 1.458 0 0 1 3 14.543V13H1.75A1.75 1.75 0 0 1 0 11.25Zm1.75-.25a.25.25 0 0 0-.25.25v9.5c0 .138.112.25.25.25h2a.75.75 0 0 1 .75.75v2.19l2.72-2.72a.749.749 0 0 1 .53-.22h6.5a.25.25 0 0 0 .25-.25v-9.5a.25.25 0 0 0-.25-.25Zm7 2.25v2.5a.75.75 0 0 1-1.5 0v-2.5a.75.75 0 0 1 1.5 0ZM9 9a1 1 0 1 1-2 0 1 1 0 0 1 2 0Z"></path></svg>Important</p>
-<p>The functions given to <a href="https://ariel-os.github.io/ariel-os/dev/docs/api/ariel_os/log/transport/fn.register_custom_transport.html"><code>register_custom_transport</code></a> must not wait on interrupts they may be called
+<p>The functions given to <a href="https://ariel-os.github.io/ariel-os/0.6.0/docs/api/ariel_os/log/transport/fn.register_custom_transport.html"><code>register_custom_transport</code></a> must not wait on interrupts they may be called
 in the context of a critical section and should not make calls to the logging facade.</p>
 </blockquote>
 <blockquote class="blockquote-tag blockquote-tag-note">
 <p class="blockquote-tag-title"><svg viewbox="0 0 16 16" width="18" height="18"><path d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8Zm8-6.5a6.5 6.5 0 1 0 0 13 6.5 6.5 0 0 0 0-13ZM6.5 7.75A.75.75 0 0 1 7.25 7h1a.75.75 0 0 1 .75.75v2.75h.25a.75.75 0 0 1 0 1.5h-2a.75.75 0 0 1 0-1.5h.25v-2h-.25a.75.75 0 0 1-.75-.75ZM8 6a1 1 0 1 1 0-2 1 1 0 0 1 0 2Z"></path></svg>Note</p>
-<p>The logs triggered before setting the logging transport functions using <a href="https://ariel-os.github.io/ariel-os/dev/docs/api/ariel_os/log/transport/fn.register_custom_transport.html"><code>register_custom_transport</code></a>
+<p>The logs triggered before setting the logging transport functions using <a href="https://ariel-os.github.io/ariel-os/0.6.0/docs/api/ariel_os/log/transport/fn.register_custom_transport.html"><code>register_custom_transport</code></a>
 may be lost.</p>
 </blockquote>
 <h2 id="fetching-and-displaying-the-logging-output-on-the-host"><a class="header" href="#fetching-and-displaying-the-logging-output-on-the-host">Fetching and Displaying the Logging Output on the Host</a></h2>

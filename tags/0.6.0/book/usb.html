@@ -238,7 +238,7 @@ Otherwise, if VBUS detection is required and is not made possible by the hardwar
 <h2 id="software-integration"><a class="header" href="#software-integration">Software Integration</a></h2>
 <p>Ariel OS provides support for the USB peripheral role through <a href="https://docs.rs/embassy-usb/latest/embassy_usb/"><code>embassy-usb</code></a>, which provides a consistent API across the supported hardware.
 It can be enabled with the <code>usb</code> <a href="./build-system.html#laze-modules">laze module</a>, which is only made available when the board features a USB device port.</p>
-<p>An instance of <a href="https://ariel-os.github.io/ariel-os/dev/docs/api/ariel_os/usb/type.UsbBuilder.html"><code>embassy_usb::Builder</code></a> is created by Ariel OS, on which support for well-known USB device classes can be added using a dedicated <a href="https://ariel-os.github.io/ariel-os/dev/docs/api/ariel_os/attr.task.html">Ariel OS task hook</a>:</p>
+<p>An instance of <a href="https://ariel-os.github.io/ariel-os/0.6.0/docs/api/ariel_os/usb/type.UsbBuilder.html"><code>embassy_usb::Builder</code></a> is created by Ariel OS, on which support for well-known USB device classes can be added using a dedicated <a href="https://ariel-os.github.io/ariel-os/0.6.0/docs/api/ariel_os/attr.task.html">Ariel OS task hook</a>:</p>
 <pre class="playground"><code class="language-rust">#[ariel_os::task(autostart, usb_builder_hook)]
 async fn main() {
     let mut usb_class = USB_BUILDER_HOOK
@@ -247,7 +247,7 @@ async fn main() {
         })
         .await;
 }</code></pre>
-<p>Support for well-known USB device classes is provided by <code>embassy-usb</code>, which is re-exported as <a href="https://ariel-os.github.io/ariel-os/dev/docs/api/ariel_os/reexports/embassy_usb/index.html"><code>ariel_os::reexports::embassy_usb</code></a>.
+<p>Support for well-known USB device classes is provided by <code>embassy-usb</code>, which is re-exported as <a href="https://ariel-os.github.io/ariel-os/0.6.0/docs/api/ariel_os/reexports/embassy_usb/index.html"><code>ariel_os::reexports::embassy_usb</code></a>.
 Custom USB device classes can also be implemented.
 Additionally, multiple USB device classes can be added on the builder, to create a composite USB device.</p>
 <h3 id="usb-device-classes"><a class="header" href="#usb-device-classes">USB Device Classes</a></h3>
@@ -258,17 +258,17 @@ Additionally, multiple USB device classes can be added on the builder, to create
 <tr><th>Device class</th><th>How to use</th></tr>
 </thead>
 <tbody>
-<tr><td><a href="./glossary.html#usb-cdc-acm">USB CDC-ACM</a></td><td>Apply the <a href="https://ariel-os.github.io/ariel-os/dev/docs/api/ariel_os/reexports/embassy_usb/class/cdc_acm/struct.CdcAcmClass.html"><code>CdcAcmClass</code></a> constructor on the builder</td></tr>
+<tr><td><a href="./glossary.html#usb-cdc-acm">USB CDC-ACM</a></td><td>Apply the <a href="https://ariel-os.github.io/ariel-os/0.6.0/docs/api/ariel_os/reexports/embassy_usb/class/cdc_acm/struct.CdcAcmClass.html"><code>CdcAcmClass</code></a> constructor on the builder</td></tr>
 <tr><td><a href="./glossary.html#usb-cdc-ncm">USB CDC-NCM</a></td><td>Enable the <a href="./networking.html#network-link-selection"><code>usb-ethernet</code> laze module</a></td></tr>
-<tr><td>USB HID</td><td>Enable the <code>usb-hid</code> Cargo feature and apply the <a href="https://ariel-os.github.io/ariel-os/dev/docs/api/ariel_os/reexports/embassy_usb/class/hid/struct.HidReaderWriter.html"><code>HidReaderWriter</code></a> constructor on the builder</td></tr>
+<tr><td>USB HID</td><td>Enable the <code>usb-hid</code> Cargo feature and apply the <a href="https://ariel-os.github.io/ariel-os/0.6.0/docs/api/ariel_os/reexports/embassy_usb/class/hid/struct.HidReaderWriter.html"><code>HidReaderWriter</code></a> constructor on the builder</td></tr>
 </tbody>
 </table>
 </div>
-<p><a href="https://ariel-os.github.io/ariel-os/dev/docs/api/ariel_os/reexports/embassy_usb/class/index.html">Other well-known device classes</a> are supported, and it is also possible to implement custom ones.</p>
+<p><a href="https://ariel-os.github.io/ariel-os/0.6.0/docs/api/ariel_os/reexports/embassy_usb/class/index.html">Other well-known device classes</a> are supported, and it is also possible to implement custom ones.</p>
 <h3 id="device-configuration"><a class="header" href="#device-configuration">Device Configuration</a></h3>
-<p><a href="https://ariel-os.github.io/ariel-os/dev/docs/api/ariel_os/reexports/embassy_usb/struct.Config.html">Configuration for the USB device</a> created can be provided using the <a href="https://ariel-os.github.io/ariel-os/dev/docs/api/ariel_os/attr.config.html"><code>#[ariel_os::config(usb)]</code></a> attribute.
+<p><a href="https://ariel-os.github.io/ariel-os/0.6.0/docs/api/ariel_os/reexports/embassy_usb/struct.Config.html">Configuration for the USB device</a> created can be provided using the <a href="https://ariel-os.github.io/ariel-os/0.6.0/docs/api/ariel_os/attr.config.html"><code>#[ariel_os::config(usb)]</code></a> attribute.
 In particular, it allows setting the Vendor ID (VID) and Product ID (PID), and the manufacturer and product names.</p>
-<p>Additionally, some environment variables are used by <a href="https://ariel-os.github.io/ariel-os/dev/docs/api/ariel_os/reexports/embassy_usb/index.html"><code>embassy-usb</code></a> for configuration.
+<p>Additionally, some environment variables are used by <a href="https://ariel-os.github.io/ariel-os/0.6.0/docs/api/ariel_os/reexports/embassy_usb/index.html"><code>embassy-usb</code></a> for configuration.
 See its documentation for more.</p>
 <h3 id="clock-configuration"><a class="header" href="#clock-configuration">Clock Configuration</a></h3>
 <!-- NOTE: THE STM32F4 MCUs do *not* support crystal-less USB. -->
